@@ -1,4 +1,4 @@
-<%@ page import="programmingchallange.UserProfile" %>
+<%@ page import="programmingchallenge.web.UserProfile" %>
 
 
 

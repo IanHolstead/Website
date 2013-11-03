@@ -29,6 +29,12 @@ grails.mime.types = [
     xml:           ['text/xml', 'application/xml']
 ]
 
+grails.gorm.default.constraints = {
+	'*'(nullable: true)
+	title maxSize:100
+	caption maxSize:250
+}
+
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
 
@@ -89,3 +95,8 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'programmingchallenge.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'programmingchallenge.UserRole'
+grails.plugins.springsecurity.authority.className = 'programmingchallenge.Role'

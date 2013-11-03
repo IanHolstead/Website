@@ -3,6 +3,9 @@ package programmingchallange
 
 
 import org.junit.*
+
+import programmingchallenge.UserProfileController;
+import programmingchallenge.web.UserProfile;
 import grails.test.mixin.*
 
 @TestFor(UserProfileController)

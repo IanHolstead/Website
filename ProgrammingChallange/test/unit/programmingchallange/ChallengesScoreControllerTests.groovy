@@ -3,6 +3,9 @@ package programmingchallange
 
 
 import org.junit.*
+
+import programmingchallenge.ChallengesScoreController;
+import programmingchallenge.web.ChallengesScore;
 import grails.test.mixin.*
 
 @TestFor(ChallengesScoreController)

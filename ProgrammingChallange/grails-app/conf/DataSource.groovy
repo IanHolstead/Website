@@ -15,8 +15,8 @@ environments {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
 			driverClassName = "com.mysql.jdbc.Driver"
-			username = "root"
-			password = "Skiskiski8`"
+			username = "igholste"
+			password = "ian"
             url = "jdbc:mysql://localhost/programming_challanges_dev"
         }
     }

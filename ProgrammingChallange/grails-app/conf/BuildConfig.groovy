@@ -58,13 +58,20 @@ grails.project.dependency.resolution = {
         //runtime ":yui-minify-resources:0.1.5"
 
 		compile ":spring-security-core:1.2.7.3"
+		compile ":spring-security-ui:0.2"
 		compile ":famfamfam:1.0.1"
-		compile ":twitter-bootstrap:3.0.0"
-		runtime ":fields:1.3"
+		compile ":jquery-ui:1.8.24"
+		
+		compile ':kickstart-with-bootstrap:0.8.9'
+		compile ':lesscss-resources:1.3.0.3'
+		
+//		compile ":mail:1.0.1"
+//		compile ":twitter-bootstrap:3.0.0"
+//		runtime ":fields:1.3"
 //		compile ":spring-security-facebook:0.15"
 //		compile ":audit-logging:0.5.4"
         
-        runtime ":database-migration:1.3.2"
+//        runtime ":database-migration:1.3.2"
         compile ':cache:1.0.1'
     }
 }
