@@ -5,14 +5,19 @@ package ian.website
 import org.junit.*
 import grails.test.mixin.*
 
+/**
+ * WorldControllerTests
+ * A unit test class is used to test individual methods or blocks of code without considering the surrounding infrastructure
+ */
 @TestFor(WorldController)
 @Mock(World)
 class WorldControllerTests {
 
+
     def populateValidParams(params) {
-        assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+      assert params != null
+      // TODO: Populate valid properties like...
+      //params["name"] = 'someValidName'
     }
 
     void testIndex() {
@@ -29,9 +34,9 @@ class WorldControllerTests {
     }
 
     void testCreate() {
-        def model = controller.create()
+       def model = controller.create()
 
-        assert model.worldInstance != null
+       assert model.worldInstance != null
     }
 
     void testSave() {
@@ -56,6 +61,7 @@ class WorldControllerTests {
         assert flash.message != null
         assert response.redirectedUrl == '/world/list'
 
+
         populateValidParams(params)
         def world = new World(params)
 
@@ -73,6 +79,7 @@ class WorldControllerTests {
 
         assert flash.message != null
         assert response.redirectedUrl == '/world/list'
+
 
         populateValidParams(params)
         def world = new World(params)
@@ -93,6 +100,7 @@ class WorldControllerTests {
         assert response.redirectedUrl == '/world/list'
 
         response.reset()
+
 
         populateValidParams(params)
         def world = new World(params)

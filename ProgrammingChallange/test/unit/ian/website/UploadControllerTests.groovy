@@ -5,14 +5,19 @@ package ian.website
 import org.junit.*
 import grails.test.mixin.*
 
+/**
+ * UploadControllerTests
+ * A unit test class is used to test individual methods or blocks of code without considering the surrounding infrastructure
+ */
 @TestFor(UploadController)
 @Mock(Upload)
 class UploadControllerTests {
 
+
     def populateValidParams(params) {
-        assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+      assert params != null
+      // TODO: Populate valid properties like...
+      //params["name"] = 'someValidName'
     }
 
     void testIndex() {
@@ -29,9 +34,9 @@ class UploadControllerTests {
     }
 
     void testCreate() {
-        def model = controller.create()
+       def model = controller.create()
 
-        assert model.uploadInstance != null
+       assert model.uploadInstance != null
     }
 
     void testSave() {
@@ -56,6 +61,7 @@ class UploadControllerTests {
         assert flash.message != null
         assert response.redirectedUrl == '/upload/list'
 
+
         populateValidParams(params)
         def upload = new Upload(params)
 
@@ -73,6 +79,7 @@ class UploadControllerTests {
 
         assert flash.message != null
         assert response.redirectedUrl == '/upload/list'
+
 
         populateValidParams(params)
         def upload = new Upload(params)
@@ -93,6 +100,7 @@ class UploadControllerTests {
         assert response.redirectedUrl == '/upload/list'
 
         response.reset()
+
 
         populateValidParams(params)
         def upload = new Upload(params)

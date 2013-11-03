@@ -1,4 +1,4 @@
-package programmingchallenge
+
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 

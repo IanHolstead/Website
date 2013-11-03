@@ -1,6 +1,6 @@
-import programmingchallenge.Role
-import programmingchallenge.User
-import programmingchallenge.UserRole
+import Role
+import User
+import UserRole
 
 
 class BootStrap {

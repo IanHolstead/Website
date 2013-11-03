@@ -2,12 +2,16 @@ package ian.website
 
 import org.springframework.dao.DataIntegrityViolationException
 
+/**
+ * WorldController
+ * A controller class handles incoming web requests and performs actions such as redirects, rendering views and so on.
+ */
 class WorldController {
 
-    static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
-        redirect action: 'list', params: params
+        redirect(action: "list", params: params)
     }
 
     def list() {
@@ -16,28 +20,25 @@ class WorldController {
     }
 
     def create() {
-		switch (request.method) {
-		case 'GET':
-        	[worldInstance: new World(params)]
-			break
-		case 'POST':
-	        def worldInstance = new World(params)
-	        if (!worldInstance.save(flush: true)) {
-	            render view: 'create', model: [worldInstance: worldInstance]
-	            return
-	        }
+        [worldInstance: new World(params)]
+    }
 
-			flash.message = message(code: 'default.created.message', args: [message(code: 'world.label', default: 'World'), worldInstance.id])
-	        redirect action: 'show', id: worldInstance.id
-			break
-		}
+    def save() {
+        def worldInstance = new World(params)
+        if (!worldInstance.save(flush: true)) {
+            render(view: "create", model: [worldInstance: worldInstance])
+            return
+        }
+
+		flash.message = message(code: 'default.created.message', args: [message(code: 'world.label', default: 'World'), worldInstance.id])
+        redirect(action: "show", id: worldInstance.id)
     }
 
     def show() {
         def worldInstance = World.get(params.id)
         if (!worldInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
-            redirect action: 'list'
+            redirect(action: "list")
             return
         }
 
@@ -45,65 +46,62 @@ class WorldController {
     }
 
     def edit() {
-		switch (request.method) {
-		case 'GET':
-	        def worldInstance = World.get(params.id)
-	        if (!worldInstance) {
-	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
-	            redirect action: 'list'
-	            return
-	        }
+        def worldInstance = World.get(params.id)
+        if (!worldInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
+            redirect(action: "list")
+            return
+        }
 
-	        [worldInstance: worldInstance]
-			break
-		case 'POST':
-	        def worldInstance = World.get(params.id)
-	        if (!worldInstance) {
-	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
-	            redirect action: 'list'
-	            return
-	        }
+        [worldInstance: worldInstance]
+    }
 
-	        if (params.version) {
-	            def version = params.version.toLong()
-	            if (worldInstance.version > version) {
-	                worldInstance.errors.rejectValue('version', 'default.optimistic.locking.failure',
-	                          [message(code: 'world.label', default: 'World')] as Object[],
-	                          "Another user has updated this World while you were editing")
-	                render view: 'edit', model: [worldInstance: worldInstance]
-	                return
-	            }
-	        }
+    def update() {
+        def worldInstance = World.get(params.id)
+        if (!worldInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
+            redirect(action: "list")
+            return
+        }
 
-	        worldInstance.properties = params
+        if (params.version) {
+            def version = params.version.toLong()
+            if (worldInstance.version > version) {
+                worldInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                          [message(code: 'world.label', default: 'World')] as Object[],
+                          "Another user has updated this World while you were editing")
+                render(view: "edit", model: [worldInstance: worldInstance])
+                return
+            }
+        }
 
-	        if (!worldInstance.save(flush: true)) {
-	            render view: 'edit', model: [worldInstance: worldInstance]
-	            return
-	        }
+        worldInstance.properties = params
 
-			flash.message = message(code: 'default.updated.message', args: [message(code: 'world.label', default: 'World'), worldInstance.id])
-	        redirect action: 'show', id: worldInstance.id
-			break
-		}
+        if (!worldInstance.save(flush: true)) {
+            render(view: "edit", model: [worldInstance: worldInstance])
+            return
+        }
+
+		flash.message = message(code: 'default.updated.message', args: [message(code: 'world.label', default: 'World'), worldInstance.id])
+        redirect(action: "show", id: worldInstance.id)
     }
 
     def delete() {
         def worldInstance = World.get(params.id)
         if (!worldInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
-            redirect action: 'list'
+            redirect(action: "list")
             return
         }
 
         try {
             worldInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'world.label', default: 'World'), params.id])
-            redirect action: 'list'
+            redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'world.label', default: 'World'), params.id])
-            redirect action: 'show', id: params.id
+            redirect(action: "show", id: params.id)
         }
     }
 }
