@@ -4,7 +4,7 @@ class Upload {
 	
 	Boolean isLink
 	String link
-//	Byte[] img
+//	Byte[] file
 
     static constraints = {
     }

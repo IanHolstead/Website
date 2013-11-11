@@ -7,9 +7,11 @@ class UrlMappings {
 		 */
 //		"/"				(view:"/index")
 		"/about"		(view:"/siteinfo/about")
+		"/contact"		(view:"/siteinfo/contact")
+		"/site"			(view:"/siteinfo/site")
+		
 		"/blog"			(view:"/siteinfo/blog")
 		"/systeminfo"	(view:"/siteinfo/systeminfo")
-		"/contact"		(view:"/siteinfo/contact")
 		"/terms"		(view:"/siteinfo/terms")
 		"/imprint"		(view:"/siteinfo/imprint")
 		
