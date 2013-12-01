@@ -1,4 +1,5 @@
-package programmingchallenge
+package ian.security
+
 
 import grails.plugins.springsecurity.Secured
 

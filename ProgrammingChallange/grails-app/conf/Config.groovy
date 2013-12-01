@@ -32,7 +32,7 @@ grails.mime.types = [
 grails.gorm.default.constraints = {
 	'*'(nullable: true)
 	title maxSize:100
-	caption maxSize:250
+	caption maxSize:350
 }
 
 // URL Mapping Cache Max Size, defaults to 5000
@@ -97,8 +97,23 @@ log4j = {
 }
 
 // Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'programmingchallenge.User'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'programmingchallenge.UserRole'
-grails.plugins.springsecurity.authority.className = 'programmingchallenge.Role'
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'ian.security.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'ian.security.UserRole'
+grails.plugins.springsecurity.authority.className = 'ian.security.Role'
+
+//grails.plugins.springsecurity.auth.loginFormUrl = '/'
+
+//grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
+//grails.plugins.springsecurity.interceptUrlMap = [
+//	
+//	
+//]
+
+grails.plugin.springsecurity.roleHierarchy = '''
+   	ROLE_SUPER_ADMIN > ROLE_ADMIN
+   	ROLE_ADMIN > ROLE_AWESOME_USER
+	ROLE_AWESOME_USER > ROLE_SUPER_USER
+	ROLSE_SUPER_USER > ROLE_USER
+'''
 
 grails.config.defaults.locations = [KickstartResources]

@@ -1,4 +1,4 @@
-package programmingchallenge.web
+package ian.programming.challenge
 
 class UserProfile {
 	

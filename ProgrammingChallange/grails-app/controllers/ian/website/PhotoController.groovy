@@ -27,7 +27,7 @@ class PhotoController {
         def photoInstance = new Photo(params)
 		def uploadedPhoto = request.getFile('photoPayload')
 		photoInstance.photoPayload = uploadedPhoto.getBytes()
-		photoInstance.photoName = uploadedPhoto.originalFilename
+		photoInstance.photoOriginalName = uploadedPhoto.originalFilename
 		if (!photoInstance.save(flush: true)) {
 			render(view: "create", model: [photoInstance: photoInstance])
 			return

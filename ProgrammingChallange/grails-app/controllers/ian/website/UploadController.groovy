@@ -38,12 +38,16 @@ class UploadController {
         def uploadInstance = Upload.get(params.id)
         if (!uploadInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'upload.label', default: 'Upload'), params.id])
-            redirect(action: "list")
+            redirect(uri:'/')
             return
         }
 
         [uploadInstance: uploadInstance]
     }
+	
+	def fileDownload(){
+		
+	}
 
     def edit() {
         def uploadInstance = Upload.get(params.id)

@@ -9,6 +9,9 @@ class World {
 	String xkcd
 	String xkcdCaption
 	
+	java.sql.Date date
+	Integer status = 0 //0: unused, 1: current, 2:archived, 11:scheduled next, 12: scheduled two weeks...
+	
 	Blog blog
 	Photo photo
 
@@ -18,12 +21,9 @@ class World {
 	
     static constraints = {
 		title unique: true, shared:'title'
-//		blogRestriction inList:['','friends','close friends', 'family', 'personal']
-//		video  
 		videoCaption shared:'caption'  
 		xkcd url:true 
 		xkcdCaption shared:'caption' 
-//		img
 		
     }
 }

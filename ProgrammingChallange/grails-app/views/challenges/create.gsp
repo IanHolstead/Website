@@ -1,70 +1,36 @@
-<%@ page import="programmingchallenge.web.Challenges" %>
+<%@ page import="ian.programming.challenge.Challenges" %>
 <!doctype html>
 <html>
-	<head>
-		<meta name="layout" content="bootstrap">
-		<g:set var="entityName" value="${message(code: 'challenges.label', default: 'Challenges')}" />
-		<title><g:message code="default.create.label" args="[entityName]" /></title>
-	</head>
-	<body>
-		<div class="row-fluid">
-			
-			<div class="span3">
-				<div class="well">
-					<ul class="nav nav-list">
-						<li class="nav-header">${entityName}</li>
-						<li>
-							<g:link class="list" action="list">
-								<i class="icon-list"></i>
-								<g:message code="default.list.label" args="[entityName]" />
-							</g:link>
-						</li>
-						<li class="active">
-							<g:link class="create" action="create">
-								<i class="icon-plus icon-white"></i>
-								<g:message code="default.create.label" args="[entityName]" />
-							</g:link>
-						</li>
-					</ul>
-				</div>
-			</div>
-			
-			<div class="span9">
 
-				<div class="page-header">
-					<h1><g:message code="default.create.label" args="[entityName]" /></h1>
-				</div>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="layout" content="kickstart" />
+	<g:set var="entityName" value="${message(code: 'challenges.label', default: 'Challenges')}" />
+	<title><g:message code="default.create.label" args="[entityName]" /></title>
+</head>
 
-				<g:if test="${flash.message}">
-				<bootstrap:alert class="alert-info">${flash.message}</bootstrap:alert>
-				</g:if>
+<body>
 
-				<g:hasErrors bean="${challengesInstance}">
-				<bootstrap:alert class="alert-error">
-				<ul>
-					<g:eachError bean="${challengesInstance}" var="error">
-					<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-					</g:eachError>
-				</ul>
-				</bootstrap:alert>
-				</g:hasErrors>
+<section id="create-challenges" class="first">
 
-				<fieldset>
-					<g:form class="form-horizontal" action="create" >
-						<fieldset>
-							<f:all bean="challengesInstance"/>
-							<div class="form-actions">
-								<button type="submit" class="btn btn-primary">
-									<i class="icon-ok icon-white"></i>
-									<g:message code="default.button.create.label" default="Create" />
-								</button>
-							</div>
-						</fieldset>
-					</g:form>
-				</fieldset>
-				
-			</div>
-
+	<g:hasErrors bean="${challengesInstance}">
+	<div class="alert alert-error">
+		<g:renderErrors bean="${challengesInstance}" as="list" />
+	</div>
+	</g:hasErrors>
+	
+	<g:form action="save" class="form-horizontal" >
+		<fieldset class="form">
+			<g:render template="form"/>
+		</fieldset>
+		<div class="form-actions">
+			<g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+            <button class="btn" type="reset">Cancel</button>
 		</div>
-	</body>
+	</g:form>
+	
+</section>
+		
+</body>
+
 </html>

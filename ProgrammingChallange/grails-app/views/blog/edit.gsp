@@ -1,27 +1,27 @@
-<%@ page import="ian.programming.challenge.Challenges" %>
+<%@ page import="ian.website.Blog" %>
 <!doctype html>
 <html>
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="layout" content="kickstart" />
-	<g:set var="entityName" value="${message(code: 'challenges.label', default: 'Challenges')}" />
+	<g:set var="entityName" value="${message(code: 'blog.label', default: 'Blog')}" />
 	<title><g:message code="default.edit.label" args="[entityName]" /></title>
 </head>
 
 <body>
 
-<section id="edit-challenges" class="first">
+<section id="edit-blog" class="first">
 
-	<g:hasErrors bean="${challengesInstance}">
+	<g:hasErrors bean="${blogInstance}">
 	<div class="alert alert-error">
-		<g:renderErrors bean="${challengesInstance}" as="list" />
+		<g:renderErrors bean="${blogInstance}" as="list" />
 	</div>
 	</g:hasErrors>
 
 	<g:form method="post" class="form-horizontal" >
-		<g:hiddenField name="id" value="${challengesInstance?.id}" />
-		<g:hiddenField name="version" value="${challengesInstance?.version}" />
+		<g:hiddenField name="id" value="${blogInstance?.id}" />
+		<g:hiddenField name="version" value="${blogInstance?.version}" />
 		<fieldset class="form">
 			<g:render template="form"/>
 		</fieldset>

@@ -2,26 +2,18 @@
 
 
 
-			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'blogTitle', 'error')} ">
-				<label for="blogTitle" class="control-label"><g:message code="world.blogTitle.label" default="Blog Title" /></label>
+			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'title', 'error')} ">
+				<label for="title" class="control-label"><g:message code="world.title.label" default="Title" /></label>
 				<div class="controls">
-					<g:textField name="blogTitle" maxlength="100" value="${worldInstance?.blogTitle}"/>
-					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'blogTitle', 'error')}</span>
-				</div>
-			</div>
-
-			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'blogRestriction', 'error')} ">
-				<label for="blogRestriction" class="control-label"><g:message code="world.blogRestriction.label" default="Blog Restriction" /></label>
-				<div class="controls">
-					<g:select name="blogRestriction" from="${worldInstance.constraints.blogRestriction.inList}" value="${worldInstance?.blogRestriction}" valueMessagePrefix="world.blogRestriction" noSelection="['': '']"/>
-					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'blogRestriction', 'error')}</span>
+					<g:textField name="title" maxlength="100" value="${worldInstance?.title}"/>
+					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'title', 'error')}</span>
 				</div>
 			</div>
 
 			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'videoCaption', 'error')} ">
 				<label for="videoCaption" class="control-label"><g:message code="world.videoCaption.label" default="Video Caption" /></label>
 				<div class="controls">
-					<g:textField name="videoCaption" maxlength="250" value="${worldInstance?.videoCaption}"/>
+					<g:textArea name="videoCaption" cols="40" rows="5" maxlength="350" value="${worldInstance?.videoCaption}"/>
 					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'videoCaption', 'error')}</span>
 				</div>
 			</div>
@@ -37,32 +29,80 @@
 			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'xkcdCaption', 'error')} ">
 				<label for="xkcdCaption" class="control-label"><g:message code="world.xkcdCaption.label" default="Xkcd Caption" /></label>
 				<div class="controls">
-					<g:textField name="xkcdCaption" maxlength="250" value="${worldInstance?.xkcdCaption}"/>
+					<g:textArea name="xkcdCaption" cols="40" rows="5" maxlength="350" value="${worldInstance?.xkcdCaption}"/>
 					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'xkcdCaption', 'error')}</span>
 				</div>
 			</div>
 
-			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'imgTitle', 'error')} ">
-				<label for="imgTitle" class="control-label"><g:message code="world.imgTitle.label" default="Img Title" /></label>
+<%--			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'blog', 'error')} ">--%>
+<%--				<label for="blog" class="control-label"><g:message code="world.blog.label" default="Blog" /></label>--%>
+<%--				<div class="controls">--%>
+<%--					<g:select id="blog" name="blog.id" from="${ian.website.Blog.list()}" optionKey="id" value="${worldInstance?.blog?.id}" class="many-to-one" noSelection="['null': '']"/>--%>
+<%--					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'blog', 'error')}</span>--%>
+<%--				</div>--%>
+<%--			</div>--%>
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'blogTitle', 'error')} required">
+				<label for="blogTitle" class="control-label"><g:message code="blog.blogTitle.label" default="Blog Title" /><span class="required-indicator">*</span></label>
 				<div class="controls">
-					<g:textField name="imgTitle" maxlength="100" value="${worldInstance?.imgTitle}"/>
-					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'imgTitle', 'error')}</span>
+					<g:textField name="blogTitle" maxlength="100" required="" value="${blogInstance?.blogTitle}"/>
+					<span class="help-inline">${hasErrors(bean: blogInstance, field: 'blogTitle', 'error')}</span>
 				</div>
 			</div>
 
-			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'imgCaption', 'error')} ">
-				<label for="imgCaption" class="control-label"><g:message code="world.imgCaption.label" default="Img Caption" /></label>
+			<div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'blogSummary', 'error')} ">
+				<label for="blogSummary" class="control-label"><g:message code="blog.blogSummary.label" default="Blog Summary" /></label>
 				<div class="controls">
-					<g:textField name="imgCaption" maxlength="250" value="${worldInstance?.imgCaption}"/>
-					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'imgCaption', 'error')}</span>
+					<g:textField name="blogSummary" maxlength="250" value="${blogInstance?.blogSummary}"/>
+					<span class="help-inline">${hasErrors(bean: blogInstance, field: 'blogSummary', 'error')}</span>
 				</div>
 			</div>
 
-			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'blog', 'error')} ">
-				<label for="blog" class="control-label"><g:message code="world.blog.label" default="Blog" /></label>
+			<div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'blogContent', 'error')} ">
+				<label for="blogContent" class="control-label"><g:message code="blog.blogContent.label" default="Blog Content" /></label>
 				<div class="controls">
-					<g:textField name="blog" value="${worldInstance?.blog}"/>
-					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'blog', 'error')}</span>
+					<g:textField name="blogContent" value="${blogInstance?.blogContent}"/>
+					<span class="help-inline">${hasErrors(bean: blogInstance, field: 'blogContent', 'error')}</span>
+				</div>
+			</div>
+
+<%--			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'photo', 'error')} ">--%>
+<%--				<label for="photo" class="control-label"><g:message code="world.photo.label" default="Photo" /></label>--%>
+<%--				<div class="controls">--%>
+<%--					<g:select id="photo" name="photo.id" from="${ian.website.Photo.list()}" optionKey="id" value="${worldInstance?.photo?.id}" class="many-to-one" noSelection="['null': '']"/>--%>
+<%--					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'photo', 'error')}</span>--%>
+<%--				</div>--%>
+<%--			</div>--%>
+
+			<div class="control-group fieldcontain ${hasErrors(bean: photoInstance, field: 'photoPayload', 'error')} ">
+				<label for="photoPayload" class="control-label"><g:message code="photo.photoPayload.label" default="Photo Payload" /></label>
+				<div class="controls">
+					<input type="file" id="photoPayload" name="photoPayload" />
+					<span class="help-inline">${hasErrors(bean: photoInstance, field: 'photoPayload', 'error')}</span>
+				</div>
+			</div>
+
+			<div class="control-group fieldcontain ${hasErrors(bean: photoInstance, field: 'photoName', 'error')} ">
+				<label for="photoName" class="control-label"><g:message code="photo.photoName.label" default="Photo Name" /></label>
+				<div class="controls">
+					<g:textField name="photoName" value="${photoInstance?.photoName}"/>
+					<span class="help-inline">${hasErrors(bean: photoInstance, field: 'photoName', 'error')}</span>
+				</div>
+			</div>
+
+			<div class="control-group fieldcontain ${hasErrors(bean: photoInstance, field: 'photoCaption', 'error')} ">
+				<label for="photoCaption" class="control-label"><g:message code="photo.photoCaption.label" default="Photo Caption" /></label>
+				<div class="controls">
+					<g:textField name="photoCaption" value="${photoInstance?.photoCaption}"/>
+					<span class="help-inline">${hasErrors(bean: photoInstance, field: 'photoCaption', 'error')}</span>
+				</div>
+			</div>
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'summary', 'error')} ">
+				<label for="summary" class="control-label"><g:message code="world.summary.label" default="Summary" /></label>
+				<div class="controls">
+					<g:textField name="summary" value="${worldInstance?.summary}"/>
+					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'summary', 'error')}</span>
 				</div>
 			</div>
 
