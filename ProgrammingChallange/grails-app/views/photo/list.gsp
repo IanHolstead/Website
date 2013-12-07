@@ -18,9 +18,7 @@
 			<tr>
 			
 				<g:sortableColumn property="photoPayload" title="${message(code: 'photo.photoPayload.label', default: 'Photo Payload')}" />
-			
 				<g:sortableColumn property="photoName" title="${message(code: 'photo.photoName.label', default: 'Photo Name')}" />
-			
 				<g:sortableColumn property="photoCaption" title="${message(code: 'photo.photoCaption.label', default: 'Photo Caption')}" />
 			
 			</tr>
@@ -30,9 +28,7 @@
 			<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 			
 				<td><g:link action="show" id="${photoInstance.id}"><img  src="${createLink(controller:'photo', action:'showPayload', id:"${photoInstance.id}")}" width='300' /></g:link></td>
-			
 				<td>${fieldValue(bean: photoInstance, field: "photoName")}</td>
-			
 				<td>${fieldValue(bean: photoInstance, field: "photoCaption")}</td>
 			
 			</tr>

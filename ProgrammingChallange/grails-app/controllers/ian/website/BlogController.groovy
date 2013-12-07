@@ -1,6 +1,5 @@
 package ian.website
 
-import ian.security.User;
 import grails.plugins.springsecurity.Secured
 
 import org.springframework.dao.DataIntegrityViolationException
@@ -9,7 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException
 class BlogController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
+	
     def index() {
         redirect(action: "list", params: params)
     }
@@ -19,7 +18,7 @@ class BlogController {
         [blogInstanceList: Blog.list(params), blogInstanceTotal: Blog.count()]
     }
 	
-//	@Secured(['ROLE_ADMIN'])
+	@Secured(['ROLE_ADMIN'])
     def create() {
         [blogInstance: new Blog(params)]
     }

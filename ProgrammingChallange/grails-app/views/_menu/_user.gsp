@@ -12,8 +12,8 @@
 				<form method="POST" action="${resource(file: 'j_spring_security_check')}">
 					<input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="j_username">
 					<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="j_password">
-					<input style="float: left; margin-right: 10px;" type="checkbox" name='${rememberMeParameter}' id="remember-me" <g:if test='${hasCookie}'>checked='checked'</g:if>/>
-					<label class="string optional" for="user_remember_me"> Remember me</label>
+<%--					<input style="float: left; margin-right: 10px;" type="checkbox" name='${rememberMeParameter}' id="remember-me" <g:if test='${hasCookie}'>checked='checked'</g:if>/>--%>
+<%--					<label class="string optional" for="user_remember_me"> Remember me</label>--%>
 					<g:submitButton name="login" value="Sign In" class="btn btn-primary btn-block" id="sign-in"/>
 				</form>
 			</li>
@@ -33,17 +33,13 @@
 			<sec:username/> <b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu" role="menu">
-			<!-- TODO: Only show menu items based on permissions -->
-			<li class=""><a href="${createLink(uri: '/')}">
-				<i class="icon-user"></i>
-				<g:message code="user.show.label"/>
-			</a></li>
-			<li class=""><a href="${createLink(uri: '/')}">
-				<i class="icon-cogs"></i>
-				<g:message code="user.settings.change.label"/>
-			</a></li>
-			
-			<li class="divider"></li>
+			<sec:ifAnyGranted roles="ROLE_SUPER_USER">
+				<li class=""><g:link controller="user" action="show">
+					<i class="icon-user"></i>
+					<g:message code="user.show.label"/>
+				</g:link></li>
+				<li class="divider"></li>
+			</sec:ifAnyGranted>
 			<li class=""><a href="${createLink(uri: '/logout/index')}">
 				<i class="icon-off"></i>
 				<g:message code="security.signoff.label"/>

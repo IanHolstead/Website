@@ -1,11 +1,10 @@
 package ian.website
 
+import grails.plugins.springsecurity.Secured
+
 import org.springframework.dao.DataIntegrityViolationException
 
-/**
- * PhotoController
- * A controller class handles incoming web requests and performs actions such as redirects, rendering views and so on.
- */
+
 class PhotoController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -19,10 +18,12 @@ class PhotoController {
         [photoInstanceList: Photo.list(params), photoInstanceTotal: Photo.count()]
     }
 
+	@Secured(['ROLE_ADMIN'])
     def create() {
         [photoInstance: new Photo(params)]
     }
 
+	@Secured(['ROLE_ADMIN'])
     def save() {
         def photoInstance = new Photo(params)
 		def uploadedPhoto = request.getFile('photoPayload')
@@ -47,11 +48,12 @@ class PhotoController {
     }
 	
 	def showPayload(){
-		def photoInstance = Photo.get(params.id)
-		response.outputStream<<photoInstance.photoPayload
+		def uploadInstance = Upload.get(params.id)
+		response.outputStream<<uploadInstance.filePayload
 		response.outputStream.flush()
 	}
 
+	@Secured(['ROLE_ADMIN'])
     def edit() {
         def photoInstance = Photo.get(params.id)
         if (!photoInstance) {
@@ -63,6 +65,7 @@ class PhotoController {
         [photoInstance: photoInstance]
     }
 
+	@Secured(['ROLE_ADMIN'])
     def update() {
         def photoInstance = Photo.get(params.id)
         if (!photoInstance) {
@@ -93,6 +96,7 @@ class PhotoController {
         redirect(action: "show", id: photoInstance.id)
     }
 
+	@Secured(['ROLE_ADMIN'])
     def delete() {
         def photoInstance = Photo.get(params.id)
         if (!photoInstance) {

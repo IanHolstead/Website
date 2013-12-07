@@ -4,6 +4,7 @@ class Upload {
 	
 	Boolean isLink
 	String link
+	Boolean isPicture
 	String fileName
 	String fileType
 	Byte[] filePayload

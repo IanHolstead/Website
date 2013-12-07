@@ -37,6 +37,7 @@ grails.gorm.default.constraints = {
 
 // URL Mapping Cache Max Size, defaults to 5000
 //grails.urlmapping.cache.maxsize = 1000
+grails.app.context = "/"
 
 // What URL patterns should be processed by the resources plugin
 grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
@@ -101,7 +102,8 @@ grails.plugins.springsecurity.userLookup.userDomainClassName = 'ian.security.Use
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'ian.security.UserRole'
 grails.plugins.springsecurity.authority.className = 'ian.security.Role'
 
-//grails.plugins.springsecurity.auth.loginFormUrl = '/'
+grails.plugins.springsecurity.auth.loginFormUrl = '/'
+grails.plugins.springsecurity.failureHandler.defaultFailureUrl = '/'
 
 //grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
 //grails.plugins.springsecurity.interceptUrlMap = [
@@ -109,7 +111,8 @@ grails.plugins.springsecurity.authority.className = 'ian.security.Role'
 //	
 //]
 
-grails.plugin.springsecurity.roleHierarchy = '''
+
+grails.plugins.springsecurity.roleHierarchy = '''
    	ROLE_SUPER_ADMIN > ROLE_ADMIN
    	ROLE_ADMIN > ROLE_AWESOME_USER
 	ROLE_AWESOME_USER > ROLE_SUPER_USER

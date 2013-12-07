@@ -1,5 +1,7 @@
 package ian.website
 
+import grails.plugins.springsecurity.Secured
+
 import org.springframework.dao.DataIntegrityViolationException
 
 /**
@@ -19,10 +21,12 @@ class WorldController {
         [worldInstanceList: World.list(params), worldInstanceTotal: World.count()]
     }
 
+	@Secured(['ROLE_ADMIN'])
     def create() {
         [worldInstance: new World(params), blogInstance: new Blog(params), photoInstance: new Photo(params)]
     }
 
+	@Secured(['ROLE_ADMIN'])
     def save() {
         def worldInstance = new World(params)
 		def blogInstance = new Blog(params)
@@ -63,7 +67,7 @@ class WorldController {
 		World current = World.findAll {status == 1}
 		redirect(action:"show", id:current.id)
 	}
-
+	
     def show() {
         def worldInstance = World.get(params.id)
 		def photoInstance = worldInstance.photo
@@ -82,6 +86,7 @@ class WorldController {
 		response.outputStream.flush()
 	}
 
+	@Secured(['ROLE_ADMIN'])
     def edit() {
         def worldInstance = World.get(params.id)
         if (!worldInstance) {
@@ -93,6 +98,7 @@ class WorldController {
         [worldInstance: worldInstance]
     }
 
+	@Secured(['ROLE_ADMIN'])
     def update() {
         def worldInstance = World.get(params.id)
         if (!worldInstance) {
@@ -123,6 +129,7 @@ class WorldController {
         redirect(action: "show", id: worldInstance.id)
     }
 
+	@Secured(['ROLE_ADMIN'])
     def delete() {
         def worldInstance = World.get(params.id)
         if (!worldInstance) {

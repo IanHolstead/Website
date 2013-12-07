@@ -14,6 +14,7 @@ This menu is used to show function that can be triggered on the content (an obje
 		<li class="${ params.action == "list" ? 'active' : '' }">
 			<g:link action="list"><i class="icon-th-list"></i> <g:message code="default.list.label" args="[entityName]"/></g:link>
 		</li>
+		
 		<li class="${ params.action == "create" ? 'active' : '' }">
 			<g:link action="create"><i class="icon-plus"></i> <g:message code="default.new.label"  args="[entityName]"/></g:link>
 		</li>
@@ -27,6 +28,5 @@ This menu is used to show function that can be triggered on the content (an obje
 				<g:render template="/_common/modals/deleteTextLink"/>
 			</li>
 		</g:if>
-		
 	</ul>
 </g:if>

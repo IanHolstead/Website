@@ -1,5 +1,7 @@
 package ian.website
 
+import grails.plugins.springsecurity.Secured
+
 import org.springframework.dao.DataIntegrityViolationException
 
 /**
@@ -19,10 +21,12 @@ class UploadController {
         [uploadInstanceList: Upload.list(params), uploadInstanceTotal: Upload.count()]
     }
 
+	@Secured(['ROLE_ADMIN'])
     def create() {
         [uploadInstance: new Upload(params)]
     }
 
+	@Secured(['ROLE_ADMIN'])
     def save() {
         def uploadInstance = new Upload(params)
         if (!uploadInstance.save(flush: true)) {
@@ -34,7 +38,7 @@ class UploadController {
         redirect(action: "show", id: uploadInstance.id)
     }
 
-    def show() {
+    def show() {	
         def uploadInstance = Upload.get(params.id)
         if (!uploadInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'upload.label', default: 'Upload'), params.id])
@@ -45,10 +49,17 @@ class UploadController {
         [uploadInstance: uploadInstance]
     }
 	
+	def showPayload(){
+		def photoInstance = Photo.get(params.id)
+		response.outputStream<<photoInstance.photoPayload
+		response.outputStream.flush()
+	}
+	
 	def fileDownload(){
 		
 	}
 
+	@Secured(['ROLE_ADMIN'])
     def edit() {
         def uploadInstance = Upload.get(params.id)
         if (!uploadInstance) {
@@ -60,6 +71,7 @@ class UploadController {
         [uploadInstance: uploadInstance]
     }
 
+	@Secured(['ROLE_ADMIN'])
     def update() {
         def uploadInstance = Upload.get(params.id)
         if (!uploadInstance) {
@@ -90,6 +102,7 @@ class UploadController {
         redirect(action: "show", id: uploadInstance.id)
     }
 
+	@Secured(['ROLE_ADMIN'])
     def delete() {
         def uploadInstance = Upload.get(params.id)
         if (!uploadInstance) {
