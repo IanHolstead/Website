@@ -6,8 +6,9 @@ class Photo {
 	String photoOriginalName
 	String photoName
 	String photoCaption
-	String album
 	java.sql.Date date
+	
+	static belongsTo = [album:PhotoAlbum]
 	
     static mapping = {
     }
@@ -16,11 +17,11 @@ class Photo {
 		photoPayload maxSize: 1966080
 		photoName shared:'title'
 		photoCaption shared:'caption'
-		album maxLength:50
+		album nullable:false
     }
 	
 	
-	@Override	// Override toString for a nicer / more descriptive UI 
+	@Override
 	public String toString() {
 		return photoName
 	}

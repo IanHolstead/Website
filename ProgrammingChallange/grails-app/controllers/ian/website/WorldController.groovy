@@ -34,6 +34,7 @@ class WorldController {
 		def uploadedPhoto = request.getFile('photoPayload')
 		photoInstance.photoPayload = uploadedPhoto.getBytes()
 		photoInstance.photoOriginalName = uploadedPhoto.originalFilename
+		photoInstance.album = 'world'
 		blogInstance.save(failOnError:true)
 		if(!photoInstance.save(flush:true, failOnError:true)){
 			render(view: "create", model: [worldInstance: worldInstance, blogInstance:blogInstance, photoInstance:photoInstance])
@@ -57,14 +58,16 @@ class WorldController {
         redirect(action: "show", id: worldInstance.id)
     }
 	
-	def currentWeek(long id){
-		params.id = id
-		if(!params.id){
+	def currentWeek(){
+		
+		World current = World.findByStatus(1)
+		
+		if(!current){
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
-            redirect(uri:'/')
-			return	
+			redirect(uri:'/')
+			return
 		}
-		World current = World.findAll {status == 1}
+		
 		redirect(action:"show", id:current.id)
 	}
 	

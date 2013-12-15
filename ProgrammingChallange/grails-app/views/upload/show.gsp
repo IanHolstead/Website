@@ -9,7 +9,7 @@
 </head>
 <body>
 	<g:if test="${uploadInstance.isPicture}">
-		<img src="${createLink(controller:'upload', action:'showPayload', id:"${uploadInstance.id}")}" width='300' />
+		<img src="${createLink(controller:'upload', action:'showPayload', id:"${uploadInstance.id}")}"/>
 	</g:if>
 	<g:else>
 		

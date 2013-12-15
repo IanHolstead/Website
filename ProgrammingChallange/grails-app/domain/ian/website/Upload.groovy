@@ -2,7 +2,6 @@ package ian.website
 
 class Upload {
 	
-	Boolean isLink
 	String link
 	Boolean isPicture
 	String fileName

@@ -24,6 +24,11 @@ class UrlMappings {
 			action		= { 'index' }
             view		= { 'index' }
         }
+		"/s/$id"{
+			controller 	= 'upload'
+			action 		= 'show'
+		}
+		
 		"/$controller/$action?/$id?"{
 			constraints {
 				controller(matches:/^((?!(api|mobile|web)).*)$/)

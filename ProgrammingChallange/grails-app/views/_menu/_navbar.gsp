@@ -14,7 +14,7 @@
 			</a>
 
        		<div class="nav-collapse">
-       			<g:set var="controllerList" value="${['world','world','photo','blog']}"/>
+       			<g:set var="controllerList" value="${['world','world','photoAlbum','blog']}"/>
        			<g:set var="controllerNameList" value="${['My world this week','World Achive','Photo Archive','Blog Archive']}"/>
        			<g:set var="actionList" value="${['currentWeek','list','list','list']}"/>
        			<ul class="nav">

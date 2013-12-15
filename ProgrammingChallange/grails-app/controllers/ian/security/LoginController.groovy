@@ -48,7 +48,9 @@ class LoginController {
 			redirect uri: config.successHandler.defaultTargetUrl
 			return
 		}
-
+		
+		println "1: ${flash.message}"
+		
 		String view = 'auth'
 		String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
 		render view: view, model: [postUrl: postUrl,
@@ -72,6 +74,7 @@ class LoginController {
 			// have cookie but the page is guarded with IS_AUTHENTICATED_FULLY
 			redirect action: 'full', params: params
 		}
+		println "2: ${flash.message}"
 	}
 
 	/**
@@ -109,7 +112,6 @@ class LoginController {
 				msg = g.message(code: "springSecurity.errors.login.fail")
 			}
 		}
-
 		if (springSecurityService.isAjax(request)) {
 			render([error: msg] as JSON)
 		}
@@ -117,6 +119,7 @@ class LoginController {
 			flash.message = msg
 			redirect action: 'auth', params: params
 		}
+		println "3: ${flash.message}"
 	}
 
 	/**

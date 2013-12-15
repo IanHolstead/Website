@@ -13,9 +13,10 @@ class UploadController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
-        redirect(action: "list", params: params)
+        redirect(uri:'/')
     }
 
+	@Secured(['ROLE_ADMIN'])
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [uploadInstanceList: Upload.list(params), uploadInstanceTotal: Upload.count()]
@@ -29,6 +30,9 @@ class UploadController {
 	@Secured(['ROLE_ADMIN'])
     def save() {
         def uploadInstance = new Upload(params)
+		def uploadedFile = request.getFile('filePayload')
+		uploadInstance.filePayload = uploadedFile.getBytes()
+		uploadInstance.fileType = uploadedFile.contentType
         if (!uploadInstance.save(flush: true)) {
             render(view: "create", model: [uploadInstance: uploadInstance])
             return
@@ -45,8 +49,13 @@ class UploadController {
             redirect(uri:'/')
             return
         }
+		
+		if(uploadInstance.link){
+			redirect(url:uploadInstance.link)
+			return
+		}
 
-        [uploadInstance: uploadInstance]
+        return [uploadInstance: uploadInstance]
     }
 	
 	def showPayload(){

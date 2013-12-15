@@ -17,9 +17,8 @@
 		<thead>
 			<tr>
 			
-				<g:sortableColumn property="isLink" title="${message(code: 'upload.isLink.label', default: 'Is Link')}" />
-			
 				<g:sortableColumn property="link" title="${message(code: 'upload.link.label', default: 'Link')}" />
+				<g:sortableColumn property="fileName" title="${message(code: 'upload.fileName.label', default: 'File Name')}" />
 			
 			</tr>
 		</thead>
@@ -27,9 +26,8 @@
 		<g:each in="${uploadInstanceList}" status="i" var="uploadInstance">
 			<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 			
-				<td><g:link action="show" id="${uploadInstance.id}">${fieldValue(bean: uploadInstance, field: "isLink")}</g:link></td>
-			
-				<td>${fieldValue(bean: uploadInstance, field: "link")}</td>
+				<td><g:link action="show" id="${uploadInstance.id}">${fieldValue(bean: uploadInstance, field: "link")}</g:link></td>
+				<td><g:link action="show" id="${uploadInstance.id}">${fieldValue(bean: uploadInstance, field: "fileName")}</g:link></td>
 			
 			</tr>
 		</g:each>

@@ -6,49 +6,41 @@
 </head>
 
 <body>
-
 	<section id="intro" class="first">
-		<h1>Welcome to Grails using Kickstart with Bootstrap</h1>
-		<p>Congratulations, you have successfully started your first
-			Grails application with the Kickstart extension! At the moment this
-			is the default page, feel free to modify it to either redirect to a
-			controller or display whatever content you may choose. Below is a
-			list of controllers that are currently deployed in this application,
-			click on each to execute its default action:</p>
-		<h2>Introduction</h2>
-		<p>Kickstart is an extension for Grails in order to start your
-			project with a good looking frontend. It is intended to be used in
-			rapid application scenarios such as a Startup Weekend or a
-			prototyping session with a customer. This plugin provides adapted
-			scaffolding templates for standard CRUD pages using the Bootstrap web
-			page template by Twitter. Additionally, Kickstart includes some
-			general GSPs pages (e.g., about.gsp), a minimal logging/orientation
-			Filter, and a language switcher.</p>
+		<h1>Welcome to my website!</h1>
+		<p>If you have ened up here, you've ahead of the game, so much so that I'm not actually finished 
+		this site yet! Feel free to look around, there is probably little to no information on the site yet
+		and the visual layout is no where near done. None the less, thanks!</p>
+		<h2>About me (tl;dr)</h2>
+		<p>Oel ngati kameie.</p>
 	</section>
 
 	<section id="info">
 		<div class="row-fluid">
 	    	<div class="span4">
 		    	<div class="center">
-					<img class="frontpageImage" src="${resource(plugin: 'kickstart-with-bootstrap', dir: 'images/frontpage',file: 'bs-docs-twitter-github.png')}" />
+		    		<g:link controller="world" action="currentWeek">
+						<img class="frontpageImage" src="${resource(dir: 'images/home_icons',file: 'science.png')}" />
+					</g:link>
 					<h3>Bootstrap 2.1.1</h3>
 				</div>
-				<p>Kickstart uses <a href ="http://twitter.github.com/bootstrap/">Bootstrap</a> to render the web pages. 
-				Bootstrap is made by Mark Otto (<a href="http://twitter.com/mdo">@mdo</a>) and Billy Gates (<a href="http://twitter.com/fat">@fat</a>).
-				Bootstrap is designed to help people of all skill levels as a complete kit or to start something more complex.
-				</p>
+				<p>Check out my world this week, where I post a blog post, photo, youtube video and xkcd comic</p>
 			</div>
 	    	<div class="span4">
 		    	<div class="center">
-					<img class="frontpageImage" src="${resource(plugin: 'kickstart-with-bootstrap', dir: 'images/frontpage',file: 'browser_logos.png')}" />
-					<h3>Browser support</h3>
+					<g:link controller="photoAlbum" action="list">
+						<img class="frontpageImage" src="${resource(dir: 'images/home_icons',file: 'photo_blog.png')}" />
+					</g:link>
+					<h3>Photo Archive</h3>
 				</div>
 				<p>Bootstrap is tested and supported in major modern browsers like Chrome 14, Safari 5+, Opera 11, Internet Explorer 7, and Firefox 5.</p>
 			</div>
 	    	<div class="span4">
 		    	<div class="center">
-					<img class="frontpageImage" src="${resource(plugin: 'kickstart-with-bootstrap', dir: 'images/frontpage',file: 'html5css3js8.png')}"/>
-					<h3>Tech Foundation</h3>
+					<g:link	url="/about">
+						<img class="frontpageImage" src="${resource(dir: 'images/home_icons',file: 'photo_blog.png')}" />
+					</g:link>
+					<h3>About me.</h3>
 				</div>
 				<p>Bootstrap is based on elements of HTML 5, CSS 3, Javascript 1.8, and jQuery 1.7 with progressively enhanced 
 				components to enable a responsive design of the website.
@@ -63,25 +55,30 @@
 		<div class="row-fluid">
 	    	<div class="span4">
 		    	<div class="center">
-					<img class="" src="${resource(plugin: 'kickstart-with-bootstrap', dir: 'images/frontpage',file: 'Datepicker.png')}" />
-					<h3>Datepicker</h3>
+		    		<a href ="https://www.facebook.com/ian.holstead"  target="_blank">
+						<img class="frontpageImage" src="${resource(dir: 'images/home_icons',file: 'facebook.png')}" />
+					</a>
+					<h3>Facebook</h3>
 				</div>
-				<p>Kickstart uses the <a href ="https://github.com/eternicode/bootstrap-datepicker">Datepicker for Bootstrap</a> by Stefan Petre and Andrew Rowls</p>
+				<p>Add me as a friend on facebook!</p>
 			</div>
 	    	<div class="span4">
 		    	<div class="center">
-					<img class="" src="${resource(plugin: 'kickstart-with-bootstrap', dir: 'images/frontpage',file: 'flags_preview_large.png')}" height="145"/>
-					<h3>Language Selector</h3>
+					<a href ="https://twitter.com/IanHolstead" target="_blank">
+						<img class="frontpageImage" src="${resource(dir: 'images/home_icons',file: 'twitter.png')}" />
+					</a>
+					<h3>Twitter</h3>
 				</div>
-				<p>Kickstart contains a language selector that uses the <a href="http://www.famfamfam.com/lab/icons/flags/">FamFamFam flag icons</a> by Mark James.
-				It automatically detects which languages are available and offers them in a dropdown menu.</p>
+				<p>Follow me on twitter.</p>
 			</div>
 	    	<div class="span4">
 		    	<div class="center">
-					<img class="" src="${resource(plugin: 'kickstart-with-bootstrap', dir: 'images/frontpage',file: 'components.jpg')}" />
-					<h3>Other Feature</h3>
+					<a href ="http://ca.linkedin.com/in/ianholstead/" target="_blank">
+						<img class="frontpageImage" src="${resource(dir: 'images/home_icons',file: 'linkedin.png')}" />
+					</a>
+					<h3>Linkedin</h3>
 				</div>
-				<p>Kickstart contains several pages as starting points for the average website such as an About Page, Contact Page, 404, etc.</p>
+				<p>For professional inquiries please see my Linkedin profile</p>
 			</div>
 	    </div>
 	</section>

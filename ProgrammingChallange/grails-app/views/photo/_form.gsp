@@ -1,5 +1,5 @@
 <%@ page import="ian.website.Photo" %>
-
+<%@ page import="ian.website.PhotoAlbum" %>
 
 
 			<div class="control-group fieldcontain ${hasErrors(bean: photoInstance, field: 'photoPayload', 'error')} ">
@@ -25,4 +25,11 @@
 					<span class="help-inline">${hasErrors(bean: photoInstance, field: 'photoCaption', 'error')}</span>
 				</div>
 			</div>
-
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: photoInstance, field: 'album', 'error')} ">
+				<label for="album" class="control-label"><g:message code="photo.album.label" default="Album" /></label>
+				<div class="controls">
+					<g:select name="album" from="${PhotoAlbum.list()}" value="${photoInstance?.album}"/>
+					<span class="help-inline">${hasErrors(bean: photoInstance, field: 'album', 'error')}</span>
+				</div>
+			</div>
