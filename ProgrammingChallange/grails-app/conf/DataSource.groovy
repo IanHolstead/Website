@@ -29,8 +29,10 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
-            pooled = true
+            url = "jdbc:mysql://localhost/ianhols_Web;"
+			driverClassName = "com.mysql.jdbc.Driver"
+			username = "ianhols_Grails"
+			password = "TriAngSkiSeaDb.64"
             properties {
                maxActive = -1
                minEvictableIdleTimeMillis=1800000
