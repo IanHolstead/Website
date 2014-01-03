@@ -32,12 +32,12 @@
 		
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="user.username.label" default="Username" /></td>
-				<td valign="top" class="value">${fieldValue(bean: userInstance, field: "username")}</td>
+				<td valign="top" class="value">${userInstance.username}</td>
 			</tr>
 		
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="user.displayName.label" default="Display Name" /></td>
-				<td valign="top" class="value">${fieldValue(bean: userInstance, field: "displayName")}</td>
+				<td valign="top" class="value">${userInstance.displayName}</td>
 			</tr>
 		
 		<sec:ifAnyGranted roles="ROLE_SUPER_ADMIN">

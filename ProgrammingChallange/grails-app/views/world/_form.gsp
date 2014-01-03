@@ -1,7 +1,5 @@
 <%@ page import="ian.website.World" %>
 
-
-
 			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'title', 'error')} ">
 				<label for="title" class="control-label"><g:message code="world.title.label" default="Title" /></label>
 				<div class="controls">
@@ -9,7 +7,31 @@
 					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'title', 'error')}</span>
 				</div>
 			</div>
-
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'summary', 'error')} ">
+				<label for="summary" class="control-label"><g:message code="world.summary.label" default="Summary" /></label>
+				<div class="controls">
+					<g:textArea name="summary" value="${worldInstance?.summary}"/>
+					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'summary', 'error')}</span>
+				</div>
+			</div>
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'status', 'error')} ">
+				<label for="status" class="control-label"><g:message code="world.status.label" default="Status" /></label>
+				<div class="controls">
+					<input type="number" name="status" value="${worldInstance?.summary}"/>
+					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'status', 'error')}</span>
+				</div>
+			</div>
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'video', 'error')} ">
+				<label for="video" class="control-label"><g:message code="world.video.label" default="Video" /></label>
+				<div class="controls">
+					<g:textField name="video" value="${worldInstance?.video}"/>
+					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'video', 'error')}</span>
+				</div>
+			</div>
+			
 			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'videoCaption', 'error')} ">
 				<label for="videoCaption" class="control-label"><g:message code="world.videoCaption.label" default="Video Caption" /></label>
 				<div class="controls">
@@ -53,7 +75,7 @@
 			<div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'blogSummary', 'error')} ">
 				<label for="blogSummary" class="control-label"><g:message code="blog.blogSummary.label" default="Blog Summary" /></label>
 				<div class="controls">
-					<g:textField name="blogSummary" maxlength="250" value="${blogInstance?.blogSummary}"/>
+					<g:textArea name="blogSummary" maxlength="250" value="${blogInstance?.blogSummary}"/>
 					<span class="help-inline">${hasErrors(bean: blogInstance, field: 'blogSummary', 'error')}</span>
 				</div>
 			</div>
@@ -61,7 +83,7 @@
 			<div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'blogContent', 'error')} ">
 				<label for="blogContent" class="control-label"><g:message code="blog.blogContent.label" default="Blog Content" /></label>
 				<div class="controls">
-					<g:textField name="blogContent" value="${blogInstance?.blogContent}"/>
+					<g:textArea name="blogContent" value="${blogInstance?.blogContent}"/>
 					<span class="help-inline">${hasErrors(bean: blogInstance, field: 'blogContent', 'error')}</span>
 				</div>
 			</div>
@@ -93,24 +115,8 @@
 			<div class="control-group fieldcontain ${hasErrors(bean: photoInstance, field: 'photoCaption', 'error')} ">
 				<label for="photoCaption" class="control-label"><g:message code="photo.photoCaption.label" default="Photo Caption" /></label>
 				<div class="controls">
-					<g:textField name="photoCaption" value="${photoInstance?.photoCaption}"/>
+					<g:textArea name="photoCaption" value="${photoInstance?.photoCaption}"/>
 					<span class="help-inline">${hasErrors(bean: photoInstance, field: 'photoCaption', 'error')}</span>
-				</div>
-			</div>
-			
-			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'summary', 'error')} ">
-				<label for="summary" class="control-label"><g:message code="world.summary.label" default="Summary" /></label>
-				<div class="controls">
-					<g:textField name="summary" value="${worldInstance?.summary}"/>
-					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'summary', 'error')}</span>
-				</div>
-			</div>
-
-			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'video', 'error')} ">
-				<label for="video" class="control-label"><g:message code="world.video.label" default="Video" /></label>
-				<div class="controls">
-					<g:textField name="video" value="${worldInstance?.video}"/>
-					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'video', 'error')}</span>
 				</div>
 			</div>
 

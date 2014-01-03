@@ -20,21 +20,21 @@
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="userProfile.name.label" default="Name" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: userProfileInstance, field: "name")}</td>
+				<td valign="top" class="value">${userProfileInstance.name}</td>
 				
 			</tr>
 		
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="userProfile.email.label" default="Email" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: userProfileInstance, field: "email")}</td>
+				<td valign="top" class="value">${userProfileInstance.email}</td>
 				
 			</tr>
 		
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="userProfile.points.label" default="Points" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: userProfileInstance, field: "points")}</td>
+				<td valign="top" class="value">${userProfileInstance.points}</td>
 				
 			</tr>
 		

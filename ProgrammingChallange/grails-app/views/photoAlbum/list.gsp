@@ -22,7 +22,7 @@
 		<tbody>
 		<g:each in="${photoAlbumInstanceList}" status="i" var="photoAlbumInstance">
 			<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-				<td><g:link action="show" id="${photoAlbumInstance.id}">${fieldValue(bean: photoAlbumInstance, field: "name")}</g:link></td>
+				<td><g:link action="show" id="${photoAlbumInstance.id}">${photoAlbumInstance.name}</g:link></td>
 			
 			</tr>
 		</g:each>

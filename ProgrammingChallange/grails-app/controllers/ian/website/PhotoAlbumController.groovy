@@ -4,10 +4,7 @@ import grails.plugins.springsecurity.Secured
 
 import org.springframework.dao.DataIntegrityViolationException
 
-/**
- * PhotoAlbumController
- * A controller class handles incoming web requests and performs actions such as redirects, rendering views and so on.
- */
+
 class PhotoAlbumController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -18,7 +15,11 @@ class PhotoAlbumController {
 
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [photoAlbumInstanceList: PhotoAlbum.list(params), photoAlbumInstanceTotal: PhotoAlbum.count()]
+		def photoAlbumInstanceList = PhotoAlbum.list()
+		photoAlbumInstanceList.remove(PhotoAlbum.findByName("World"))
+		def photoAlbumCount = photoAlbumInstanceList.size()
+		
+        [photoAlbumInstanceList: photoAlbumInstanceList, photoAlbumInstanceTotal: photoAlbumCount]
     }
 	
 	@Secured(['ROLE_ADMIN'])
@@ -41,7 +42,6 @@ class PhotoAlbumController {
 
     def show() {
         def photoAlbumInstance = PhotoAlbum.get(params.id)
-        def photos
 		if (!photoAlbumInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label', default: 'PhotoAlbum'), params.id])
             redirect(action: "list")

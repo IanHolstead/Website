@@ -3,7 +3,7 @@ package ian.website
 class PhotoAlbum {
 	
 	String name
-	Date dateCreated
+	java.sql.Date dateCreated
 	
 	static hasMany = [photos:Photo]
 	

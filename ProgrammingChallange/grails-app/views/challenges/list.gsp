@@ -35,17 +35,17 @@
 		<g:each in="${challengesInstanceList}" status="i" var="challengesInstance">
 			<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 			
-				<td><g:link action="show" id="${challengesInstance.id}">${fieldValue(bean: challengesInstance, field: "name")}</g:link></td>
+				<td><g:link action="show" id="${challengesInstance.id}">${challengesInstance.name}</g:link></td>
 			
-				<td>${fieldValue(bean: challengesInstance, field: "description")}</td>
+				<td>${challengesInstance.description}</td>
 			
-				<td>${fieldValue(bean: challengesInstance, field: "completionPoints")}</td>
+				<td>${challengesInstance.completionPoints}</td>
 			
-				<td>${fieldValue(bean: challengesInstance, field: "winningPoints")}</td>
+				<td>${challengesInstance.winningPoints}</td>
 			
-				<td>${fieldValue(bean: challengesInstance, field: "languageBonus")}</td>
+				<td>${challengesInstance.languageBonus}</td>
 			
-				<td>${fieldValue(bean: challengesInstance, field: "bonusPoints")}</td>
+				<td>${challengesInstance.bonusPoints}</td>
 			
 			</tr>
 		</g:each>

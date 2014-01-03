@@ -1,0 +1,83 @@
+.photoTile {
+	 border: 10px solid #EEEEEE;
+	 float: left;
+	 margin: 20px;
+	 outline: 1px solid #CFCFCF;
+	 padding: 0px;
+}
+
+.photoThumb {
+	 height: 400px;
+	 width: 400px;
+	 padding: 10px 10px 0px 10px;
+}
+
+.photoDescription {
+	 height: 50px;
+	 width: 100%;
+}
+
+
+#show-world .photoThumb {
+	width: 100%;
+	height: 100%;
+}
+
+
+#show-world .XKCDThumb {
+	width: 50%;
+}
+
+#show-world .image {
+	max-height: 500px;
+}
+
+#list-world .title{
+	
+}
+
+#list-world .summary{
+	padding-left: 20px;
+	float: left;
+}
+
+#list-world .floater{
+	float:right;
+	height: 50%;
+	margin-bottom: -250px;
+	display: block;
+}
+
+#list-world .thumb{
+	clear:both; 
+	margin: 5px;
+	height:250px;
+	position: relative;
+	vertical-align: middle;
+	display: block;
+}
+
+#list-world .image{
+	max-width: 300px;
+	max-height: 220px;
+	vertical-align: middle;
+}
+
+#list-world .odd{
+	padding: 5px 10px 10px 15px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	height: 250px;
+}
+
+#list-world .even{
+	padding: 5px 10px 10px 15px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #FAFAFA;
+	margin-bottom: 10px;
+	height: 250px;
+}

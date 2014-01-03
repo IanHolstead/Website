@@ -28,8 +28,8 @@
 			<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 			
 				<td><g:link action="show" id="${photoInstance.id}"><img  src="${createLink(controller:'photo', action:'showPayload', id:"${photoInstance.id}")}" width='300' /></g:link></td>
-				<td>${fieldValue(bean: photoInstance, field: "photoName")}</td>
-				<td>${fieldValue(bean: photoInstance, field: "photoCaption")}</td>
+				<td>${photoInstance.photoName}</td>
+				<td>${photoInstance.photoCaption}</td>
 			
 			</tr>
 		</g:each>

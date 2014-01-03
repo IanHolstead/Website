@@ -2,6 +2,7 @@ import Role
 import ian.security.Role
 import ian.security.User
 import ian.security.UserRole
+import ian.website.PhotoAlbum
 
 
 class BootStrap {
@@ -34,10 +35,16 @@ class BootStrap {
 		   UserRole.create admin, adminRole, true
 		   UserRole.create alicia, awesomeUserRole, true
 		   
-		   
 		   assert User.count() == 5
 		   assert Role.count() == 5
 		   assert UserRole.count() == 5
+	   }
+	   
+	   if(!PhotoAlbum.findByName("World")){
+		   PhotoAlbum world = new PhotoAlbum(name: "World", dateCreated: null)
+		   world.save(flush:true)
+		   
+		   assert PhotoAlbum.findByName("World")
 	   }
    }
 }

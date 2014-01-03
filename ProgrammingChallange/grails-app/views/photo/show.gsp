@@ -24,11 +24,11 @@
 			</tr>
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="photo.photoName.label" default="Photo Name" /></td>
-				<td valign="top" class="value">${fieldValue(bean: photoInstance, field: "photoName")}</td>
+				<td valign="top" class="value">${photoInstance.photoName}</td>
 			</tr>
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="photo.photoCaption.label" default="Photo Caption" /></td>
-				<td valign="top" class="value">${fieldValue(bean: photoInstance, field: "photoCaption")}</td>
+				<td valign="top" class="value">${photoInstance.photoCaption}</td>
 			</tr>
 		</tbody>
 	</table>

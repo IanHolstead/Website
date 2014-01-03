@@ -20,49 +20,49 @@
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="challenges.name.label" default="Name" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: challengesInstance, field: "name")}</td>
+				<td valign="top" class="value">${challengesInstance.name}</td>
 				
 			</tr>
 		
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="challenges.description.label" default="Description" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: challengesInstance, field: "description")}</td>
+				<td valign="top" class="value">${challengesInstance.description}</td>
 				
 			</tr>
 		
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="challenges.completionPoints.label" default="Completion Points" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: challengesInstance, field: "completionPoints")}</td>
+				<td valign="top" class="value">${challengesInstance.completionPoints}</td>
 				
 			</tr>
 		
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="challenges.winningPoints.label" default="Winning Points" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: challengesInstance, field: "winningPoints")}</td>
+				<td valign="top" class="value">${challengesInstance.winningPoints}</td>
 				
 			</tr>
 		
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="challenges.languageBonus.label" default="Language Bonus" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: challengesInstance, field: "languageBonus")}</td>
+				<td valign="top" class="value">${challengesInstance.languageBonus}</td>
 				
 			</tr>
 		
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="challenges.bonusPoints.label" default="Bonus Points" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: challengesInstance, field: "bonusPoints")}</td>
+				<td valign="top" class="value">${challengesInstance.bonusPoints}</td>
 				
 			</tr>
 		
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="challenges.bonusPointsDescription.label" default="Bonus Points Description" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: challengesInstance, field: "bonusPointsDescription")}</td>
+				<td valign="top" class="value">${challengesInstance.bonusPointsDescription}</td>
 				
 			</tr>
 		

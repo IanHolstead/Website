@@ -29,11 +29,11 @@
 		<g:each in="${userProfileInstanceList}" status="i" var="userProfileInstance">
 			<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 			
-				<td><g:link action="show" id="${userProfileInstance.id}">${fieldValue(bean: userProfileInstance, field: "name")}</g:link></td>
+				<td><g:link action="show" id="${userProfileInstance.id}">${userProfileInstance.name}</g:link></td>
 			
-				<td>${fieldValue(bean: userProfileInstance, field: "email")}</td>
+				<td>${userProfileInstance.email}</td>
 			
-				<td>${fieldValue(bean: userProfileInstance, field: "points")}</td>
+				<td>${userProfileInstance.points}</td>
 			
 			</tr>
 		</g:each>

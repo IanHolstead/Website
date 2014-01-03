@@ -29,8 +29,8 @@
 		<g:each in="${userInstanceList}" status="i" var="userInstance">
 			<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 			
-				<td><g:link action="show" id="${userInstance.id}">${fieldValue(bean: userInstance, field: "username")}</g:link></td>
-				<td>${fieldValue(bean: userInstance, field: "displayName")}</td>
+				<td><g:link action="show" id="${userInstance.id}">${userInstance.username}</g:link></td>
+				<td>${userInstance.displayName}</td>
 				<td><g:formatBoolean boolean="${userInstance.accountExpired}" /></td>
 				<td><g:formatBoolean boolean="${userInstance.accountLocked}" /></td>
 				<td><g:formatBoolean boolean="${userInstance.enabled}" /></td>

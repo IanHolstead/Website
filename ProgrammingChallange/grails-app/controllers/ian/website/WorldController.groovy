@@ -34,7 +34,7 @@ class WorldController {
 		def uploadedPhoto = request.getFile('photoPayload')
 		photoInstance.photoPayload = uploadedPhoto.getBytes()
 		photoInstance.photoOriginalName = uploadedPhoto.originalFilename
-		photoInstance.album = 'world'
+		photoInstance.album = PhotoAlbum.findByName("World")
 		blogInstance.save(failOnError:true)
 		if(!photoInstance.save(flush:true, failOnError:true)){
 			render(view: "create", model: [worldInstance: worldInstance, blogInstance:blogInstance, photoInstance:photoInstance])
@@ -42,7 +42,7 @@ class WorldController {
 			return
 		}
 		else{
-			println("WHYYYYYY")
+			println("")
 		}
 		
 		println("Photo Instance:"+photoInstance?.id)

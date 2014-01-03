@@ -20,21 +20,20 @@
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="blog.blogTitle.label" default="Blog Title" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: blogInstance, field: "blogTitle")}</td>
+				<td valign="top" class="value">${blogInstance.blogTitle}</td>
 				
 			</tr>
 		
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="blog.blogSummary.label" default="Blog Summary" /></td>
-				
-				<td valign="top" class="value">${fieldValue(bean: blogInstance, field: "blogSummary")}</td>
+				<td valign="top" class="value">${blogInstance.blogSummary}</td>
 				
 			</tr>
 		
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="blog.blogContent.label" default="Blog Content" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: blogInstance, field: "blogContent")}</td>
+				<td valign="top" class="value">${blogInstance.blogContent}</td>
 				
 			</tr>
 		

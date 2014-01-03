@@ -26,8 +26,8 @@
 		<g:each in="${uploadInstanceList}" status="i" var="uploadInstance">
 			<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 			
-				<td><g:link action="show" id="${uploadInstance.id}">${fieldValue(bean: uploadInstance, field: "link")}</g:link></td>
-				<td><g:link action="show" id="${uploadInstance.id}">${fieldValue(bean: uploadInstance, field: "fileName")}</g:link></td>
+				<td><g:link action="show" id="${uploadInstance.id}">${uploadInstance.link}</g:link></td>
+				<td><g:link action="show" id="${uploadInstance.id}">${uploadInstance.fileName}</g:link></td>
 			
 			</tr>
 		</g:each>

@@ -20,6 +20,8 @@
 	<r:require modules="jquery"/>
 	<r:require modules="${session.skin ? session.skin            : 'bootstrap'}"/>
 	<r:require modules="${session.skin ? session.skin + '_utils' : 'bootstrap_utils'}"/>
+	
+	<link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
 
 	<r:layoutResources />
 	<g:layoutHead />

@@ -48,7 +48,7 @@
 			<tr class="prop">
 				<td valign="top" class="name"><g:message code="challengesScore.points.label" default="Points" /></td>
 				
-				<td valign="top" class="value">${fieldValue(bean: challengesScoreInstance, field: "points")}</td>
+				<td valign="top" class="value">${challengesScoreInstance.points}</td>
 				
 			</tr>
 		
