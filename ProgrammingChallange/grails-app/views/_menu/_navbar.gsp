@@ -1,4 +1,4 @@
-<div id="Navbar" class="navbar navbar-fixed-top navbar-inverse">
+<div id="Navbar" class="navbar navbar-fixed-top navbar-inverse" style="margin: 0px">
 	<div class="navbar-inner">
 		<div class="container">
 			<!-- .btn-navbar is used as the toggle for collapsed navbar content -->

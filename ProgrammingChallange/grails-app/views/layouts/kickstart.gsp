@@ -34,7 +34,7 @@
 	<%-- For Javascript see end of body --%>
 </head>
 
-<body>
+<body style="padding:0px;">
 	<g:render template="/_menu/navbar"/>														
 
 	<!-- Enable to overwrite Header by individual page -->
@@ -45,14 +45,16 @@
 		<g:render template="/layouts/header"/>														
 	</g:else>
 
-	<!-- use different templates for HTML structure based on layout (e.g., grid or fluid; Default is grid) -->
-	<g:if test="${session.layout == 'fluid'}">
-		<g:render template="/layouts/content_${session.layout}"/>														
-	</g:if>
-	<g:else>
-		<g:render template="/layouts/content_grid"/>														
-	</g:else>
-
+	<div class="indent-body">
+		<!-- use different templates for HTML structure based on layout (e.g., grid or fluid; Default is grid) -->
+		<g:if test="${session.layout == 'fluid'}">
+			<g:render template="/layouts/content_${session.layout}"/>														
+		</g:if>
+		<g:else>
+			<g:render template="/layouts/content_grid"/>														
+		</g:else>
+	</div>
+	
 	<!-- Enable to overwrite Footer by individual page -->
 	<g:if test="${ pageProperty(name:'page.footer') }">
 	    <g:pageProperty name="page.footer" />

@@ -11,7 +11,7 @@
 			<li class="form-container">
 				<form method="POST" action="${resource(file: 'j_spring_security_check')}">
 					<input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="j_username">
-					<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="j_password">
+					<div><input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="j_password"></div>
 					<input style="float: left; margin-right: 10px;" type="checkbox" name='${rememberMeParameter}' id="remember-me" <g:if test='${hasCookie}'>checked='checked'</g:if>/>
 					<label class="string optional" for="user_remember_me"> Remember me</label>
 					<g:submitButton name="login" value="Sign In" class="btn btn-primary btn-block" id="sign-in"/>

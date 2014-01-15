@@ -301,3 +301,6 @@ footer .footer {
 	font-weight: 200;
 	line-height: 30px;
 }
+.indent-body {
+	padding: 0px 20px;
+}
