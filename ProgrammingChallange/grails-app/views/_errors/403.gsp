@@ -15,17 +15,17 @@
 				<h1>Oops!</h1>
 				<h2>403 Forbidden</h2>
 				<p>
-					Sorry, the server understood the request, but is refusing to fulfill it.!
+					Sorry, the server understood the request, but is refusing to fulfill it!
 				</p>
 				
 				<div class="actions">
 					<a href="./" class="btn btn-large btn-primary">
 						<i class="icon-chevron-left icon-white"></i>
-						Back to Home
+						Back
 					</a>
-					<a href="/contact" class="btn btn-large btn-success">
-						<i class="icon-envelope"></i>
-						Contact Support
+					<a href="/" class="btn btn-large btn-success">
+						<i class="icon-home"></i>
+						Home
 					</a>					
 				</div>
 			</div>

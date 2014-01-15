@@ -32,7 +32,7 @@ grails.mime.types = [
 grails.gorm.default.constraints = {
 	'*'(nullable: true)
 	title maxSize:100
-	caption maxSize:350
+	caption maxSize:35000
 }
 
 // URL Mapping Cache Max Size, defaults to 5000

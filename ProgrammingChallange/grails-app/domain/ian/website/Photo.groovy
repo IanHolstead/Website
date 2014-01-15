@@ -7,14 +7,16 @@ class Photo {
 	String photoName
 	String photoCaption
 	java.sql.Date date
+	Boolean showOnHomePage = false
 	
+	Thumb thumb
 	static belongsTo = [album:PhotoAlbum]
 	
     static mapping = {
     }
     
 	static constraints = {
-		photoPayload maxSize: 1966080
+		photoPayload maxSize: 15728640
 		photoName shared:'title'
 		photoCaption shared:'caption'
 		album nullable:false

@@ -36,14 +36,14 @@ class PhotoAlbumController {
             return
         }
 
-		flash.message = message(code: 'default.created.message', args: [message(code: 'photoAlbum.label', default: 'PhotoAlbum'), photoAlbumInstance.id])
-        redirect(action: "show", id: photoAlbumInstance.id)
+		flash.message = message(code: 'default.created.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), photoAlbumInstance.id])
+        redirect(action: "list")
     }
 
     def show() {
         def photoAlbumInstance = PhotoAlbum.get(params.id)
 		if (!photoAlbumInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label', default: 'PhotoAlbum'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), params.id])
             redirect(action: "list")
             return
         }
@@ -55,7 +55,7 @@ class PhotoAlbumController {
     def edit() {
         def photoAlbumInstance = PhotoAlbum.get(params.id)
         if (!photoAlbumInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label', default: 'PhotoAlbum'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), params.id])
             redirect(action: "list")
             return
         }
@@ -67,7 +67,7 @@ class PhotoAlbumController {
     def update() {
         def photoAlbumInstance = PhotoAlbum.get(params.id)
         if (!photoAlbumInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label', default: 'PhotoAlbum'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), params.id])
             redirect(action: "list")
             return
         }
@@ -90,7 +90,7 @@ class PhotoAlbumController {
             return
         }
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'photoAlbum.label', default: 'PhotoAlbum'), photoAlbumInstance.id])
+		flash.message = message(code: 'default.updated.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), photoAlbumInstance.id])
         redirect(action: "show", id: photoAlbumInstance.id)
     }
 
@@ -98,18 +98,18 @@ class PhotoAlbumController {
     def delete() {
         def photoAlbumInstance = PhotoAlbum.get(params.id)
         if (!photoAlbumInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label', default: 'PhotoAlbum'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), params.id])
             redirect(action: "list")
             return
         }
 
         try {
             photoAlbumInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'photoAlbum.label', default: 'PhotoAlbum'), params.id])
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), params.id])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'photoAlbum.label', default: 'PhotoAlbum'), params.id])
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), params.id])
             redirect(action: "show", id: params.id)
         }
     }

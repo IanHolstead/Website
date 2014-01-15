@@ -22,15 +22,15 @@
 		
 		<div class="photo">
 			<div class="photoTitle">
-				<center><h3>${photoInstance.photoName}</h3></center>
+				<div class="center"><h3>${photoInstance.photoName}</h3></div>
 			</div>
 			<div class="photoThumb">
-				<center>
-					<img class="image" src="${createLink(controller:'photo', action:'showPayload', id:"${photoInstance.id}")}" />
-				</center>
+				<div class="center">
+					<img src="/showPhoto/${photoInstance.id}/${photoInstance.photoName}.png" alt="${photoInstance.photoCaption}"/>
+				</div>
 			</div>
 			<div class="photoDescription">
-				<center><p>${photoInstance.photoCaption}</p></center>
+				<div class="center"><p>${photoInstance.photoCaption}</p></div>
 			</div>
 		</div>
 		
@@ -38,12 +38,12 @@
 		
 		<div class="video">
 			<div class="videoThumb">  <!-- ENSURE TO INPUT WIDTH CSS RULE -->
-				<center>
+				<div class="center">
 					<iframe width="853" height="480" src="${worldInstance.video}" frameborder="0" allowfullscreen></iframe>
-				</center>
+				</div>
 			</div>
 			<div class="videoCaption">
-				<center><p>${worldInstance.videoCaption}</p></center>
+				<div class="center"><p>${worldInstance.videoCaption}</p></div>
 			</div>
 		</div>
 		
@@ -51,10 +51,10 @@
 	
 		<div class="XKCD">
 			<div class="XKCDthumb">  <!-- ENSURE TO INPUT WIDTH CSS RULE -->
-				<center><img  src="${worldInstance.xkcd}" width='300' /></center>
+				<div class="center"><img class="XKCD" src="${worldInstance.xkcd}"/></div>
 			</div>
 			<div class="XKCDcaption">
-				<center><p>${worldInstance.xkcdCaption}</p></center>
+				<div class="center"><p>${worldInstance.xkcdCaption}</p></div>
 			</div>
 		</div>
 

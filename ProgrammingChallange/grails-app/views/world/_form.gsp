@@ -35,7 +35,7 @@
 			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'videoCaption', 'error')} ">
 				<label for="videoCaption" class="control-label"><g:message code="world.videoCaption.label" default="Video Caption" /></label>
 				<div class="controls">
-					<g:textArea name="videoCaption" cols="40" rows="5" maxlength="350" value="${worldInstance?.videoCaption}"/>
+					<g:textArea name="videoCaption" cols="40" rows="5" value="${worldInstance?.videoCaption}"/>
 					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'videoCaption', 'error')}</span>
 				</div>
 			</div>
@@ -51,18 +51,10 @@
 			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'xkcdCaption', 'error')} ">
 				<label for="xkcdCaption" class="control-label"><g:message code="world.xkcdCaption.label" default="Xkcd Caption" /></label>
 				<div class="controls">
-					<g:textArea name="xkcdCaption" cols="40" rows="5" maxlength="350" value="${worldInstance?.xkcdCaption}"/>
+					<g:textArea name="xkcdCaption" cols="40" rows="5" value="${worldInstance?.xkcdCaption}"/>
 					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'xkcdCaption', 'error')}</span>
 				</div>
 			</div>
-
-<%--			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'blog', 'error')} ">--%>
-<%--				<label for="blog" class="control-label"><g:message code="world.blog.label" default="Blog" /></label>--%>
-<%--				<div class="controls">--%>
-<%--					<g:select id="blog" name="blog.id" from="${ian.website.Blog.list()}" optionKey="id" value="${worldInstance?.blog?.id}" class="many-to-one" noSelection="['null': '']"/>--%>
-<%--					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'blog', 'error')}</span>--%>
-<%--				</div>--%>
-<%--			</div>--%>
 			
 			<div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'blogTitle', 'error')} required">
 				<label for="blogTitle" class="control-label"><g:message code="blog.blogTitle.label" default="Blog Title" /><span class="required-indicator">*</span></label>
@@ -75,7 +67,7 @@
 			<div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'blogSummary', 'error')} ">
 				<label for="blogSummary" class="control-label"><g:message code="blog.blogSummary.label" default="Blog Summary" /></label>
 				<div class="controls">
-					<g:textArea name="blogSummary" maxlength="250" value="${blogInstance?.blogSummary}"/>
+					<g:textArea name="blogSummary" value="${blogInstance?.blogSummary}"/>
 					<span class="help-inline">${hasErrors(bean: blogInstance, field: 'blogSummary', 'error')}</span>
 				</div>
 			</div>
@@ -87,14 +79,6 @@
 					<span class="help-inline">${hasErrors(bean: blogInstance, field: 'blogContent', 'error')}</span>
 				</div>
 			</div>
-
-<%--			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'photo', 'error')} ">--%>
-<%--				<label for="photo" class="control-label"><g:message code="world.photo.label" default="Photo" /></label>--%>
-<%--				<div class="controls">--%>
-<%--					<g:select id="photo" name="photo.id" from="${ian.website.Photo.list()}" optionKey="id" value="${worldInstance?.photo?.id}" class="many-to-one" noSelection="['null': '']"/>--%>
-<%--					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'photo', 'error')}</span>--%>
-<%--				</div>--%>
-<%--			</div>--%>
 
 			<div class="control-group fieldcontain ${hasErrors(bean: photoInstance, field: 'photoPayload', 'error')} ">
 				<label for="photoPayload" class="control-label"><g:message code="photo.photoPayload.label" default="Photo Payload" /></label>

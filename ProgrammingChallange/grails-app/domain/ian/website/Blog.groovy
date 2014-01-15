@@ -14,7 +14,7 @@ class Blog {
 	static constraints = {
 		blogTitle nullable:false, blank:false, shared:'title',unique:true
 		blogSummary shared:'caption'
-		blogContent maxLength: 10000
+		blogContent maxSize: 35000
     }
 	
 	@Override	// Override toString for a nicer / more descriptive UI 

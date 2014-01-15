@@ -1,56 +1,25 @@
 package ian.website
 
 import grails.plugins.springsecurity.Secured
-
+import java.awt.image.BufferedImage
+import org.grails.plugins.imagetools.*
+import javax.imageio.ImageIO
 import org.springframework.dao.DataIntegrityViolationException
 
 
 class PhotoController {
-
+	
+	def hdImageService
+	
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
         redirect(action: "create", params: params)
     }
-	
-//	def albumList(){
-//		def albums = []
-//		List temp 
-//		
-//		temp = Photo.findAll {
-//			it.album	
-//		}
-//		
-//		temp.each{
-//			albums.add([album:it.album,id:it.id])
-//		}
-//		
-//		albums = albums.collect {
-//			if(it.album == 'world')
-//				return
-//			else
-//				return it
-//		}
-//		
-//		albums.removeAll([null])
-//		
-//		render(view:'albums', model:[albums:albums])
-//	}
 
-//    def list() {
-//        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-//		
-//		def photoInstance
-//		
-//		if (!params.album) {
-//			redirect(action:"albumList", params:params)
-//			return
-//		}
-//		
-//		photoInstance = Photo.findAllByAlbum(params.album)
-//		
-//		render(view:'albums', model:[photoInstanceList: photoInstance, photoInstanceTotal: photoInstance.count()])
-//    }
+    def list() {
+		redirect(controller: "photoAlbum", action: "list", params: params)
+    }
 
 	@Secured(['ROLE_ADMIN'])
     def create() {
@@ -61,9 +30,20 @@ class PhotoController {
     def save() {
 		params.album = PhotoAlbum.findWhere(name:params.album)
         def photoInstance = new Photo(params)
+		def thumbInstance = new Thumb()
 		def uploadedPhoto = request.getFile('photoPayload')
 		photoInstance.photoPayload = uploadedPhoto.getBytes()
 		photoInstance.photoOriginalName = uploadedPhoto.originalFilename
+		
+		byte[] thumb = hdImageService.scale(uploadedPhoto.getInputStream(), 300, null)
+		thumbInstance.thumbPayload = thumb
+		
+		photoInstance.thumb = thumbInstance
+		
+		if (!thumbInstance.save(flush: true)) {
+			render(view: "create", model: [photoInstance: photoInstance])
+			return
+		}
 		
 		if (!photoInstance.save(flush: true)) {
 			render(view: "create", model: [photoInstance: photoInstance])
@@ -84,10 +64,55 @@ class PhotoController {
     }
 	
 	def showPayload(){
-		def photoInstance = Photo.get(params.id)
+		def id = (params.id).split("\\.")
+		id = id[0]
+		def photoInstance = Photo.get(id)
 		response.outputStream<<photoInstance.photoPayload
 		response.outputStream.flush()
 	}
+	
+	def showThumb(){
+		def id = (params.id).split("\\.")
+		id = id[0]
+		def thumbInstance = Thumb.get(Photo.get(id).thumb.id)
+		response.outputStream<<thumbInstance.thumbPayload
+		response.outputStream.flush()
+	}
+//		def photoInstance = Photo.get(params.id)
+//		def thumb
+//		def size = params.imgSize?:350
+//		
+//		
+		
+//		def imageTool = new ImageTool()
+//		imageTool.load(photoInstance.photoPayload.getBytes())
+//		
+//		imageTool.thumbnail(params.imgSize)
+//		
+//		thumb = imageTool.getBytes("JPEG")
+//		response.contentType = "image/jpeg"
+//		response.contentLength = thumb.length
+//		response.outputStream.write(thumb)
+		
+//		ByteArrayInputStream bais = new ByteArrayInputStream(photoInstance.photoPayload)
+//		
+//		BufferedImage bImage = ImageIO.read(bais)
+//		
+////		thumb = (Scalr.resize(bImage, 300))
+//		
+////		ByteArrayOutputStream baos = new ByteArrayOutputStream()
+////		ImageIO.write(bImage, "jpg", baos)
+////		baos.flush()
+////		byte[] bytes = baos.toByteArray()
+//		
+//		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//		ImageIO.write(bImage, "gif", baos);
+//		byte[] imageByteArray = baos.toByteArray();
+//		
+//		response.outputStream<<baos
+//		response.outputStream.flush()
+//		baos.close()
+//	}
 
 	@Secured(['ROLE_ADMIN'])
     def edit() {
@@ -120,8 +145,17 @@ class PhotoController {
                 return
             }
         }
+		params.album = PhotoAlbum.findWhere(name:params.album)
 		def uploadedPhoto = request.getFile('photoPayload')
+		def tempPayload = uploadedPhoto.getBytes()
+		if(tempPayload){
+			photoInstance.photoOriginalName = uploadedPhoto.originalFilename
+		}
+		else{
+			tempPayload = photoInstance.photoPayload 
+		}
         photoInstance.properties = params
+		photoInstance.photoPayload = tempPayload
 		
         if (!photoInstance.save(flush: true)) {
             render(view: "edit", model: [photoInstance: photoInstance])

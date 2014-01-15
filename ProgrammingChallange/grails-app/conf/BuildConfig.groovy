@@ -4,7 +4,7 @@ grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
-//grails.project.war.file = "target/${appName}-${appVersion}.war"
+grails.project.war.file = "target/ROOT.war"
 
 // uncomment (and adjust settings) to fork the JVM to isolate classpaths
 //grails.project.fork = [
@@ -45,6 +45,7 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
          runtime 'mysql:mysql-connector-java:5.1.22'
+//		 compile 'org.imgscalr:imgscalr-lib:4.1'
     }
 
     plugins {
@@ -52,10 +53,6 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.8.3"
         runtime ":resources:1.2"
 		build ":tomcat:$grailsVersion"
-        // Uncomment these (or add new ones) to enable additional resources capabilities
-        //runtime ":zipped-resources:1.0"
-        //runtime ":cached-resources:1.0"
-        //runtime ":yui-minify-resources:0.1.5"
 
 		compile ":spring-security-core:1.2.7.3"
 		compile ":spring-security-ui:0.2"
@@ -64,13 +61,7 @@ grails.project.dependency.resolution = {
 		
 		compile ':kickstart-with-bootstrap:0.8.9'
 		compile ':lesscss-resources:1.3.0.3'
-		
-//		compile ":mail:1.0.1"
-//		compile ":twitter-bootstrap:3.0.0"
-//		runtime ":fields:1.3"
-//		compile ":spring-security-facebook:0.15"
-//		compile ":audit-logging:0.5.4"
-        
+		compile ":hd-image-utils:0.4"
 //        runtime ":database-migration:1.3.2"
         compile ':cache:1.0.1'
     }

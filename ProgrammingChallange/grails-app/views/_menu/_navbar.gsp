@@ -9,13 +9,13 @@
 			</a>
 
 			<a class="brand" href="${createLink(uri: '/')}">
-				<img class="logo" src="${resource(plugin: 'kickstart-with-bootstrap', dir:'kickstart/img',file:'grails.png')}" alt="${message(code:'home.label')}" />
+				<img class="logo" src="${resource(dir:'images',file:'icon.png')}" alt="${message(code:'home.label')}" />
 				${message(code:'home.label')}
 			</a>
 
        		<div class="nav-collapse">
        			<g:set var="controllerList" value="${['world','world','photoAlbum','blog']}"/>
-       			<g:set var="controllerNameList" value="${['My world this week','World Achive','Photo Archive','Blog Archive']}"/>
+       			<g:set var="controllerNameList" value="${['My world this week','World Achive','Photo Albums','Blog Archive']}"/>
        			<g:set var="actionList" value="${['currentWeek','list','list','list']}"/>
        			<ul class="nav">
 					<li class="dropdown">

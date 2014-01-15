@@ -5,15 +5,10 @@ class UrlMappings {
 		/* 
 		 * Pages without controller 
 		 */
-//		"/"				(view:"/index")
 		"/about"		(view:"/siteinfo/about")
 		"/contact"		(view:"/siteinfo/contact")
 		"/site"			(view:"/siteinfo/site")
-		
-		"/blog"			(view:"/siteinfo/blog")
 		"/systeminfo"	(view:"/siteinfo/systeminfo")
-		"/terms"		(view:"/siteinfo/terms")
-		"/imprint"		(view:"/siteinfo/imprint")
 		
 		/* 
 		 * Pages with controller
@@ -27,6 +22,16 @@ class UrlMappings {
 		"/s/$id"{
 			controller 	= 'upload'
 			action 		= 'show'
+		}
+		
+		"/showPhoto/$id/$name"{
+			controller 	= 'photo'
+			action 		= 'showPayload'
+		} 
+		
+		"/showThumb/$id/$name"{
+			controller 	= 'photo'
+			action 		= 'showThumb'
 		}
 		
 		"/$controller/$action?/$id?"{

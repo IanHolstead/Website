@@ -24,20 +24,23 @@ class BootStrap {
 		   friend.save(flush:true)
 		   def family = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
 		   family.save(flush:true)
-		   def admin = new User(username:'***REMOVED***', enabled: true, password:'BlackHatGuy')
+		   def admin = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
 		   admin.save(flush:true)
 		   def alicia = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
 		   alicia.save(flush:true)
+		   def mom = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
+		   mom.save(flush:true)
 		   
 		   UserRole.create ian, superAdminRole, true
 		   UserRole.create friend, userRole, true
 		   UserRole.create family, superUserRole, true
 		   UserRole.create admin, adminRole, true
 		   UserRole.create alicia, awesomeUserRole, true
+		   UserRole.create mom, adminRole, true
 		   
-		   assert User.count() == 5
+		   assert User.count() == 6
 		   assert Role.count() == 5
-		   assert UserRole.count() == 5
+		   assert UserRole.count() == 6
 	   }
 	   
 	   if(!PhotoAlbum.findByName("World")){

@@ -1,4 +1,4 @@
-<header id="Header" class="jumbotron masthead">
+<header id="Header" class="jumbotron masthead" style="width: 100%; margin-left: 0px">
 	<div class="inner">
 		<div class="container">
 			<h1 class="title"><g:layoutTitle default="${meta(name:'app.name')}" /></h1>

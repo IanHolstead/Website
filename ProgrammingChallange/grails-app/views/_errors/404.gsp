@@ -21,11 +21,11 @@
 				<div class="actions">
 					<a href="./" class="btn btn-large btn-primary">
 						<i class="icon-chevron-left icon-white"></i>
-						Back to Home
+						Back
 					</a>
-					<a href="/contact" class="btn btn-large btn-success">
-						<i class="icon-envelope"></i>
-						Contact Support
+					<a href="/" class="btn btn-large btn-success">
+						<i class="icon-home"></i>
+						Home
 					</a>					
 				</div>
 			</div>

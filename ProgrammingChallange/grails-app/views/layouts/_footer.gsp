@@ -1,48 +1,42 @@
-<footer class="footer">
+<footer class="footer" style="min-width:0px">
 	<div class="container">
 		<div class="row">
 			<div class="span2">
-				<h4>Product</h4>
+				<h4>Content</h4>
 				<ul class="unstyled">
 					<li>
-						<a href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
+						<a href="${createLink(uri: '/world/currentWeek')}">My world this week</a>
 					</li>
 					<li>
-						<a href="${createLink(uri: '/')}"><g:message code="default.tour.label"/></a>
+						<a href="${createLink(uri: '/world')}">World Archive</a>
 					</li>
 					<li>
-						<a href="${createLink(uri: '/')}"><g:message code="default.pricing.label"/></a>
+						<a href="${createLink(uri: '/photoAlbum')}">Photo Albums</a>
 					</li>
 					<li>
-						<a href="${createLink(uri: '/')}"><g:message code="default.faq.label"/></a>
+						<a href="${createLink(uri: '/blog')}">Blog Archive</a>
 					</li>
 				</ul>
 			</div>
 			<div class="span2">
-				<h4>Company</h4>
+				<h4>Info</h4>
 				<ul class="unstyled">
 					<li><a href="${createLink(uri: '/about')}"><g:message code="default.about.label"/></a></li>
 					<li><a href="${createLink(uri: '/contact')}"><g:message code="default.contact.label"/></a></li>
+					<li><a href="${createLink(uri: '/site')}">Site Info</a></li>
 				</ul>
 			</div>
 			<div class="span8">
-				<h4> Information </h4>
-				<p>Designed and built with Twitter's <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>. 
-				Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. 
-				Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
-				<p>Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+				<h4> About </h4>
+				<p>	This is Ian Holstead's personal website. It was built using Grails and Designed with Twitter's <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>. 
+					
+				</p>
+				<span style="color:#EEEEEE;">Oel ngati kameie.</span>
 			</div>
 		</div>
-		<h4>Disclaimer</h4>
-		<p>This Web site may contain other proprietary notices and copyright information, the terms of which must be observed and followed. 
-		Information on this Web site may contain technical inaccuracies or typographical errors. 
-		Information may be changed or updated without notice. 
-		</p>
-		<p>The operator and author may also make improvements and/or changes in the products and/or the programs described in this information
-		at any time without notice. For documents and software available from this server, the operator and author does not warrant or 
-		assume any legal liability or responsibility for the accuracy, completeness, or usefulness of any information,
-		apparatus, product, or process disclosed.
-		</p>
+<%--		<h4>Disclaimer</h4>--%>
+<%--		<p>--%>
+<%--		</p>--%>
 	
 		<p class="pull-right"><a href="#">Back to top</a></p>
 	</div>
