@@ -19,7 +19,7 @@
 			<div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'status', 'error')} ">
 				<label for="status" class="control-label"><g:message code="world.status.label" default="Status" /></label>
 				<div class="controls">
-					<input type="number" name="status" value="${worldInstance?.summary}"/>
+					<input type="number" name="status" value="${worldInstance?.status}"/>
 					<span class="help-inline">${hasErrors(bean: worldInstance, field: 'status', 'error')}</span>
 				</div>
 			</div>

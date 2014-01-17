@@ -78,41 +78,6 @@ class PhotoController {
 		response.outputStream<<thumbInstance.thumbPayload
 		response.outputStream.flush()
 	}
-//		def photoInstance = Photo.get(params.id)
-//		def thumb
-//		def size = params.imgSize?:350
-//		
-//		
-		
-//		def imageTool = new ImageTool()
-//		imageTool.load(photoInstance.photoPayload.getBytes())
-//		
-//		imageTool.thumbnail(params.imgSize)
-//		
-//		thumb = imageTool.getBytes("JPEG")
-//		response.contentType = "image/jpeg"
-//		response.contentLength = thumb.length
-//		response.outputStream.write(thumb)
-		
-//		ByteArrayInputStream bais = new ByteArrayInputStream(photoInstance.photoPayload)
-//		
-//		BufferedImage bImage = ImageIO.read(bais)
-//		
-////		thumb = (Scalr.resize(bImage, 300))
-//		
-////		ByteArrayOutputStream baos = new ByteArrayOutputStream()
-////		ImageIO.write(bImage, "jpg", baos)
-////		baos.flush()
-////		byte[] bytes = baos.toByteArray()
-//		
-//		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//		ImageIO.write(bImage, "gif", baos);
-//		byte[] imageByteArray = baos.toByteArray();
-//		
-//		response.outputStream<<baos
-//		response.outputStream.flush()
-//		baos.close()
-//	}
 
 	@Secured(['ROLE_ADMIN'])
     def edit() {
@@ -129,6 +94,7 @@ class PhotoController {
 	@Secured(['ROLE_ADMIN'])
     def update() {
         def photoInstance = Photo.get(params.id)
+		def thumbInstance = photoInstance.thumb
         if (!photoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])
             redirect(action: "list")
@@ -150,6 +116,10 @@ class PhotoController {
 		def tempPayload = uploadedPhoto.getBytes()
 		if(tempPayload){
 			photoInstance.photoOriginalName = uploadedPhoto.originalFilename
+			byte[] thumb = hdImageService.scale(uploadedPhoto.getInputStream(), 300, null)
+			thumbInstance.thumbPayload = thumb
+			
+			thumbInstance.save(flash:true)
 		}
 		else{
 			tempPayload = photoInstance.photoPayload 

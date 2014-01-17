@@ -19,7 +19,7 @@
 	</div>
 	</g:hasErrors>
 
-	<g:form method="post" class="form-horizontal" >
+	<g:form method="post" class="form-horizontal"  enctype="multipart/form-data">
 		<g:hiddenField name="id" value="${worldInstance?.id}" />
 		<g:hiddenField name="version" value="${worldInstance?.version}" />
 		<fieldset class="form">

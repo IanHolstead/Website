@@ -20,8 +20,7 @@
 				<div class="photoThumb"> 
 					<div class="center">
 					<g:link controller="photo" action="show" id="${p.id}">
-					<img src="/showThumb/${p.id}/${p.photoName}.png" alt="${p.photoCaption}"/>
-<%--					<img class="photo" src="${createLink(controller:'photo', action:'showThumb', id:"${p.id}")}" alt="${p.photoCaption}"/>--%>
+						<img class="photo" src="/showThumb/${p.id}/${p.photoName}.png" alt="${p.photoCaption}"/>
 					</g:link>
 					</div>
 				</div>

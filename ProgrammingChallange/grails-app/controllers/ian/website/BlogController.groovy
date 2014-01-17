@@ -14,8 +14,19 @@ class BlogController {
     }
 
     def list() {
+		def blogInstanceList = Blog.list(params)
+		
+		blogInstanceList = blogInstanceList.collect{
+			def world = World.findByBlog(it)
+			if(world?.status !=1 && world?.status !=2){
+				it = null
+			}
+			return it
+		}
+		blogInstanceList.removeAll([null])
+		
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [blogInstanceList: Blog.list(params), blogInstanceTotal: Blog.count()]
+        [blogInstanceList: blogInstanceList, blogInstanceTotal: blogInstanceList.size()]
     }
 	
 	@Secured(['ROLE_ADMIN'])
@@ -26,6 +37,9 @@ class BlogController {
 	@Secured(['ROLE_ADMIN'])
     def save() {
         def blogInstance = new Blog(params)
+		def blogContent = params.blogContent
+		blogContent = blogContent.replaceAll("\n", "<br/>")
+		blogInstance.blogContent = blogContent
         if (!blogInstance.save(flush: true)) {
             render(view: "create", model: [blogInstance: blogInstance])
             return
@@ -49,11 +63,16 @@ class BlogController {
 	@Secured(['ROLE_ADMIN'])
     def edit() {
         def blogInstance = Blog.get(params.id)
+		
         if (!blogInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label', default: 'Blog'), params.id])
             redirect(action: "list")
             return
         }
+		
+		def blogContent = blogInstance.blogContent
+		blogContent = blogContent.replaceAll("<br/>", "\n")
+		blogInstance.blogContent = blogContent
 
         [blogInstance: blogInstance]
     }
@@ -79,6 +98,9 @@ class BlogController {
         }
 
         blogInstance.properties = params
+		def blogContent = params.blogContent
+		blogContent = blogContent.replaceAll("\n", "<br/>")
+		blogInstance.blogContent = blogContent
 
         if (!blogInstance.save(flush: true)) {
             render(view: "edit", model: [blogInstance: blogInstance])
@@ -92,6 +114,11 @@ class BlogController {
 	@Secured(['ROLE_ADMIN'])
     def delete() {
         def blogInstance = Blog.get(params.id)
+		if(World.findByBlog(blogInstance)){
+			flash.message = message(code: 'blog.no.delete.world.message', args: [message(code: 'blog.label', default: 'Blog'), params.id], default: 'You can\'t delete this because it has a world attached to it!')
+			redirect(action: "list")
+			return
+		}
         if (!blogInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label', default: 'Blog'), params.id])
             redirect(action: "list")

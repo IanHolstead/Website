@@ -56,16 +56,9 @@ class WorldController {
 		blogInstance.save()
 		if(!photoInstance.save(flush:true)){
 			render(view: "create", model: [worldInstance: worldInstance, blogInstance:blogInstance, photoInstance:photoInstance])
-//			println("")
 			return
 		}
-//		else{
-//			println("")
-//		}
-		
-//		println("Photo Instance:"+photoInstance?.id)
 		worldInstance.photo = photoInstance
-//		println("Blog Instance"+blogInstance?.id)
 		worldInstance.blog = blogInstance
         if (!worldInstance.save(flush:true)) {
 			blogInstance.delete()
@@ -162,6 +155,7 @@ class WorldController {
         def worldInstance = World.get(params.id)
 		def photoInstance = worldInstance?.photo
 		def blogInstance = worldInstance?.blog
+		blogInstance.blogContent = blogInstance.blogContent.replaceAll("<br/>", "\n")
         
 		if (!worldInstance || !photoInstance || !blogInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
@@ -178,6 +172,7 @@ class WorldController {
 		def photoInstance = worldInstance?.photo
 		def blogInstance = worldInstance?.blog
 		def thumbInstance = photoInstance?.thumb
+		def tempPhoto = photoInstance?.photoPayload
         
 		if (!worldInstance || !photoInstance || !blogInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
@@ -200,6 +195,11 @@ class WorldController {
 		blogInstance.properties = params
 		photoInstance.properties = params
 		
+		
+		def blogContent = params.blogContent
+		blogContent = blogContent.replaceAll("\n", "<br/>")
+		blogInstance.blogContent = blogContent
+		
 //		photoInstance.album = PhotoAlbum.findByName("World")
 		def uploadedPhoto = request.getFile('photoPayload')
 		def tempPayload = uploadedPhoto.getBytes()
@@ -217,7 +217,7 @@ class WorldController {
 			}
 		}
 		else{
-			tempPayload = photoInstance.photoPayload
+			tempPayload = tempPhoto
 		}
 		
 		photoInstance.photoPayload = tempPayload

@@ -26,7 +26,7 @@
 			</div>	
 			
 			<div class="thumb">
-				<img src="/showThumb/${worldInstance.photo.id}/${worldInstance.photo.photoName}.png" alt="${worldInstance.photo.photoCaption}"/>
+				<img class="image" src="/showThumb/${worldInstance.photo.id}/${worldInstance.photo.photoName}.png" alt="${worldInstance.photo.photoCaption}"/>
 <%--				<img class="image" src="${createLink(controller:'photo', action:'showPayload', id:"${worldInstance.photo.id}")}" />--%>
 			</div>
 		</div>	

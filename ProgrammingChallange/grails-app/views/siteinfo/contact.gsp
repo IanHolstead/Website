@@ -10,7 +10,7 @@
 	<section id="intro-contact">
 		<p class="lead">
 			To contact me for business related inquiries please email <a href="mailto:business@ianholstead.com">business@ianholstead.com</a>. 
-			To report an issue send me a quick note by clicking <a href="mailto:business@ianholstead.com?subject=Bug report"><b>here</b></a>.
+			To report an issue send me a quick note by clicking <a href="mailto:issues@ianholstead.com?subject=Bug report"><b>here</b></a>.
 			For all other general inquiries drop me a line at <a href="mailto:general@ianholstead.com">general@ianholstead.com</a>.
 		</p>
 	</section>

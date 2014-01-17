@@ -37,9 +37,9 @@
 		<hr/>
 		
 		<div class="video">
-			<div class="videoThumb">  <!-- ENSURE TO INPUT WIDTH CSS RULE -->
+			<div class="videoThumb">
 				<div class="center">
-					<iframe width="853" height="480" src="${worldInstance.video}" frameborder="0" allowfullscreen></iframe>
+					<iframe class="iVideo" src="${worldInstance.video}" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
 			<div class="videoCaption">
@@ -50,7 +50,7 @@
 		<hr/>
 	
 		<div class="XKCD">
-			<div class="XKCDthumb">  <!-- ENSURE TO INPUT WIDTH CSS RULE -->
+			<div class="XKCDthumb">
 				<div class="center"><img class="XKCD" src="${worldInstance.xkcd}"/></div>
 			</div>
 			<div class="XKCDcaption">

@@ -31,7 +31,7 @@ environments {
             dbCreate = "update"
             dialect=org.hibernate.dialect.MySQL5InnoDBDialect
 			driverClassName = "com.mysql.jdbc.Driver"
-			jndiName="java:comp/env/jdbc/WebDb"
+			jndiName="java:comp/env/WebDb"
         }
     }
 }

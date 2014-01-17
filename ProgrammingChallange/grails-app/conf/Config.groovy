@@ -76,6 +76,20 @@ environments {
     }
 }
 
+//grails.naming.entries = ['jdbc/WebDb': [
+//	type: "javax.sql.DataSource", //required
+//	auth: "Container", // optional
+//	description: "User database that can be updated and saved", //optional
+//	//properties for particular type of resource
+//	url: "jdbc:mysql://localhost/ianhols_Web",
+//	username: "ianhols_Grails",
+//	password: "TriAngSkiSeaDb.64",
+//	driverClassName:"com.mysql.jdbc.Driver",
+////	maxActive: "8", //and so on
+////	maxIdle: "4"
+//	]
+// ]
+
 // log4j configuration
 log4j = {
     // Example of changing the log pattern for the default console appender:
