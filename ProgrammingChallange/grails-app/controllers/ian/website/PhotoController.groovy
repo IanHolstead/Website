@@ -55,12 +55,34 @@ class PhotoController {
 
     def show() {
         def photoInstance = Photo.get(params.id)
-        if (!photoInstance) {
+		if (!photoInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])
-            redirect(action: "list")
-            return
-        }
-        [photoInstance: photoInstance]
+			redirect(action: "list")
+			return
+		}
+		List photos = Photo.findAllByAlbum(photoInstance.album)
+		photos.sort(true) { a, b ->
+			a.id <=> b.id
+		}
+		
+		def photoNext
+		def photoPrev
+		for(int i = 0; i<(photos.size()-1); i++){
+			if(photos[i].id == photoInstance.id){
+				photoNext = photos[i+1]
+				photoPrev = photos[i-1]
+			}
+		}
+		if(!photoNext)
+			photoNext = photos[0]
+		if(!photoPrev){
+			if(photos.size()>2)
+				photoPrev = photos[-2]
+			else
+				photoPrev = photos[0]
+		}
+		
+        [photoInstance: photoInstance, photoNext: photoNext, photoPrev: photoPrev]
     }
 	
 	def showPayload(){

@@ -11,7 +11,7 @@
 <body>
 	<section id="intro" class="first">
 		<h1>Welcome!</h1>
-		<p>Hello World! This is my (Ian Holstead's) personal website where I will do my best to post stuff (photos, blog, etc) regularly.
+		<p>Hello World! This is my personal website where I will do my best to post stuff (photos, blog, etc) regularly.
 		This site is still under development so hopefully whenever you check back there will cool new functionality. Thanks!</p>
 <%--		<h2>About me (tl;dr)</h2>--%>
 <%--		<p>Oel ngati kameie.</p>--%>
@@ -62,7 +62,7 @@
 					</div>
 					<h3>Photo Archive</h3>
 				</div>
-				<p>I post collections of my pictures here, whether they are from a trip to Switzerland or just backgrounds I like, they all end up here!</p>
+				<p>I post collections of my pictures here: whether they are from a trip to Switzerland or just backgrounds I like, they all end up here!</p>
 			</div>
 	    	<div class="span4">
 		    	<div class="center bigWrapper">
@@ -75,7 +75,6 @@
 				</div>
 				<p>I hear Ian's pretty cool, you should find out why<g:link	url="/about">...</g:link>
 				</p>
-<!-- 	                <li>Less 1.3</li> -->
 			</div>
 	    </div>
 	</section>
@@ -84,22 +83,27 @@
 		<div class="row-fluid">
 	    	<div class="span4">
 		    	<div class="center">
-<%--		    		<a href ="https://www.facebook.com/ian.holstead"  target="_blank">--%>
-						<img class="frontpageImage" src="${resource(dir: 'images/home_icons',file: 'networks.png')}" />
-<%--					</a>--%>
+						<img class="frontpageImage" src="${resource(dir: 'images/home_icons',file: 'networks.png')}" usemap="#network-map"/>
+						<map name="network-map">
+							<area shape="rect" alt="Facebook" coords="0,0,100,100" href="https://www.facebook.com/ian.holstead" target="_blank">
+							<area shape="rect" alt="Twitter" coords="100,0,200,100" href="https://twitter.com/IanHolstead" target="_blank">
+							<area shape="rect" alt="LinkedIn" coords="200,0,300,100" href="http://ca.linkedin.com/in/ianholstead/" target="_blank">
+						</map>
 					<h3>Connect with me!</h3>
 				</div>
 				<p>
-					Add me as a friend on <a href="https://www.facebook.com/ian.holstead" target="_blank">facebook!</a><br/>
-					Follow me on <a href ="https://twitter.com/IanHolstead" target="_blank">twitter!</a><br/>
+					Add me as a friend on <a href="https://www.facebook.com/ian.holstead" target="_blank">Facebook!</a><br/>
+					Follow me on <a href ="https://twitter.com/IanHolstead" target="_blank">Twitter!</a><br/>
 					For professional inquiries please see my <a href ="http://ca.linkedin.com/in/ianholstead/" target="_blank">Linkedin profile</a><br/>
 				</p>
 			</div>
 	    	<div class="span4">
 		    	<div class="center">
-<%--					<a href ="https://twitter.com/IanHolstead" target="_blank">--%>
-						<img class="frontpageImage" src="${resource(dir: 'images/home_icons',file: 'programming.png')}" />
-<%--					</a>--%>
+						<img class="frontpageImage" src="${resource(dir: 'images/home_icons',file: 'programming.png')}" usemap="#programming-map"/>
+						<map name="programming-map">
+							<area shape="rect" alt="Github" coords="0,0,100,100" href="http://github.com/IanHolstead" target="_blank">
+							<area shape="rect" alt="Stackoverflow" coords="100,0,200,100" href="http://stackoverflow.com/users/2399849/ian-holstead" target="_blank">
+						</map>
 					<h3>Programming</h3>
 				</div>
 				<p>
@@ -109,9 +113,12 @@
 			</div>
 	    	<div class="span4">
 		    	<div class="center">
-<%--					<a href ="http://ca.linkedin.com/in/ianholstead/" target="_blank">--%>
-						<img class="frontpageImage" src="${resource(dir: 'images/home_icons',file: 'social.png')}" />
-<%--					</a>--%>
+						<img class="frontpageImage" src="${resource(dir: 'images/home_icons',file: 'social.png')}" usemap="#other-map"/>
+						<map name="other-map">
+							<area shape="rect" alt="Steam" coords="0,0,100,100" href="http://steamcommunity.com/id/themostevile/" target="_blank">
+							<area shape="rect" alt="YouTube" coords="100,0,200,100" href="http://www.youtube.com/user/theonemetorulethemal" target="_blank">
+							<area shape="rect" alt="G+" coords="200,0,300,100" href="https://plus.google.com/103164028904505410580/posts" target="_blank">
+						</map>
 					<h3>Those other accounts</h3>
 				</div>
 				<p>

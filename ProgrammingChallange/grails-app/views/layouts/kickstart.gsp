@@ -22,6 +22,16 @@
 	<r:require modules="${session.skin ? session.skin + '_utils' : 'bootstrap_utils'}"/>
 	
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
+	
+	<!-- Include required JS files  and brushes for Syntax Highlighter-->
+	<g:javascript src="sh/shCore.js" />
+	<g:javascript src="sh/shBrushGroovy.js" />
+	<g:javascript src="sh/shBrushCSharp.js" />
+	<g:javascript src="sh/shBrushCpp.js" />
+	<g:javascript src="sh/shBrushJava.js" />
+	<g:javascript src="sh/shBrushPlain.js" />
+	<link href="${resource(dir: 'css/sh', file: 'shCore.css')}" rel="stylesheet" type="text/css" />
+	<link href="${resource(dir: 'css/sh', file: 'shThemeDefault.css')}" rel="stylesheet" type="text/css" />
 
 	<r:layoutResources />
 	<g:layoutHead />

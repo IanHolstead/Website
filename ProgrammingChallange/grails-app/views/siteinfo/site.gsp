@@ -7,40 +7,86 @@
 
 <body>
 
-	<section id="intro-site">
-		<h1><g:message code="site.tech.label"/></h1>
-		<p>This site is powered by <a href="http://grails.org/">grails</a> ${meta(name:'app.grails.version')}.</p>
-		<p>Designed and built using Twitter's <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>. 
-			Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. 
-			Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
-			Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
-	</section>
+	<a class="small_title" href="/site/changelog" style="padding:0px;">
+		<g:message code="systeminfo.changelog.title" default="Changelog"/>
+	</a>
 
 	<section id="application-site">
-	     <p class="small_title"><g:message code="default.systeminfo.status"/></p>
-	     <ul>
-			<li>App version: <g:meta name="app.version"/></li>
-			<li>Grails version: <g:meta name="app.grails.version"/></li>
-			<li>Groovy version: ${GroovySystem.getVersion()}</li>
-			<li>JVM version: ${System.getProperty('java.version')}</li>
-			<li>Controllers: ${grailsApplication.controllerClasses.size()}</li>
-			<li>Domains: ${grailsApplication.domainClasses.size()}</li>
-			<li>Services: ${grailsApplication.serviceClasses.size()}</li>
-			<li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
-	     </ul>
+		<div class="accordion" id="accordion1">
+			<div class="accordion-group" style="border:0px;">
+				<div class="accordion-heading">
+					<a class="accordion-toggle small_title" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo" style="padding:0px;">
+						<g:message code="default.systeminfo.status"/> <b class="caret" style="vertical-align: middle;"></b>
+					</a>
+				</div>
+				<div id="collapseTwo" class="accordion-body collapse in">
+					<div class="accordion-inner" style="border:0px; padding: 0px;">
+						<ul style="margin-bottom: 0px;">
+							<li>App version: <g:meta name="app.version"/></li>
+							<li>Grails version: <g:meta name="app.grails.version"/></li>
+							<li>Groovy version: ${GroovySystem.getVersion()}</li>
+							<li>JVM version: ${System.getProperty('java.version')}</li>
+							<li>Controllers: ${grailsApplication.controllerClasses.size()}</li>
+							<li>Domains: ${grailsApplication.domainClasses.size()}</li>
+							<li>Services: ${grailsApplication.serviceClasses.size()}</li>
+							<li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section id="intro-site">
+		<div class="accordion" id="accordion3">
+			<div class="accordion-group" style="border:0px;">
+				<div class="accordion-heading">
+					<a class="accordion-toggle small_title" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree" style="padding:0px;">
+						<g:message code="default.systeminfo.resources"/> <b class="caret" style="vertical-align: middle;"></b>
+					</a>
+				</div>
+				<div id="collapseThree" class="accordion-body collapse in">
+					<div class="accordion-inner" style="border:0px; padding: 0px;">
+						<ul style="margin-bottom: 0px;">
+							<li>Web Layout: <a href ="http://twitter.github.com/bootstrap/">Bootstrap</a>, from Twitter 
+					        	Licensed under the Apache License v2.0. Documentation licensed under CC BY 3.0. 
+					        	(@TwBootstrap , http://twitter.github.com/bootstrap/)</li>
+					        <li>Datepicker: <a href ="https://github.com/eternicode/bootstrap-datepicker">Datepicker for Bootstrap</a>, 
+					        	Copyright 2012 Stefan Petre, Improvements by Andrew Rowls, Licensed under the Apache License v2.0</li>
+							<li>Flag Icons: <a href="http://www.famfamfam.com/lab/icons/flags/">FamFamFam Flag Icons</a> by Mark James. They are 
+								<i>"available for free use for any purpose with no requirement for attribution"</i>.</li>
+							<li>Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed under 
+							<a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a></li>
+							<li>SyntaxHighlighter: <a href ="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighighter</a> 
+								used under the terms of the MIT License</li>
+							<li>Image compression: <a href ="https://github.com/quirklabs/grails-hd-image-utils/blob/master/README.md">grails-hd-image-utils</a> 
+								Licensed under the Apache License v2.0</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
 	
 	<section id="resources-site">
-	     <p class="small_title"><g:message code="default.systeminfo.plugins"/></p>
-	     <ul>
-	         <g:set var="pluginManager"
-	                value="${applicationContext.getBean('pluginManager')}"></g:set>
-	
-	         <g:each var="plugin" in="${pluginManager.allPlugins.sort { it.name }}">
-	             <li>${plugin.name} - ${plugin.version}</li>
-	         </g:each>
-	
-	     </ul>
+		<div class="accordion" id="accordion2">
+			<div class="accordion-group" style="border:0px;">
+				<div class="accordion-heading">
+					<a class="accordion-toggle small_title" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" style="padding:0px;">
+						<g:message code="default.systeminfo.plugins"/> <b class="caret" style="vertical-align: middle;"></b>
+					</a>
+				</div>
+				<div id="collapseOne" class="accordion-body collapse">
+					<div class="accordion-inner" style="border:0px; padding: 0px;">
+						<g:set var="pluginManager"
+							value="${applicationContext.getBean('pluginManager')}"></g:set>
+						<g:each var="plugin" in="${pluginManager.allPlugins.sort { it.name }}">
+							<li>${plugin.name} - ${plugin.version}</li>
+						</g:each>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
 
 	<section id="additional-site">

@@ -47,8 +47,12 @@ class PhotoAlbumController {
             redirect(action: "list")
             return
         }
+		def photos = Photo.findAllByAlbum(photoAlbumInstance)
+		photos.sort(true) { a, b ->
+			a.id <=> b.id
+		}
 
-        [photoAlbumInstance: photoAlbumInstance]
+        [photoAlbumInstance: photoAlbumInstance, photos:photos]
     }
 
 	@Secured(['ROLE_ADMIN'])

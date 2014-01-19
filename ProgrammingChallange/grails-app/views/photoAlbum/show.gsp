@@ -15,7 +15,7 @@
 <section id="show-photoAlbum" class="first">
 	
 	<div class="center">
-		<g:each in="${photoAlbumInstance.photos}" var="p">
+		<g:each in="${photos}" var="p">
 			<div class="photoTile">
 				<div class="photoThumb"> 
 					<div class="center">

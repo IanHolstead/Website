@@ -9,6 +9,8 @@ class UrlMappings {
 		"/contact"		(view:"/siteinfo/contact")
 		"/site"			(view:"/siteinfo/site")
 		"/systeminfo"	(view:"/siteinfo/systeminfo")
+		"/site/changelog"	(view:"/siteinfo/changelog")
+//		"/about/computer"	(view:"siteinfo/computer")
 		
 		/* 
 		 * Pages with controller
