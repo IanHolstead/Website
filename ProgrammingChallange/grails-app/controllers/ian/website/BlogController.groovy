@@ -38,8 +38,17 @@ class BlogController {
     def save() {
         def blogInstance = new Blog(params)
 		def blogContent = params.blogContent
-		blogContent = blogContent.replaceAll("\n", "<br/>")
-		blogInstance.blogContent = blogContent
+		def blogTemp = ""
+		blogContent = blogContent.split("(?=<.?pre.*?>)")
+		blogContent.eachWithIndex { it, i ->
+			if(i%2 == 0){
+				blogTemp = blogTemp + it.replaceAll("\n", "<br/>")
+			}
+			else{
+				blogTemp = blogTemp + it
+			}
+		}
+		blogInstance.blogContent = blogTemp
         if (!blogInstance.save(flush: true)) {
             render(view: "create", model: [blogInstance: blogInstance])
             return
@@ -99,8 +108,17 @@ class BlogController {
 
         blogInstance.properties = params
 		def blogContent = params.blogContent
-		blogContent = blogContent.replaceAll("\n", "<br/>")
-		blogInstance.blogContent = blogContent
+		def blogTemp = ""
+		blogContent = blogContent.split("(?=<.?pre.*?>)")
+		blogContent.eachWithIndex { it, i ->
+			if(i%2 == 0){
+				blogTemp = blogTemp + it.replaceAll("\n", "<br/>")
+			}
+			else{
+				blogTemp = blogTemp + it
+			}
+		}
+		blogInstance.blogContent = blogTemp
 
         if (!blogInstance.save(flush: true)) {
             render(view: "edit", model: [blogInstance: blogInstance])

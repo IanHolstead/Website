@@ -34,8 +34,17 @@ class WorldController {
         def worldInstance = new World(params)
 		def blogInstance = new Blog(params)
 		def blogContent = params.blogContent
-		blogContent = blogContent.replaceAll("\n", "<br/>")
-		blogInstance.blogContent = blogContent
+		def blogTemp = ""
+		blogContent = blogContent.split("(?=<.?pre.*?>)")
+		blogContent.eachWithIndex { it, i ->
+			if(i%2 == 0){
+				blogTemp = blogTemp + it.replaceAll("\n", "<br/>")
+			}
+			else{
+				blogTemp = blogTemp + it
+			}
+		}
+		blogInstance.blogContent = blogTemp
 		def photoInstance = new Photo(params)
 		def thumbInstance = new Thumb()
 		def uploadedPhoto = request.getFile('photoPayload')
@@ -197,8 +206,17 @@ class WorldController {
 		
 		
 		def blogContent = params.blogContent
-		blogContent = blogContent.replaceAll("\n", "<br/>")
-		blogInstance.blogContent = blogContent
+		def blogTemp = ""
+		blogContent = blogContent.split("(?=<.?pre.*?>)")
+		blogContent.eachWithIndex { it, i ->
+			if(i%2 == 0){
+				blogTemp = blogTemp + it.replaceAll("\n", "<br/>")
+			}
+			else{
+				blogTemp = blogTemp + it
+			}
+		}
+		blogInstance.blogContent = blogTemp
 		
 //		photoInstance.album = PhotoAlbum.findByName("World")
 		def uploadedPhoto = request.getFile('photoPayload')

@@ -8,7 +8,7 @@
 <body>
 	<section id="v1_0_2" class="section">
 	    <h1><g:message code="change.1.0.2.title" default="1.0.2"/></h1>
-	    <div>This change focused on mobile pages and bug fixes</div>
+	    <div>This change focused on mobile pages and bug fixes: 2014-01-22</div>
 	    <div class="small_title">New Features</div>
 	    <ul>
 			<li>Syntax highlighting for code</li>
@@ -83,17 +83,6 @@
 			<li>Got website running!</li>
 	     </ul>
 	</section>
-
-<%--	<!-- You also need to add some content to highlight, but that is covered elsewhere. -->--%>
-<%--<pre class="brush: groovy">--%>
-<%----%>
-<%--</pre>--%>
-<%-- --%>
-<%--<!-- Finally, to actually run the highlighter, you need to include this JS on your page -->--%>
-<%--<script type="text/javascript">--%>
-<%--     SyntaxHighlighter.all()--%>
-<%--</script>--%>
-	
 
 </body>
 

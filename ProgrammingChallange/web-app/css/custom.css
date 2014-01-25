@@ -365,10 +365,10 @@ footer .footer {
 		width: inherit;
 	}
 	#list-photoAlbum .thumb{
-		width: 0px;
+		display: none;
 	}
 	#list-world .thumb{
-		width: 0px;
+		display: none;
 	}
 	#show-photoAlbum .photoTile{
 		width: 90%;
@@ -384,7 +384,30 @@ footer .footer {
 	}
 	#show-photo .photo-nav .center {
 	margin-left: -108px;
+	}
+	.odd {
+		min-height: 100px;
+		max-height: 350px;
+		height: inherit;
+		overflow: hidden;
+	}
+	.even {
+		min-height: 100px;
+		max-height: 350px;
+		height: inherit;
+		overflow: hidden;
+	}
+	.title {
+		overflow: hidden;
+		padding-bottom: 6px;
+	}
 }
+
+@media (max-width: 350px) {
+	iframe{
+		width: 335px;
+		height: 188px;
+	}
 }
 
 @media (min-width: 980px) {

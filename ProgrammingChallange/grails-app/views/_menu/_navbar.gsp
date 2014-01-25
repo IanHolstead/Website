@@ -37,7 +37,7 @@
 					<%--Right-side entries--%>
 					<%--NOTE: the following menus are in reverse order due to "pull-right" alignment (i.e., right to left)--%>
 					<%--<g:render template="/_menu/language"/>--%>
-					<g:render template="/_menu/config"/>
+					<%--<g:render template="/_menu/config"/>--%>
 					<g:render template="/_menu/user"/>
 					<g:render template="/_menu/info"/>	
 					<%--<g:render template="/_menu/admin"/>--%>
