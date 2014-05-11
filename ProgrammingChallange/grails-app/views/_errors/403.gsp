@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>404 - Page Not Found!</title>
+		<title>403 Forbidden</title>
 		<meta name="layout" content="kickstart" />
 	</head>
 

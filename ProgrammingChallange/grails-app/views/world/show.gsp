@@ -8,10 +8,10 @@
 	<meta name="layout" content="kickstart" />
 	<g:set var="entityName" value="${worldInstance.title}" />
 	<title>${entityName}</title>
+	
 </head>
 
 <body>
-
 <section id="show-world" class="first">
 		<div class="blog">
 			<div class="blogTitle"><h1>${blogInstance.blogTitle}</h1></div>
@@ -37,10 +37,8 @@
 		<hr/>
 		
 		<div class="video">
-			<div class="videoThumb">
-				<div class="center">
-					<iframe class="iVideo" src="${worldInstance.video}" frameborder="0" allowfullscreen></iframe>
-				</div>
+			<div class="center videoThumb">
+				<iframe class="iVideo" width="420" height="315" src="${worldInstance.video}" frameborder="0" allowfullscreen></iframe>
 			</div>
 			<div class="videoCaption">
 				<div class="center"><p>${worldInstance.videoCaption}</p></div>

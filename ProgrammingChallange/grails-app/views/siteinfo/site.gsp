@@ -61,6 +61,8 @@
 								used under the terms of the MIT License</li>
 							<li>Image compression: <a href ="https://github.com/quirklabs/grails-hd-image-utils/blob/master/README.md">grails-hd-image-utils</a> 
 								Licensed under the Apache License v2.0</li>
+							<li>Claptrap Image: <a href ="http://ichrysi.deviantart.com/">deviantart</a> 
+								Licensed under the Apache License v2.0</li>
 						</ul>
 					</div>
 				</div>

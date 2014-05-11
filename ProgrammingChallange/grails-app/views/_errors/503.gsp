@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>404 - Page Not Found!</title>
+		<title>503 Service Unavailable</title>
 		<meta name="layout" content="kickstart" />
 	</head>
 

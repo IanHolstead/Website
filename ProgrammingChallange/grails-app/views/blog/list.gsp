@@ -12,25 +12,21 @@
 <body>
 	
 <section id="list-blog" class="first">
-
-		<g:each in="${blogInstanceList}" status="i" var="blogInstance">
-			<div class="${(i % 2) == 0 ? 'odd' : 'even'}">
-				<div class="text">
-					<div class="title">
-						<h1><g:link action="show" id="${blogInstance.id}">${blogInstance.blogTitle}</g:link></h1>
-					</div>
-					<div class="summary">
-						<p>${blogInstance.blogSummary}</p>
-					</div>
+	<g:each in="${blogInstanceList}" status="i" var="blogInstance">
+		<div class="${(i % 2) == 0 ? 'odd' : 'even'}">
+			<div class="text">
+				<div class="title">
+					<h1><g:link action="show" id="${blogInstance.id}">${blogInstance.blogTitle}</g:link></h1>
+				</div>
+				<div class="summary">
+					<p>${blogInstance.blogSummary}</p>
 				</div>
 			</div>
-		</g:each>
-		
-	<g:if test="${blogInstanceTotal >= (params.max?:10)}">
-		<div class="pagination">
-			<bs:paginate total="${blogInstanceTotal}" />
 		</div>
-	</g:if>
+	</g:each>
+	<div class="pagination">
+		<bs:paginate total="${blogInstanceTotal}" />
+	</div>
 </section>
 
 </body>

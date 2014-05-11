@@ -9,7 +9,7 @@
 
 	<section id="intro-about">
 		<div class="about_photo">
-			<img alt="Ian Holstead" src="/images/home_icons/me.jpg">
+			<img alt="Ian Holstead" src="/images/info/me.jpg">
 		</div>
 		<div class="about_text">
 			<h1><g:message code="about.ian.title" default="Ian Holstead"/></h1>

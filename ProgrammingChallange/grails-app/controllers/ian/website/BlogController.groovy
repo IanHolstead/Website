@@ -18,7 +18,7 @@ class BlogController {
 		
 		blogInstanceList = blogInstanceList.collect{
 			def world = World.findByBlog(it)
-			if(world?.status !=1 && world?.status !=2){
+			if(world?.status !=1 && world?.status !=2 && world){
 				it = null
 			}
 			return it
