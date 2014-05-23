@@ -93,7 +93,7 @@
 		<div id="error-info">
 			<div class="info center">An error has occurred! I probably shouldn't have made Claptrap my sys admin...</div>
 			<div class="image center">
-				<img alt="Claptrap" src="/images/info/claptrap.png">
+				<g:img alt="Claptrap" dir="images/info" file="claptrap.png" />
 			</div>
 		</div>
 	</g:else>

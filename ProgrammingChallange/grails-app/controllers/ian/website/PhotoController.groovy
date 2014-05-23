@@ -5,16 +5,16 @@ import java.awt.image.BufferedImage
 import org.grails.plugins.imagetools.*
 import javax.imageio.ImageIO
 import org.springframework.dao.DataIntegrityViolationException
-
+import ian.security.*
 
 class PhotoController {
 	
 	def hdImageService
-	
+	def springSecurityService
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
-        redirect(action: "create", params: params)
+        redirect(controller: "photoAlbum", action: "list", params: params)
     }
 
     def list() {
@@ -28,23 +28,25 @@ class PhotoController {
 
 	@Secured(['ROLE_ADMIN'])
     def save() {
-		params.album = PhotoAlbum.findWhere(name:params.album)
+		params.album = PhotoAlbum.findByName(params.album)
+		params.authenticationLevel = params.album.authenticationLevel
         def photoInstance = new Photo(params)
 		def thumbInstance = new Thumb()
 		def uploadedPhoto = request.getFile('photoPayload')
-		photoInstance.photoPayload = uploadedPhoto.getBytes()
-		photoInstance.photoOriginalName = uploadedPhoto.originalFilename
-		
-		byte[] thumb = hdImageService.scale(uploadedPhoto.getInputStream(), 300, null)
-		thumbInstance.thumbPayload = thumb
-		
-		photoInstance.thumb = thumbInstance
-		
-		if (!thumbInstance.save(flush: true)) {
-			render(view: "create", model: [photoInstance: photoInstance])
-			return
+		if(uploadedPhoto.getBytes().size() != 0){
+			photoInstance.photoPayload = uploadedPhoto.getBytes()
+			photoInstance.photoOriginalName = uploadedPhoto.originalFilename
+			
+			byte[] thumb = hdImageService.scale(uploadedPhoto.getInputStream(), 300, null)
+			thumbInstance.thumbPayload = thumb
+			
+			photoInstance.thumb = thumbInstance
+			
+			if (!thumbInstance.save(flush: true)) {
+				render(view: "create", model: [photoInstance: photoInstance])
+				return
+			}
 		}
-		
 		if (!photoInstance.save(flush: true)) {
 			render(view: "create", model: [photoInstance: photoInstance])
 			return
@@ -60,6 +62,12 @@ class PhotoController {
 			redirect(action: "list")
 			return
 		}
+		
+		if (photoInstance.authenticationLevel.id < getRole().id) {
+			redirect(uri:'/accessdenied')
+			return
+		}
+		
 		List photos = Photo.findAllByAlbum(photoInstance.album)
 		photos.sort(true) { a, b ->
 			a.id <=> b.id
@@ -96,7 +104,7 @@ class PhotoController {
 	def showThumb(){
 		def id = (params.id).split("\\.")
 		id = id[0]
-		def thumbInstance = Thumb.get(Photo.get(id).thumb.id)
+		def thumbInstance = Thumb.get(Photo.get(id)?.thumb?.id)
 		response.outputStream<<thumbInstance.thumbPayload
 		response.outputStream.flush()
 	}
@@ -134,6 +142,7 @@ class PhotoController {
             }
         }
 		params.album = PhotoAlbum.findWhere(name:params.album)
+		params.authenticationLevel = params.album.authenticationLevel
 		def uploadedPhoto = request.getFile('photoPayload')
 		def tempPayload = uploadedPhoto.getBytes()
 		if(tempPayload){
@@ -161,7 +170,8 @@ class PhotoController {
 	@Secured(['ROLE_ADMIN'])
     def delete() {
         def photoInstance = Photo.get(params.id)
-        if (!photoInstance) {
+		def thumbInstance = photoInstance?.thumb
+        if (!photoInstance || !thumbInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])
             redirect(action: "list")
             return
@@ -177,4 +187,14 @@ class PhotoController {
             redirect(action: "show", id: params.id)
         }
     }
+	
+	protected def getRole(){
+		if(springSecurityService.getPrincipal() != 'anonymousUser'){
+			def temp = springSecurityService.getPrincipal().getAuthorities().toArray()
+			return Role.findByAuthority(temp[0].toString())
+		}
+		else{
+			return Role.findByAuthority('ROLE_NONE')
+		}
+	}
 }

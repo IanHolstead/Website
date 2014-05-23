@@ -10,6 +10,12 @@ footer .footer {
 	padding-top: 15px;
 }
 
+.admin{
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+}
+
 #show-photoAlbum .photoTile {
 	 border: 10px solid #EEEEEE;
 	 float: left;
@@ -269,7 +275,7 @@ iframe{
 	background-color:rgba(200,200,200,0.2);
 	border-radius: 5px;
 	margin-bottom: 10px;
-	height: 155px;
+	height: 100px;
 }
 
 #list-blog .even{
@@ -279,7 +285,7 @@ iframe{
 	border-radius: 5px;
 	background-color:rgba(230,230,230,0.2);
 	margin-bottom: 10px;
-	height: 155px;
+	height: 100px;
 }
 
 #show-blog .content {
@@ -310,10 +316,10 @@ iframe{
 	padding: 0px 0px 10px 10px;
 }
 
-#intro-about .about_photo .img{
-	max-height: 400px;
-	float:right;
-}
+/* #intro-about .about_photo .img{ */
+/* 	max-height: 400px; */
+/* 	float:right; */
+/* } */
 
 #additional-about{
 	padding-top: 5px;

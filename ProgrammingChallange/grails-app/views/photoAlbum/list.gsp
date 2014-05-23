@@ -1,6 +1,7 @@
 <%@ page import="ian.website.Photo" %>
 <%@ page import="ian.website.PhotoAlbum" %>
 <%@ page import="java.util.Random" %>
+
 <!doctype html>
 <html>
 <head>
@@ -16,7 +17,7 @@
 
 	<g:each in="${photoAlbumInstanceList}" status="i" var="photoAlbumInstance">
 		<g:if test="${Photo.findByAlbum(photoAlbumInstance)}">
-			<div class="${(i % 2) == 0 ? 'odd' : 'even'}">
+			<div class="${(i % 2) == 0 ? 'odd' : 'even'}${photoAlbumInstance.authenticationLevel.id <= 2?' admin':''}">
 				<div class="text">
 					<div class="title">
 						<h1><g:link action="show" id="${photoAlbumInstance.id}">${photoAlbumInstance.name}</g:link></h1>

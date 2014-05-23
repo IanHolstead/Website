@@ -1,32 +1,28 @@
 package ian.website
 
 import grails.plugins.springsecurity.Secured
-
 import org.springframework.dao.DataIntegrityViolationException
-
+import ian.security.*
 
 class BlogController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	def springSecurityService
 	
     def index() {
         redirect(action: "list", params: params)
     }
 
     def list() {
+		params.sort = params.sort?:'date'
+		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		def authId = (int)getRole().id
 		def blogInstanceList = Blog.list(params)
-		
-		blogInstanceList = blogInstanceList.collect{
-			def world = World.findByBlog(it)
-			if(world?.status !=1 && world?.status !=2 && world){
-				it = null
-			}
-			return it
+		blogInstanceList.removeAll{
+			it.authenticationLevel.id<authId
 		}
-		blogInstanceList.removeAll([null])
-		
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [blogInstanceList: blogInstanceList, blogInstanceTotal: blogInstanceList.size()]
+		def blogTotal = 12//Blog.countByAuthenticationLevelLessThan(authId)		
+        [blogInstanceList: blogInstanceList, blogInstanceTotal: blogTotal]
     }
 	
 	@Secured(['ROLE_ADMIN'])
@@ -36,19 +32,9 @@ class BlogController {
 
 	@Secured(['ROLE_ADMIN'])
     def save() {
+		params.authenticationLevel = Role.findByAuthority(params.authenticationLevel)
         def blogInstance = new Blog(params)
-		def blogContent = params.blogContent
-		def blogTemp = ""
-		blogContent = blogContent.split("(?=<.?pre.*?>)")
-		blogContent.eachWithIndex { it, i ->
-			if(i%2 == 0){
-				blogTemp = blogTemp + it.replaceAll("\n", "<br/>")
-			}
-			else{
-				blogTemp = blogTemp + it
-			}
-		}
-		blogInstance.blogContent = blogTemp
+		blogInstance.blogContent = parseBlog(params.blogContent)
         if (!blogInstance.save(flush: true)) {
             render(view: "create", model: [blogInstance: blogInstance])
             return
@@ -65,6 +51,11 @@ class BlogController {
             redirect(action: "list")
             return
         }
+		
+		if (blogInstance.authenticationLevel.id < getRole().id) {
+			redirect(uri:'/accessdenied')
+			return
+		}
 
         [blogInstance: blogInstance]
     }
@@ -105,21 +96,9 @@ class BlogController {
                 return
             }
         }
-
+		params.authenticationLevel = Role.findByAuthority(params.authenticationLevel)
         blogInstance.properties = params
-		def blogContent = params.blogContent
-		def blogTemp = ""
-		blogContent = blogContent.split("(?=<.?pre.*?>)")
-		blogContent.eachWithIndex { it, i ->
-			if(i%2 == 0){
-				blogTemp = blogTemp + it.replaceAll("\n", "<br/>")
-			}
-			else{
-				blogTemp = blogTemp + it
-			}
-		}
-		blogInstance.blogContent = blogTemp
-
+		blogInstance.blogContent = parseBlog(params.blogContent)
         if (!blogInstance.save(flush: true)) {
             render(view: "edit", model: [blogInstance: blogInstance])
             return
@@ -153,4 +132,28 @@ class BlogController {
             redirect(action: "show", id: params.id)
         }
     }
+	
+	protected def getRole(){
+		if(springSecurityService.getPrincipal() != 'anonymousUser'){
+			def temp = springSecurityService.getPrincipal().getAuthorities().toArray()
+			return Role.findByAuthority(temp[0].toString())
+		}
+		else{
+			return Role.findByAuthority('ROLE_NONE')
+		}
+	}
+	
+	protected def parseBlog(def blogContent){
+		def blogTemp = ""
+		blogContent = blogContent.split("(?=<.?pre.*?>)")
+		blogContent.eachWithIndex { it, i ->
+			if(i%2 == 0){
+				blogTemp = blogTemp + it.replaceAll("\n", "<br/>")
+			}
+			else{
+				blogTemp = blogTemp + it
+			}
+		}
+		return blogTemp
+	}
 }

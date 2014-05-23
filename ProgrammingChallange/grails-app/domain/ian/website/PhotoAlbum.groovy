@@ -1,10 +1,14 @@
 package ian.website
 
+import ian.security.Role;
+
 class PhotoAlbum {
 	
 	String name
 	String summary
 	java.sql.Date dateCreated
+	
+	Role authenticationLevel
 	
 	static hasMany = [photos:Photo]
 	
@@ -18,6 +22,6 @@ class PhotoAlbum {
 	
 	@Override 
 	public String toString() {
-		return "${name}";
+		return name;
 	}
 }

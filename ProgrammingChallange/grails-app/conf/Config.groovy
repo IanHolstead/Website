@@ -119,6 +119,10 @@ grails.plugins.springsecurity.authority.className = 'ian.security.Role'
 grails.plugins.springsecurity.auth.loginFormUrl = '/'
 grails.plugins.springsecurity.failureHandler.defaultFailureUrl = '/'
 
+grails.plugins.springsecurity.rememberMe.cookieName="ianholstead"
+grails.plugins.springsecurity.rememberMe.key="_grails_"
+grails.plugins.springsecurity.rememberMe.rememberMe.persistent = true
+
 //grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
 //grails.plugins.springsecurity.interceptUrlMap = [
 //	
@@ -130,7 +134,8 @@ grails.plugins.springsecurity.roleHierarchy = '''
    	ROLE_SUPER_ADMIN > ROLE_ADMIN
    	ROLE_ADMIN > ROLE_AWESOME_USER
 	ROLE_AWESOME_USER > ROLE_SUPER_USER
-	ROLSE_SUPER_USER > ROLE_USER
+	ROLE_SUPER_USER > ROLE_USER
+	ROLE_USER > ROLE_NONE
 '''
 
 grails.config.defaults.locations = [KickstartResources]

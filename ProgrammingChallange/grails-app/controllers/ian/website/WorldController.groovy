@@ -1,25 +1,34 @@
 package ian.website
 
 import grails.plugins.springsecurity.Secured
-
 import org.springframework.dao.DataIntegrityViolationException
-
+import ian.security.*
 
 class WorldController {
 	
-	def hdImageService
-	
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	def hdImageService
+	def springSecurityService
 
     def index() {
         redirect(action: "list", params: params)
     }
 
     def list() {
-		def worldInstanceList = World.findAllByStatus(1)
-		worldInstanceList.addAll(World.findAllByStatus(2))
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [worldInstanceList: worldInstanceList, worldInstanceTotal: World.count()]
+		def worldInstanceList 
+		def worldTotal
+		
+		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		
+		if (getRole().id <= 2) {
+			worldInstanceList = World.list(params)
+			worldTotal = World.count()
+		}
+		else {
+			worldInstanceList = World.findAllByStatusBetween(1,2,params)
+			worldTotal = World.countByStatusBetween(1,2)
+		}
+        [worldInstanceList: worldInstanceList, worldInstanceTotal: worldTotal]
     }
 	
 	
@@ -33,18 +42,6 @@ class WorldController {
     def save() {
         def worldInstance = new World(params)
 		def blogInstance = new Blog(params)
-		def blogContent = params.blogContent
-		def blogTemp = ""
-		blogContent = blogContent.split("(?=<.?pre.*?>)")
-		blogContent.eachWithIndex { it, i ->
-			if(i%2 == 0){
-				blogTemp = blogTemp + it.replaceAll("\n", "<br/>")
-			}
-			else{
-				blogTemp = blogTemp + it
-			}
-		}
-		blogInstance.blogContent = blogTemp
 		def photoInstance = new Photo(params)
 		def thumbInstance = new Thumb()
 		def uploadedPhoto = request.getFile('photoPayload')
@@ -52,21 +49,28 @@ class WorldController {
 		photoInstance.photoOriginalName = uploadedPhoto.originalFilename
 		photoInstance.album = PhotoAlbum.findByName("World")
 		
-		byte[] thumb = hdImageService.scale(uploadedPhoto.getInputStream(), 300, null)
-		thumbInstance.thumbPayload = thumb
-		
-		photoInstance.thumb = thumbInstance
-		
-		if (!thumbInstance.save(flush: true)) {
-			render(view: "create", model: [photoInstance: photoInstance])
-			return
+		if(uploadedPhoto.getBytes().size() != 0) {
+			byte[] thumb = hdImageService.scale(uploadedPhoto.getInputStream(), 300, null)
+			thumbInstance.thumbPayload = thumb
+			photoInstance.thumb = thumbInstance
+			
+			if (!thumbInstance.save(flush: true)) {
+				render(view: "create", model: [photoInstance: photoInstance])
+				return
+			}
 		}
 		
-		blogInstance.save()
 		if(!photoInstance.save(flush:true)){
 			render(view: "create", model: [worldInstance: worldInstance, blogInstance:blogInstance, photoInstance:photoInstance])
 			return
 		}
+		
+		blogInstance.blogContent = parseBlog(params.blogContent)
+		blogInstance.authenticationLevel = worldInstance.status == 1 || worldInstance.status == 2?
+			Role.findByAuthority("ROLE_NONE") : Role.findByAuthority("ROLE_ADMIN")
+		blogInstance.save()
+		
+		
 		worldInstance.photo = photoInstance
 		worldInstance.blog = blogInstance
         if (!worldInstance.save(flush:true)) {
@@ -99,12 +103,14 @@ class WorldController {
 		def nextWorld
 		def tempWorld 
 		
+		//This removes duplicate current worlds
 		if(currentWorld.size()>1){
 			currentWorld[0].status = 2
-			currentWorld[0].save(flash:true)
+			currentWorld[0].save()
 			
 			for(int i = 2; i<currentWorld.size(); i++){
 				currentWorld[i].status = 0
+				blogVisiblity(currentWorld[i].blog, false)
 				currentWorld[i].save(flush:true)
 			}
 		}
@@ -122,6 +128,7 @@ class WorldController {
 			}
 			else{
 				currentWorld[0]?.status= 2
+				blogVisiblity(nextWorld.blog, true)
 				nextWorld.status = 1
 				nextWorld.save(flush:true)
 			}
@@ -132,12 +139,17 @@ class WorldController {
 						it.status = (i+1)
 					}
 					tempWorld[0].status = (i-1)
-					tempWorld.each{it.save(flush:true)}
+					tempWorld[0].save()
 				}
 			}
 		}
 		
 		redirect(action: "list")
+	}
+	
+	protected def blogVisiblity(Blog blog, boolean makeVisible){
+		blog.authenticationLevel = makeVisible? Role.findByAuthority("ROLE_NONE") : Role.findByAuthority("ROLE_ADMIN")
+		blog.save()
 	}
 	
     def show() {
@@ -150,10 +162,12 @@ class WorldController {
             redirect(action: "list")
             return
         }
-		if (worldInstance.status !=1 && worldInstance.status !=2) {
-			flash.message = "That World is not yet ready!"
-			redirect(action: "list")
-			return
+		if (getRole().id > 2) {
+			if (worldInstance.status != 1 && worldInstance.status != 2) {
+				flash.message = "That World is not yet ready!"
+				redirect(action: "list")
+				return
+			}
 		}
         
 		[worldInstance: worldInstance, photoInstance: photoInstance, blogInstance: blogInstance]
@@ -204,21 +218,10 @@ class WorldController {
 		blogInstance.properties = params
 		photoInstance.properties = params
 		
+		blogInstance.blogContent = parseBlog(params.blogContent)
+		blogInstance.authenticationLevel = worldInstance.status == 1 || worldInstance.status == 2?
+			Role.findByAuthority("ROLE_NONE") : Role.findByAuthority("ROLE_ADMIN")
 		
-		def blogContent = params.blogContent
-		def blogTemp = ""
-		blogContent = blogContent.split("(?=<.?pre.*?>)")
-		blogContent.eachWithIndex { it, i ->
-			if(i%2 == 0){
-				blogTemp = blogTemp + it.replaceAll("\n", "<br/>")
-			}
-			else{
-				blogTemp = blogTemp + it
-			}
-		}
-		blogInstance.blogContent = blogTemp
-		
-//		photoInstance.album = PhotoAlbum.findByName("World")
 		def uploadedPhoto = request.getFile('photoPayload')
 		def tempPayload = uploadedPhoto.getBytes()
 		if(tempPayload){
@@ -258,14 +261,19 @@ class WorldController {
 	@Secured(['ROLE_ADMIN'])
     def delete() {
         def worldInstance = World.get(params.id)
-        if (!worldInstance) {
+		def photoInstance = worldInstance?.photo
+		def blogInstance = worldInstance?.blog
+        
+		if (!worldInstance || !photoInstance || !blogInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
             redirect(action: "list")
             return
         }
 
         try {
-            worldInstance.delete(flush: true)
+			worldInstance.delete(flush: true)
+			photoInstance.delete(flush: true)
+			blogInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'world.label', default: 'World'), params.id])
             redirect(action: "list")
         }
@@ -274,4 +282,28 @@ class WorldController {
             redirect(action: "show", id: params.id)
         }
     }
+	
+	protected def getRole(){
+		if(springSecurityService.getPrincipal() != 'anonymousUser'){
+			def temp = springSecurityService.getPrincipal().getAuthorities().toArray()
+			return Role.findByAuthority(temp[0].toString())
+		}
+		else{
+			return Role.findByAuthority('ROLE_NONE')
+		}
+	}
+	
+	protected def parseBlog(def blogContent){
+		def blogTemp = ""
+		blogContent = blogContent.split("(?=<.?pre.*?>)")
+		blogContent.eachWithIndex { it, i ->
+			if(i%2 == 0){
+				blogTemp = blogTemp + it.replaceAll("\n", "<br/>")
+			}
+			else{
+				blogTemp = blogTemp + it
+			}
+		}
+		return blogTemp
+	}
 }

@@ -1,5 +1,7 @@
 package ian.website
 
+import ian.security.Role;
+
 class World {
 	
 	String title
@@ -25,6 +27,15 @@ class World {
 		videoCaption shared:'caption'  
 		xkcd url:true 
 		xkcdCaption shared:'caption' 
-		
     }
+	
+	@Override
+	public String toString() {
+		return title
+	}
+	
+//	static boolean checkIfValid(int id){
+//		
+//	}
+	
 }

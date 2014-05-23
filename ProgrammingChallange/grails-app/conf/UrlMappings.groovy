@@ -12,6 +12,8 @@ class UrlMappings {
 		"/site/changelog"	(view:"/siteinfo/changelog")
 //		"/about/computer"	(view:"siteinfo/computer")
 		
+		"/accessdenied"	(view:'/_errors/noAccess')
+		
 		/* 
 		 * Pages with controller
 		 * WARN: No domain/controller should be named "api" or "mobile" or "web"!

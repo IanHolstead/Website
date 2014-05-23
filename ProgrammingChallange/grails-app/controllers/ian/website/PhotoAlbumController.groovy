@@ -1,13 +1,13 @@
 package ian.website
 
 import grails.plugins.springsecurity.Secured
-
 import org.springframework.dao.DataIntegrityViolationException
-
+import ian.security.*
 
 class PhotoAlbumController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	def springSecurityService
 
     def index() {
         redirect(action: "list", params: params)
@@ -15,9 +15,14 @@ class PhotoAlbumController {
 
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-		def photoAlbumInstanceList = PhotoAlbum.list()
-		photoAlbumInstanceList.remove(PhotoAlbum.findByName("World"))
-		def photoAlbumCount = photoAlbumInstanceList.size()
+		def photoAlbumInstanceList = PhotoAlbum.list(params)
+//		photoAlbumInstanceList.remove(PhotoAlbum.findByName("World"))
+//		photoAlbumInstanceList.remove(PhotoAlbum.findByName("Blog"))
+		def authId = getRole().id
+		photoAlbumInstanceList.removeAll{
+			it.authenticationLevel.id<authId
+		}
+		def photoAlbumCount = photoAlbumInstanceList.size()//TODO this line will break pagination
 		
         [photoAlbumInstanceList: photoAlbumInstanceList, photoAlbumInstanceTotal: photoAlbumCount]
     }
@@ -29,6 +34,7 @@ class PhotoAlbumController {
 
 	@Secured(['ROLE_ADMIN'])
     def save() {
+		params.authenticationLevel = Role.findByAuthority(params.authenticationLevel)
         def photoAlbumInstance = new PhotoAlbum(params)
         photoAlbumInstance.dateCreated = new java.sql.Date((new Date()).getTime())
 		if (!photoAlbumInstance.save(flush: true)) {
@@ -47,6 +53,12 @@ class PhotoAlbumController {
             redirect(action: "list")
             return
         }
+		
+		if (photoAlbumInstance.authenticationLevel.id < getRole().id) {
+			redirect(uri:'/accessdenied')
+			return
+		}
+		
 		def photos = Photo.findAllByAlbum(photoAlbumInstance)
 		photos.sort(true) { a, b ->
 			a.id <=> b.id
@@ -63,6 +75,10 @@ class PhotoAlbumController {
             redirect(action: "list")
             return
         }
+		if(!validAlbum(photoAlbumInstance)){
+			redirect(action: "list")
+			return
+		}
 
         [photoAlbumInstance: photoAlbumInstance]
     }
@@ -86,7 +102,7 @@ class PhotoAlbumController {
                 return
             }
         }
-
+		params.authenticationLevel = Role.findByAuthority(params.authenticationLevel)
         photoAlbumInstance.properties = params
 
         if (!photoAlbumInstance.save(flush: true)) {
@@ -106,6 +122,10 @@ class PhotoAlbumController {
             redirect(action: "list")
             return
         }
+		if(!validAlbum(photoAlbumInstance)){
+			redirect(action: "list")
+			return
+		}
 
         try {
             photoAlbumInstance.delete(flush: true)
@@ -117,4 +137,21 @@ class PhotoAlbumController {
             redirect(action: "show", id: params.id)
         }
     }
+	
+	protected def validAlbum(def instance){
+		if(instance.name == 'World' || instance.name == 'Blog'){
+			return false
+		}
+		return true
+	}
+	
+	protected def getRole(){
+		if(springSecurityService.getPrincipal() != 'anonymousUser'){
+			def temp = springSecurityService.getPrincipal().getAuthorities().toArray()
+			return Role.findByAuthority(temp[0].toString())
+		}
+		else{
+			return Role.findByAuthority('ROLE_NONE')
+		}
+	}
 }
