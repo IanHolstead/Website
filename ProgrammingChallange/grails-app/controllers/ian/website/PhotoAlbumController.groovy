@@ -15,14 +15,16 @@ class PhotoAlbumController {
 
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-		def photoAlbumInstanceList = PhotoAlbum.list(params)
-//		photoAlbumInstanceList.remove(PhotoAlbum.findByName("World"))
-//		photoAlbumInstanceList.remove(PhotoAlbum.findByName("Blog"))
+		params.offset = params.int('offset')?:1//needs to be one higher since paginations sets it to 10
+		def photoAlbumInstanceList = PhotoAlbum.list()
 		def authId = getRole().id
 		photoAlbumInstanceList.removeAll{
-			it.authenticationLevel.id<authId
+			it.authenticationLevel.id<authId || !Photo.findByAlbum(it)
 		}
-		def photoAlbumCount = photoAlbumInstanceList.size()//TODO this line will break pagination
+		def photoAlbumCount = photoAlbumInstanceList.size()
+		photoAlbumInstanceList = photoAlbumInstanceList.subList(params.offset-1, Math.min(params.offset-1 + params.max, photoAlbumCount-1))
+		
+		print photoAlbumCount
 		
         [photoAlbumInstanceList: photoAlbumInstanceList, photoAlbumInstanceTotal: photoAlbumCount]
     }

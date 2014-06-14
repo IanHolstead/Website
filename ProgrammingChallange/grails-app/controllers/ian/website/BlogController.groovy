@@ -3,6 +3,7 @@ package ian.website
 import grails.plugins.springsecurity.Secured
 import org.springframework.dao.DataIntegrityViolationException
 import ian.security.*
+import org.apache.commons.lang.RandomStringUtils
 
 class BlogController {
 
@@ -16,13 +17,15 @@ class BlogController {
     def list() {
 		params.sort = params.sort?:'date'
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		params.offset = params.int('offset')?:1
 		def authId = (int)getRole().id
-		def blogInstanceList = Blog.list(params)
+		def blogInstanceList = Blog.list()
 		blogInstanceList.removeAll{
 			it.authenticationLevel.id<authId
 		}
-		def blogTotal = 12//Blog.countByAuthenticationLevelLessThan(authId)		
-        [blogInstanceList: blogInstanceList, blogInstanceTotal: blogTotal]
+		def blogCount = blogInstanceList.size()
+		blogInstanceList = blogInstanceList.subList(params.offset-1, Math.min(params.offset-1 + params.max, blogCount-1))
+        [blogInstanceList: blogInstanceList, blogInstanceTotal: blogCount]
     }
 	
 	@Secured(['ROLE_ADMIN'])
@@ -33,6 +36,11 @@ class BlogController {
 	@Secured(['ROLE_ADMIN'])
     def save() {
 		params.authenticationLevel = Role.findByAuthority(params.authenticationLevel)
+		String randomString = null
+		while (params.secureUrl && !randomString && randomString != Blog.findBySecureUrl(randomString)) {
+			randomString = RandomStringUtils.random(10, ((('A'..'Z') + ('0'..'9')).join()).toCharArray())
+		}
+		params.secureUrl = randomString
         def blogInstance = new Blog(params)
 		blogInstance.blogContent = parseBlog(params.blogContent)
         if (!blogInstance.save(flush: true)) {
@@ -59,6 +67,17 @@ class BlogController {
 
         [blogInstance: blogInstance]
     }
+	
+	def showPastSecurity() {
+		def blogInstance = Blog.findBySecureUrl(params.id)
+		if (!blogInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label', default: 'Blog'), params.id])
+			redirect(action: "list")
+			return
+		}
+		
+		render(view: 'show', model:[blogInstance: blogInstance])
+	}
 	
 	@Secured(['ROLE_ADMIN'])
     def edit() {
@@ -96,8 +115,23 @@ class BlogController {
                 return
             }
         }
+		
+		String randomString = null
+		if(params.secureUrl){
+			if(!blogInstance.secureUrl){ 
+				while (!randomString && randomString != Blog.findBySecureUrl(randomString)) {
+					randomString = RandomStringUtils.random(10, ((('A'..'Z') + ('0'..'9')).join()).toCharArray())
+				}
+			}
+			else{
+				randomString = blogInstance.secureUrl
+			}
+		}
+		
+		
 		params.authenticationLevel = Role.findByAuthority(params.authenticationLevel)
         blogInstance.properties = params
+		blogInstance.secureUrl = randomString
 		blogInstance.blogContent = parseBlog(params.blogContent)
         if (!blogInstance.save(flush: true)) {
             render(view: "edit", model: [blogInstance: blogInstance])

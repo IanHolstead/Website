@@ -24,9 +24,11 @@
 			</div>
 		</div>
 	</g:each>
-	<div class="pagination">
-		<bs:paginate total="${blogInstanceTotal}" />
-	</div>
+	<g:if test="${blogInstanceTotal > (params.max?:10) }">
+		<div class="pagination">
+			<bs:paginate total="${blogInstanceTotal}" />
+		</div>
+	</g:if>
 </section>
 
 </body>

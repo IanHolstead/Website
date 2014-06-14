@@ -6,6 +6,7 @@ import org.grails.plugins.imagetools.*
 import javax.imageio.ImageIO
 import org.springframework.dao.DataIntegrityViolationException
 import ian.security.*
+import org.apache.commons.lang.RandomStringUtils
 
 class PhotoController {
 	
@@ -30,6 +31,13 @@ class PhotoController {
     def save() {
 		params.album = PhotoAlbum.findByName(params.album)
 		params.authenticationLevel = params.album.authenticationLevel
+		
+		String randomString = null
+		while (params.secureUrl && !randomString && randomString != Photo.findBySecureUrl(randomString)) {
+			randomString = RandomStringUtils.random(10, ((('A'..'Z') + ('0'..'9')).join()).toCharArray())
+		}
+		params.secureUrl = randomString
+		
         def photoInstance = new Photo(params)
 		def thumbInstance = new Thumb()
 		def uploadedPhoto = request.getFile('photoPayload')
@@ -39,7 +47,6 @@ class PhotoController {
 			
 			byte[] thumb = hdImageService.scale(uploadedPhoto.getInputStream(), 300, null)
 			thumbInstance.thumbPayload = thumb
-			
 			photoInstance.thumb = thumbInstance
 			
 			if (!thumbInstance.save(flush: true)) {
@@ -93,6 +100,17 @@ class PhotoController {
         [photoInstance: photoInstance, photoNext: photoNext, photoPrev: photoPrev]
     }
 	
+	def showPastSecurity() {
+		def photoInstance = Photo.findBySecureUrl(params.id)
+		if (!photoInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])
+			redirect(action: "list")
+			return
+		}
+		
+		render(view: 'show', model:[photoInstance: photoInstance, noNav: true])
+	}
+	
 	def showPayload(){
 		def id = (params.id).split("\\.")
 		id = id[0]
@@ -141,8 +159,21 @@ class PhotoController {
                 return
             }
         }
+		
 		params.album = PhotoAlbum.findWhere(name:params.album)
-		params.authenticationLevel = params.album.authenticationLevel
+		
+		String randomString = null
+		if(params.secureUrl){
+			if(!photoInstance.secureUrl){ 
+				while (!randomString && randomString != Photo.findBySecureUrl(randomString)) {
+					randomString = RandomStringUtils.random(10, ((('A'..'Z') + ('0'..'9')).join()).toCharArray())
+				}
+			}
+			else{
+				randomString = photoInstance.secureUrl
+			}
+		}
+		
 		def uploadedPhoto = request.getFile('photoPayload')
 		def tempPayload = uploadedPhoto.getBytes()
 		if(tempPayload){
@@ -156,9 +187,11 @@ class PhotoController {
 			tempPayload = photoInstance.photoPayload 
 		}
         photoInstance.properties = params
+		photoInstance.secureUrl = randomString
 		photoInstance.photoPayload = tempPayload
 		
         if (!photoInstance.save(flush: true)) {
+			photoInstance.secureUrl = photoInstance.secureUrl?true:false
             render(view: "edit", model: [photoInstance: photoInstance])
             return
         }

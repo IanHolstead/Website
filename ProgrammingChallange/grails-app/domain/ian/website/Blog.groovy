@@ -8,6 +8,7 @@ class Blog {
 	String blogSummary
 	String blogContent
 	java.sql.Date date
+	String secureUrl
 	
 	Role authenticationLevel
 	

@@ -4,6 +4,7 @@ import grails.plugins.springsecurity.Secured
 import org.springframework.dao.DataIntegrityViolationException
 import ian.security.*
 
+
 class WorldController {
 	
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]

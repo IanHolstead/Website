@@ -10,6 +10,7 @@ class Photo {
 	String photoCaption
 	java.sql.Date date
 	Boolean showOnHomePage = false
+	String secureUrl
 	
 	Role authenticationLevel
 	Thumb thumb

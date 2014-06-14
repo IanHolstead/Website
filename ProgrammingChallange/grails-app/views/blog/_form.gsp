@@ -35,3 +35,11 @@
 	</div>
 </div>
 
+<div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'secureUrl', 'error')} ">
+	<label for="secureUrl" class="control-label"><g:message code="blog.secureUrl.label" default="Bypass security?" /></label>
+	<div class="controls">
+		<bs:checkBox name="secureUrl" value="${blogInstance?.secureUrl}" />
+		<span class="help-inline">${hasErrors(bean: blogInstance, field: 'secureUrl', 'error')}</span>
+	</div>
+</div>
+

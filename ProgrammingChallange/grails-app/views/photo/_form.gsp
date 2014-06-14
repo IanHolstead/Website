@@ -38,9 +38,17 @@ ${System.out.println("ignore this-> "+photoAlbumList.remove(PhotoAlbum.findByNam
 </div>
 
 <div class="control-group fieldcontain ${hasErrors(bean: photoInstance, field: 'showOnHomePage', 'error')} ">
-	<label for="showOnHomePage" class="control-label"><g:message code="upload.showOnHomePage.label" default="Show on home page?" /></label>
+	<label for="showOnHomePage" class="control-label"><g:message code="photo.showOnHomePage.label" default="Show on home page?" /></label>
 	<div class="controls">
 		<bs:checkBox name="showOnHomePage" value="${photoInstance?.showOnHomePage}" />
 		<span class="help-inline">${hasErrors(bean: photoInstance, field: 'showOnHomePage', 'error')}</span>
+	</div>
+</div>
+
+<div class="control-group fieldcontain ${hasErrors(bean: photoInstance, field: 'secureUrl', 'error')} ">
+	<label for="secureUrl" class="control-label"><g:message code="photo.secureUrl.label" default="Bypass security?" /></label>
+	<div class="controls">
+		<bs:checkBox name="secureUrl" value="${photoInstance?.secureUrl}" />
+		<span class="help-inline">${hasErrors(bean: photoInstance, field: 'secureUrl', 'error')}</span>
 	</div>
 </div>
