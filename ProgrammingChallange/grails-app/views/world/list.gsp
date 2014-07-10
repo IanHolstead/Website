@@ -14,19 +14,19 @@
 <section id="list-world" class="first">
 
 	<g:each in="${worldInstanceList}" status="i" var="worldInstance">
-		<div class="${(i % 2) == 0 ? 'odd' : 'even'}${worldInstance.status != 2 && worldInstance.status != 1?' admin':''}">
-			<div class="text">
+		<div class="list-with-photo ${(i % 2) == 0 ? 'odd' : 'even'}${worldInstance.status != 2 && worldInstance.status != 1?' admin':''}">
+			<div class="list-text">
 				<div class="title">
 					<h1><g:link action="show" id="${worldInstance.id}">${worldInstance.title}</g:link></h1>
 				</div>
 				
-				<div class="summary">
+				<div class="list-summary">
 					<p>${worldInstance.summary}</p>
 				</div>
 			</div>	
 			
-			<div class="thumb">
-				<img class="image" src="/showThumb/${worldInstance.photo.id}/${worldInstance.photo.photoName}.png" alt="${worldInstance.photo.photoCaption}"/>
+			<div class="list-thumb">
+				<img class="list-image" src="/showThumb/${worldInstance.photo.id}/${worldInstance.photo.photoName}.png" alt="${worldInstance.photo.photoCaption}"/>
 			</div>
 		</div>	
 	</g:each>

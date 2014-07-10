@@ -26,13 +26,15 @@
 	</div>
 </div>
 
-<g:set var="photoAlbumList" value="${PhotoAlbum.list()}"/>
-${System.out.println("ignore this-> "+photoAlbumList.remove(PhotoAlbum.findByName("World")))}
+<g:set var="photoAlbumList" value="${PhotoAlbum.list().collect{it.toString()}}"/>
+<g:if test="${photoInstance?.album.toString() != "World" }">
+	<g:set var="ignore" value="${photoAlbumList.remove(PhotoAlbum.findByName("World"))}"/>
+</g:if>
 
 <div class="control-group fieldcontain ${hasErrors(bean: photoInstance, field: 'album', 'error')} ">
 	<label for="album" class="control-label"><g:message code="photo.album.label" default="Album" /></label>
 	<div class="controls">
-		<g:select name="album" from="${photoAlbumList}" value="${photoInstance?.album}"/>
+		<g:select  name="album" from="${photoAlbumList}" value="${photoInstance?.album.toString()}"/>
 		<span class="help-inline">${hasErrors(bean: photoInstance, field: 'album', 'error')}</span>
 	</div>
 </div>

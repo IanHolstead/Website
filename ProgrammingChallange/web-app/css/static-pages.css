@@ -1,0 +1,92 @@
+
+/************* Home page **************/
+
+.big-front-page-image {
+	max-height: 100%;
+}
+
+.big-image-wrapper {
+	height: 200px;
+}
+
+.big-wrapper {
+	height: 260px;
+}
+
+#info {
+	padding-top: 30px;
+	padding-bottom: 5px;
+}
+
+/************* About me **************/
+
+#intro-about {
+	padding-top: 0px;
+}
+
+#intro-about .about_text {
+	width:75%;
+}
+
+#intro-about .about_photo {
+	width:22%;
+	position: relative;
+	display: block;
+	float:right;
+	padding: 0px 0px 10px 10px;
+}
+
+#additional-about{
+	padding-top: 5px;
+}
+
+#additional-about .QA {
+	padding-bottom: 10px;
+}
+
+#additional-about .question {
+	font-weight: bold;
+	font-size: medium;
+}
+
+#additional-about .answer {
+	font-style: italic;
+}
+
+#intro-contact {
+	padding-top: 15px;
+}
+
+#address-contact {
+	padding-top: 10px;
+}
+
+/************* Site info **************/
+
+.small_title{
+	margin-bottom: 0px;
+	font-size: 21px;
+	font-weight: 200;
+	line-height: 30px;
+}
+
+#address-contact iframe{
+	width: 853px;
+	height: 480px;
+}
+
+/************* Error pages **************/
+
+#error-info .image{
+	margin: 8px;
+}
+#error-info .info{
+	font-size: large;
+}
+
+
+/************* Footer **************/
+
+.indent-body {
+	padding: 0px 20px;
+}

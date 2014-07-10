@@ -29,15 +29,12 @@
 				</div>
 				<div class="span8" style="width: inherit;">
 					<h4> About </h4>
-					<p>	This is Ian Holstead's personal website. It was built using Grails and Designed with Twitter's <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>. 
-						
+					<p>	This is Ian Holstead's personal website. It was built using Grails and Designed with Twitter's 
+						<a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>. 
 					</p>
 					<span style="color:#EEEEEE;">Oel ngati kameie.</span>
 				</div>
 			</div>
-	<%--		<h4>Disclaimer</h4>--%>
-	<%--		<p>--%>
-	<%--		</p>--%>
 		
 			<p class="pull-right"><a href="#">Back to top</a></p>
 		</div>

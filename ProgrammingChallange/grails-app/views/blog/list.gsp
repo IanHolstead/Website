@@ -13,12 +13,12 @@
 	
 <section id="list-blog" class="first">
 	<g:each in="${blogInstanceList}" status="i" var="blogInstance">
-		<div class="${(i % 2) == 0 ? 'odd' : 'even'}${blogInstance.authenticationLevel.id <= 2?' admin':''}">
-			<div class="text">
+		<div class="list-no-photo ${(i % 2) == 0 ? 'odd' : 'even'}${blogInstance.authenticationLevel.id <= 2?' admin':''}">
+			<div class="list-text">
 				<div class="title">
 					<h1><g:link action="show" id="${blogInstance.id}">${blogInstance.blogTitle}</g:link></h1>
 				</div>
-				<div class="summary">
+				<div class="list-summary">
 					<p>${blogInstance.blogSummary}</p>
 				</div>
 			</div>

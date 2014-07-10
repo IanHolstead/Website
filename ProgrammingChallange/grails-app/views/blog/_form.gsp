@@ -2,8 +2,8 @@
 <%@ page import="ian.security.Role" %>
 
 <g:set var="roleList" value="${Role.list()}"/>
-<g:set var="roleNumber" value="${(int)blogInstance? 6 : blogInstance.authenticationLevel.id-1}"/>
-
+<g:set var="roleNumber" value="${(int)blogInstance? blogInstance.authenticationLevel.id-1 : 6}"/>
+${roleNumber}
 <div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'blogTitle', 'error')} required">
 	<label for="blogTitle" class="control-label"><g:message code="blog.blogTitle.label" default="Blog Title" /><span class="required-indicator">*</span></label>
 	<div class="controls">

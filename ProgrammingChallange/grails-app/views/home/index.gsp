@@ -13,8 +13,6 @@
 		<h1>Welcome!</h1>
 		<p>Hello World! This is my personal website where I will do my best to post stuff (photos, blog, etc) regularly.
 		This site is still under development so hopefully whenever you check back there will cool new functionality. Thanks!</p>
-<%--		<h2>About me (tl;dr)</h2>--%>
-<%--		<p>Oel ngati kameie.</p>--%>
 	</section>
 
 	<section id="info">
@@ -22,10 +20,10 @@
 	    	<div class="span4">
 	    	<g:set var="currentWorld" value="${World.findByStatus(1)}"/>
 		    	<g:if test="${currentWorld}">
-			    	<div class="center bigWrapper">
-						<div class="bigImageWrapper">
+			    	<div class="center big-wrapper">
+						<div class="big-image-wrapper">
 				    		<g:link controller="world" action="currentWeek">
-				    			<img class="bigFrontPageImage" src="/showThumb/${currentWorld?.photo?.id}/${currentWorld?.photo?.photoName}.png" alt="${currentWorld?.photo?.photoCaption}"/>
+				    			<img class="big-front-page-image" src="/showThumb/${currentWorld?.photo?.id}/${currentWorld?.photo?.photoName}.png" alt="${currentWorld?.photo?.photoCaption}"/>
 							</g:link>
 						</div>
 						<h3>${currentWorld?.title}</h3>
@@ -33,9 +31,9 @@
 					<p>${currentWorld.summary }</p>
 				</g:if>
 				<g:else>
-					<div class="center bigWrapper">
-						<div class="bigImageWrapper">
-							<img class="bigFrontPageImage" src="${resource(dir: 'images/home_icons',file: 'science.png')}" style="padding-top:50px;"/>
+					<div class="center big-wrapper">
+						<div class="big-image-wrapper">
+							<img class="big-front-page-image" src="${resource(dir: 'images/home_icons',file: 'science.png')}" style="padding-top:50px;"/>
 						</div>
 						<h3>Welcome!</h3>
 					</div>
@@ -44,31 +42,31 @@
 				
 			</div>
 	    	<div class="span4">
-		    	<div class="center bigWrapper">
-					<div class="bigImageWrapper">
+		    	<div class="center big-wrapper">
+					<div class="big-image-wrapper">
 						<g:link controller="photoAlbum" action="list">
 							<g:set var="picture" value="${Photo.findAllByShowOnHomePage(true)}"/>
 							<g:set var="rand" value="${new Random()}"/>
 							<g:if test="${picture.size()>1}">
-								<img class="bigFrontPageImage" src="/showThumb/${picture[rand.nextInt(picture.size()-1)].id}/${picture[rand.nextInt(picture.size()-1)].photoName}.png" alt="${picture[rand.nextInt(picture.size()-1)].photoCaption}"/>
+								<img class="big-front-page-image" src="/showThumb/${picture[rand.nextInt(picture.size()-1)].id}/${picture[rand.nextInt(picture.size()-1)].photoName}.png" alt="${picture[rand.nextInt(picture.size()-1)].photoCaption}"/>
 							</g:if>
 							<g:elseif test="${picture.size()==1}">
-								<img class="bigFrontPageImage" src="/showThumb/${picture[0].id}/${picture[0].photoName}.png" alt="${picture[0].photoCaption}"/>
+								<img class="big-front-page-image" src="/showThumb/${picture[0].id}/${picture[0].photoName}.png" alt="${picture[0].photoCaption}"/>
 							</g:elseif>
 							<g:else>
-								<img class="bigFrontPageImage" src="${resource(dir: 'images/home_icons',file: 'photo_blog.jpg')}" />
+								<img class="big-front-page-image" src="${resource(dir: 'images/home_icons',file: 'photo_blog.jpg')}" />
 							</g:else>
 						</g:link>
 					</div>
-					<h3>Photo Archive</h3>
+					<h3>Photo Albums</h3>
 				</div>
 				<p>I post collections of my pictures here: whether they are from a trip to Switzerland or just backgrounds I like, they all end up here!</p>
 			</div>
 	    	<div class="span4">
-		    	<div class="center bigWrapper">
-					<div class="bigImageWrapper">
+		    	<div class="center big-wrapper">
+					<div class="big-image-wrapper">
 						<g:link	url="/about">
-							<img class="bigFrontPageImage" src="${resource(dir: 'images/home_icons',file: 'ian_.png')}" />
+							<img class="big-front-page-image" src="${resource(dir: 'images/home_icons',file: 'ian.png')}" />
 						</g:link>
 					</div>
 					<h3>About me.</h3>
@@ -79,7 +77,7 @@
 	    </div>
 	</section>
 
-	<section id="info2">
+	<section id="info">
 		<div class="row-fluid">
 	    	<div class="span4">
 		    	<div class="center">
@@ -129,48 +127,6 @@
 			</div>
 	    </div>
 	</section>
-
-<%--	<section id="info3">--%>
-<%--		<div class="row">--%>
-<%--	    	<div class="span4">--%>
-<%--		    	<div class="center">--%>
-<%--					<h3>Usage</h3>--%>
-<%--				</div>--%>
-<%--				<p>After installation you can call the script "grails--%>
-<%--					kickstartWithBootstrap" which will copy some files into your--%>
-<%--					project. It will overwrite only few files (e.g., in conf, src, and--%>
-<%--					views) - <b>you should use it only on fresh new Grails projects</b>.--%>
-<%--				</p>--%>
-<%--			</div>--%>
-<%--	    	<div class="span4">--%>
-<%--		    	<div class="center">--%>
-<%--					<h3>Notes</h3>--%>
-<%--				</div>--%>
-<%--				<p></p>--%>
-<%--				<ul>--%>
-<%--					<li>Currently, Kickstart works with Grails 2.0 and 2.1!</li>--%>
-<%--					<li>Kickstart only uses the CSS version of Bootstrap (currently, no less).</li>--%>
-<%--					<li>It does NOT use the Bootstrap plugin.</li>--%>
-<%--					<li>I18N is only available for English and German!</li>--%>
-<%--				</ul>--%>
-<%--			</div>--%>
-<%--	    	<div class="span4">--%>
-<%--		    	<div class="center">--%>
-<%--					<h3>Terms of Use</h3>--%>
-<%--				</div>--%>
-<%--				<p></p>--%>
-<%--				<ul>--%>
-<%--					<li>Bootstrap (from Twitter): Code licensed under the Apache--%>
-<%--						License v2.0. Documentation licensed under CC BY 3.0.--%>
-<%--						(<a href="http://twitter.com/TwBootstrap">@TwBootstrap</a> , <a href="http://twitter.github.com/bootstrap/">http://twitter.github.com/bootstrap/</a>)</li>--%>
-<%--					<li>Kickstart Plugins: Code licensed under the Apache License--%>
-<%--						v2.0. Documentation licensed under CC BY 3.0. Copyright 2011 Jörg--%>
-<%--						Rech (<a href="http://twitter.com/JoergRech">@JoergRech</a>, <a href="http://joerg-rech.com">http://joerg-rech.com</a>)</li>--%>
-<%--				</ul>--%>
-<%--			</div>--%>
-<%--	    </div>--%>
-<%----%>
-<%--	</section>--%>
 
 </body>
 

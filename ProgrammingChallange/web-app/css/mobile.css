@@ -1,82 +1,46 @@
-/* Styles for mobile devices */
-
-@media screen and (max-width: 480px) {
-	.nav {
-		padding: 0.5em;
-	}
-
-	.nav li {
-		margin: 0 0.5em 0 0;
-		padding: 0.25em;
-	}
-
-	/* Hide individual steps in pagination, just have next & previous */
-	.pagination .step, .pagination .currentStep {
+@media (max-width: 979px) {
+	.list-image{
 		display: none;
 	}
-
-	.pagination .prevLink {
-		float: left;
+	.list-text{
+		width: inherit;
 	}
-
-	.pagination .nextLink {
-		float: right;
+	.list-thumb{
+		display: none;
 	}
-
-	/* pagination needs to wrap around floated buttons */
-	.pagination {
+	#show-photoAlbum .photoTile{
+		width: 90%;
+	}
+	#intro-about .about_text {
+		width: inherit;
+	}
+	#intro-about .about_photo {
+		display: none;
+	}
+	#menu-no-show-mobile {
+		display: none;
+	}
+	#show-photo .photo-nav .center {
+	margin-left: -108px;
+	}
+	.odd {
+		min-height: 100px;
+		max-height: 350px;
+		height: inherit;
 		overflow: hidden;
 	}
-
-	/* slightly smaller margin around content body */
-	fieldset,
-	.property-list {
-		padding: 0.3em 1em 1em;
+	.even {
+		min-height: 100px;
+		max-height: 350px;
+		height: inherit;
+		overflow: hidden;
 	}
-
-	input, textarea {
+	.title {
+		overflow: hidden;
+		padding-bottom: 6px;
+	}
+	#show-world .videoThumb {
 		width: 100%;
-		   -moz-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		    -ms-box-sizing: border-box;
-		        box-sizing: border-box;
-	}
-
-	select, input[type=checkbox], input[type=radio], input[type=submit], input[type=button], input[type=reset] {
-		width: auto;
-	}
-
-	/* hide all but the first column of list tables */
-	.scaffold-list td:not(:first-child),
-	.scaffold-list th:not(:first-child) {
-		display: none;
-	}
-
-	.scaffold-list thead th {
-		text-align: center;
-	}
-
-	/* stack form elements */
-	.fieldcontain {
-		margin-top: 0.6em;
-	}
-
-	.fieldcontain label,
-	.fieldcontain .property-label,
-	.fieldcontain .property-value {
-		display: block;
-		float: none;
-		margin: 0 0 0.25em 0;
-		text-align: left;
-		width: auto;
-	}
-
-	.errors ul,
-	.message p {
-		margin: 0.5em;
-	}
-
-	.error ul {
-		margin-left: 0;
+		padding-bottom: 56.25%;
 	}
 }

@@ -6,20 +6,21 @@
 </head>
 
 <body>
-
-	<a class="small_title" href="/site/changelog" style="padding:0px;">
-		<g:message code="systeminfo.changelog.title" default="Changelog"/>
-	</a>
-
-	<section id="application-site">
+	<div style=" margin-bottom:20px;">
+		<a class="small_title" href="/site/changelog" style="padding:0;">
+			<g:message code="systeminfo.changelog.title" default="Changelog"/>
+		</a>
+	</div>
+	
+	<section id="application-site" class="site-info">
 		<div class="accordion" id="accordion1">
 			<div class="accordion-group" style="border:0px;">
 				<div class="accordion-heading">
-					<a class="accordion-toggle small_title" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo" style="padding:0px;">
+					<a class="accordion-toggle small_title" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne" style="padding:0px;">
 						<g:message code="default.systeminfo.status"/> <b class="caret" style="vertical-align: middle;"></b>
 					</a>
 				</div>
-				<div id="collapseTwo" class="accordion-body collapse in">
+				<div id="collapseOne" class="accordion-body collapse in">
 					<div class="accordion-inner" style="border:0px; padding: 0px;">
 						<ul style="margin-bottom: 0px;">
 							<li>App version: <g:meta name="app.version"/></li>
@@ -37,20 +38,20 @@
 		</div>
 	</section>
 	
-	<section id="intro-site">
-		<div class="accordion" id="accordion3">
+	<section id="intro-site" class="site-info">
+		<div class="accordion" id="accordion2">
 			<div class="accordion-group" style="border:0px;">
 				<div class="accordion-heading">
-					<a class="accordion-toggle small_title" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree" style="padding:0px;">
+					<a class="accordion-toggle small_title" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" style="padding:0px;">
 						<g:message code="default.systeminfo.resources"/> <b class="caret" style="vertical-align: middle;"></b>
 					</a>
 				</div>
-				<div id="collapseThree" class="accordion-body collapse in">
+				<div id="collapseTwo" class="accordion-body collapse in">
 					<div class="accordion-inner" style="border:0px; padding: 0px;">
 						<ul style="margin-bottom: 0px;">
-							<li>Web Layout: <a href ="http://twitter.github.com/bootstrap/">Bootstrap</a>, from Twitter 
+							<li>Web Layout: <a href ="http://getbootstrap.com/">Bootstrap</a>, from Twitter 
 					        	Licensed under the Apache License v2.0. Documentation licensed under CC BY 3.0. 
-					        	(@TwBootstrap , http://twitter.github.com/bootstrap/)</li>
+					        	(@TwBootstrap , http://getbootstrap.com/)</li>
 					        <li>Datepicker: <a href ="https://github.com/eternicode/bootstrap-datepicker">Datepicker for Bootstrap</a>, 
 					        	Copyright 2012 Stefan Petre, Improvements by Andrew Rowls, Licensed under the Apache License v2.0</li>
 							<li>Flag Icons: <a href="http://www.famfamfam.com/lab/icons/flags/">FamFamFam Flag Icons</a> by Mark James. They are 
@@ -61,8 +62,7 @@
 								used under the terms of the MIT License</li>
 							<li>Image compression: <a href ="https://github.com/quirklabs/grails-hd-image-utils/blob/master/README.md">grails-hd-image-utils</a> 
 								Licensed under the Apache License v2.0</li>
-							<li>Claptrap Image: <a href ="http://ichrysi.deviantart.com/">deviantart</a> 
-								Licensed under the Apache License v2.0</li>
+							<li>Claptrap Image: <a href ="http://ichrysi.deviantart.com/">deviantart</a></li>
 						</ul>
 					</div>
 				</div>
@@ -70,15 +70,15 @@
 		</div>
 	</section>
 	
-	<section id="resources-site">
-		<div class="accordion" id="accordion2">
+	<section id="resources-site" class="site-info">
+		<div class="accordion" id="accordion3">
 			<div class="accordion-group" style="border:0px;">
 				<div class="accordion-heading">
-					<a class="accordion-toggle small_title" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" style="padding:0px;">
+					<a class="accordion-toggle small_title" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree" style="padding:0px;">
 						<g:message code="default.systeminfo.plugins"/> <b class="caret" style="vertical-align: middle;"></b>
 					</a>
 				</div>
-				<div id="collapseOne" class="accordion-body collapse">
+				<div id="collapseThree" class="accordion-body collapse">
 					<div class="accordion-inner" style="border:0px; padding: 0px;">
 						<g:set var="pluginManager"
 							value="${applicationContext.getBean('pluginManager')}"></g:set>
@@ -90,8 +90,29 @@
 			</div>
 		</div>
 	</section>
+	
+	<section id="credit-site" class="site-info">
+		<div class="accordion" id="accordion4">
+			<div class="accordion-group" style="border:0px;">
+				<div class="accordion-heading">
+					<a class="accordion-toggle small_title" data-toggle="collapse" data-parent="#accordion4" href="#collapseFour" style="padding:0px;">
+						<g:message code="site.acknowledgements.title"/> <b class="caret" style="vertical-align: middle;"></b>
+					</a>
+				</div>
+				<div id="collapseFour" class="accordion-body collapse in">
+					<div class="accordion-inner" style="border:0px; padding: 0px;">
+						<ul style="margin-bottom: 0px;">
+							<li><a href ="https://github.com/iryanclarke">Ian Clarke</a> For help with the some of the front end stuff
+								including the photoAlbum show page and a number of the list pages.</li>
+					        <li><a href ="https://twitter.com/Micle2000">Michael Shimokura</a> For help with the initial deployment.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-	<section id="additional-site">
+	<section id="additional-site" class="site-info">
 		<p class="small_title"><g:message code="site.disclaimer.label"/></p>
 		<p>Information on this Web site may contain technical inaccuracies or typographical errors. 
 		Information may be changed or updated without notice. 

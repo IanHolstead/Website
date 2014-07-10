@@ -92,7 +92,7 @@ class BlogController {
 		def blogContent = blogInstance.blogContent
 		blogContent = blogContent.replaceAll("<br/>", "\n")
 		blogInstance.blogContent = blogContent
-
+		
         [blogInstance: blogInstance]
     }
 	

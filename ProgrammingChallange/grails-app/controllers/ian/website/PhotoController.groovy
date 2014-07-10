@@ -159,8 +159,8 @@ class PhotoController {
                 return
             }
         }
-		
 		params.album = PhotoAlbum.findWhere(name:params.album)
+		params.authenticationLevel = params.album.authenticationLevel
 		
 		String randomString = null
 		if(params.secureUrl){

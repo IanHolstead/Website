@@ -12,80 +12,58 @@
     
 	<link rel="shortcut icon"		href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
 	
-	<link rel="apple-touch-icon"	href="resource(dir:'images',file:'iconSmall.png')">
-    <link rel="apple-touch-icon"	href="assets/ico/apple-touch-icon-72x72.png"	sizes="72x72">
-    <link rel="apple-touch-icon"	href="assets/ico/apple-touch-icon-114x114.png"	sizes="114x114">
-	
 	<%-- Manual switch for the skin can be found in /view/_menu/_config.gsp --%>
 	<r:require modules="jquery"/>
 	<r:require modules="${session.skin ? session.skin            : 'bootstrap'}"/>
 	<r:require modules="${session.skin ? session.skin + '_utils' : 'bootstrap_utils'}"/>
 	
-	<link rel="stylesheet" href="${resource(dir: 'css', file: 'custom.css')}" type="text/css">
-	
-	<!-- Include required JS files  and brushes for Syntax Highlighter-->
-	<g:javascript src="sh/shCore.js" />
-	<g:javascript src="sh/shBrushGroovy.js" />
-	<g:javascript src="sh/shBrushCSharp.js" />
-	<g:javascript src="sh/shBrushCpp.js" />
-	<g:javascript src="sh/shBrushJava.js" />
-	<g:javascript src="sh/shBrushPlain.js" />
-	<link href="${resource(dir: 'css/sh', file: 'shCore.css')}" rel="stylesheet" type="text/css" />
-	<link href="${resource(dir: 'css/sh', file: 'shThemeDefault.css')}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="${resource(dir: 'css', file: 'general.css')}" type="text/css">
+	<link rel="stylesheet" href="${resource(dir: 'css', file: 'controller-pages.css')}" type="text/css">
+	<link rel="stylesheet" href="${resource(dir: 'css', file: 'static-pages.css')}" type="text/css">
+	<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
 
 	<r:layoutResources />
 	<g:layoutHead />
 
-	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<script type="text/javascript">
-    	SyntaxHighlighter.all()
-	</script>	
-
-	<%-- For Javascript see end of body --%>
 </head>
 
 <body style="padding:0px;">
-	<g:render template="/_menu/navbar"/>														
-
-	<!-- Enable to overwrite Header by individual page -->
-	<g:if test="${ pageProperty(name:'page.header') }">
-   		<g:pageProperty name="page.header" />
-	</g:if>
-	<g:else>
-		<g:render template="/layouts/header"/>														
-	</g:else>
-
-	<div class="indent-body">
-		<!-- use different templates for HTML structure based on layout (e.g., grid or fluid; Default is grid) -->
-		<g:if test="${session.layout == 'fluid'}">
-			<g:render template="/layouts/content_${session.layout}"/>														
+	<div class="body-content">
+		<g:render template="/_menu/navbar"/>														
+	
+		<!-- Enable to overwrite Header by individual page -->
+		<g:if test="${ pageProperty(name:'page.header') }">
+	   		<g:pageProperty name="page.header" />
 		</g:if>
 		<g:else>
-			<g:render template="/layouts/content_grid"/>														
+			<g:render template="/layouts/header"/>														
+		</g:else>
+	
+		<div class="indent-body">
+			<g:if test="${session.layout == 'fluid'}">
+				<g:render template="/layouts/content_${session.layout}"/>														
+			</g:if>
+			<g:else>
+				<g:render template="/layouts/content_grid"/>														
+			</g:else>
+		</div>
+	</div>
+	<div class="footer-content">
+		<g:if test="${ pageProperty(name:'page.footer') }">
+		    <g:pageProperty name="page.footer" />
+		</g:if>
+		<g:else>
+			<g:render template="/layouts/footer"/>														
 		</g:else>
 	</div>
 	
-	<!-- Enable to overwrite Footer by individual page -->
-	<g:if test="${ pageProperty(name:'page.footer') }">
-	    <g:pageProperty name="page.footer" />
-	</g:if>
-	<g:else>
-		<g:render template="/layouts/footer"/>														
-	</g:else>
-
-	<!-- Enable to insert additional components (e.g., modals, javascript, etc.) by any individual page -->
 	<g:if test="${ pageProperty(name:'page.include.bottom') }">
    		<g:pageProperty name="page.include.bottom" />
 	</g:if>
 	<g:else>
-		<!-- Insert a modal dialog for registering (for an open site registering is possible on any page) -->
 		<g:render template="/_common/modals/registerDialog" model="[item: item]"/>
 	</g:else>
 	
-	<!-- Included Javascript files and other resources -->
 	<r:layoutResources />
 </body>
 
