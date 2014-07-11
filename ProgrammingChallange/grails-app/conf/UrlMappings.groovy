@@ -10,6 +10,7 @@ class UrlMappings {
 		"/site"			(view:"/siteinfo/site")
 		"/systeminfo"	(view:"/siteinfo/systeminfo")
 		"/site/changelog"	(view:"/siteinfo/changelog")
+		"/site/changelog/1.0.3"	(view:"/siteinfo/fullchangelogs/1.0.3")
 //		"/about/computer"	(view:"siteinfo/computer")
 		
 		"/accessdenied"	(view:'/_errors/noAccess')

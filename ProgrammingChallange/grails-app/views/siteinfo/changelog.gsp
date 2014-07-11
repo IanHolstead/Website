@@ -6,6 +6,36 @@
 </head>
 
 <body>
+	<section id="v1_0_3" class="section">
+	    <h1><g:message code="change.1.0.3.title" default="1.0.3"/></h1>
+	    <div>This change has lots of bug fixes but little in terms of new features (<g:link url="changelog/1.0.3">Full change log</g:link>): 2014-07-10</div>
+	    <div class="small_title">New Features</div>
+	    <ul>
+			<li>Create Access denied page</li>
+			<li>Add bypass security option for direct linking</li>
+	     </ul>
+	    <div class="small_title">Bug Fixes</div>
+	    <ul>
+			<li>Fix Bootstrap links</li>
+			<li>Fix Error pages</li>
+			<li>Fix DB Timeout</li>
+			<li>Blogs not attached to worlds do not show up</li>
+			<li>Pagination does not work</li>
+			<li>Small photos are positioned incorrectly on show page</li>
+			<li>Blog and image dont delete with world</li>
+			<li>Make CSS and JS for syntax highligher only load on the correct pages</li>
+			<li>Add acknowledgements to site info</li>
+			<li>Can not create new blog</li>
+	     </ul>
+	    <div class="small_title">Tasks/Other</div>
+	    <ul>
+			<li>Started using Jira</li>
+			<li>CSS cleanup</li>
+			<li>Web interface for adding users</li>
+			<li>Add Security level field to each object</li>
+			<li>Make footer sticky</li>
+	     </ul>
+	</section>
 	<section id="v1_0_2" class="section">
 	    <h1><g:message code="change.1.0.2.title" default="1.0.2"/></h1>
 	    <div>This change focused on mobile pages and bug fixes: 2014-01-22</div>

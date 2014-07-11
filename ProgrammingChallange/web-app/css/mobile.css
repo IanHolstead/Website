@@ -8,6 +8,9 @@
 	.list-thumb{
 		display: none;
 	}
+	.map{
+		display: none !important;
+	}
 	#show-photoAlbum .photoTile{
 		width: 90%;
 	}
