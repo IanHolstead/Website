@@ -1,5 +1,5 @@
-<%@ page import="ian.website.Photo" %>
-<%@ page import="ian.website.PhotoAlbum" %>
+<%@ page import="com.ianholstead.website.Photo" %>
+<%@ page import="com.ianholstead.website.PhotoAlbum" %>
 
 
 <div class="control-group fieldcontain ${hasErrors(bean: photoInstance, field: 'photoPayload', 'error')} ">

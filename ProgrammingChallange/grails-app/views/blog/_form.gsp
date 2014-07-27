@@ -1,5 +1,5 @@
-<%@ page import="ian.website.Blog" %>
-<%@ page import="ian.security.Role" %>
+<%@ page import="com.ianholstead.website.Blog" %>
+<%@ page import="com.ianholstead.security.Role" %>
 
 <g:set var="roleList" value="${Role.list()}"/>
 <g:set var="roleNumber" value="${(int)blogInstance?.authenticationLevel? blogInstance.authenticationLevel.id-1 : 6}"/>

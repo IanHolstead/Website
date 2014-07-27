@@ -1,16 +1,3 @@
-// locations to search for config files that get merged into the main config;
-// config files can be ConfigSlurper scripts, Java properties files, or classes
-// in the classpath in ConfigSlurper format
-
-// grails.config.locations = [ "classpath:${appName}-config.properties",
-//                             "classpath:${appName}-config.groovy",
-//                             "file:${userHome}/.grails/${appName}-config.properties",
-//                             "file:${userHome}/.grails/${appName}-config.groovy"]
-
-// if (System.properties["${appName}.config.location"]) {
-//    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
-// }
-
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
@@ -76,20 +63,6 @@ environments {
     }
 }
 
-//grails.naming.entries = ['jdbc/WebDb': [
-//	type: "javax.sql.DataSource", //required
-//	auth: "Container", // optional
-//	description: "User database that can be updated and saved", //optional
-//	//properties for particular type of resource
-//	url: "jdbc:mysql://localhost/ianhols_Web",
-//	username: "ianhols_Grails",
-//	password: "TriAngSkiSeaDb.64",
-//	driverClassName:"com.mysql.jdbc.Driver",
-////	maxActive: "8", //and so on
-////	maxIdle: "4"
-//	]
-// ]
-
 // log4j configuration
 log4j = {
     // Example of changing the log pattern for the default console appender:
@@ -122,12 +95,6 @@ grails.plugins.springsecurity.failureHandler.defaultFailureUrl = '/'
 grails.plugins.springsecurity.rememberMe.cookieName="ianholstead"
 grails.plugins.springsecurity.rememberMe.key="_grails_"
 grails.plugins.springsecurity.rememberMe.rememberMe.persistent = true
-
-//grails.plugins.springsecurity.securityConfigType = SecurityConfigType.InterceptUrlMap
-//grails.plugins.springsecurity.interceptUrlMap = [
-//	
-//	
-//]
 
 
 grails.plugins.springsecurity.roleHierarchy = '''

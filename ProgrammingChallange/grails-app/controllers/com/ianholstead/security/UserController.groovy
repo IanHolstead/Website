@@ -1,8 +1,12 @@
-package ian.security
+package com.ianholstead.security
 
 import grails.plugins.springsecurity.Secured
 
 import org.springframework.dao.DataIntegrityViolationException
+
+import com.ianholstead.security.Role;
+import com.ianholstead.security.User;
+import com.ianholstead.security.UserRole;
 
 class UserController {
 

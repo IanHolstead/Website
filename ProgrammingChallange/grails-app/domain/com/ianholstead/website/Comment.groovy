@@ -1,4 +1,4 @@
-package ian.website
+package com.ianholstead.website
 
 class Comment {
 

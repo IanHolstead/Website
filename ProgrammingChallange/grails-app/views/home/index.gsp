@@ -1,5 +1,5 @@
-<%@ page import="ian.website.World" %>
-<%@ page import="ian.website.Photo" %>
+<%@ page import="com.ianholstead.website.World" %>
+<%@ page import="com.ianholstead.website.Photo" %>
 <%@ page import="java.util.Random" %>
 <html>
 

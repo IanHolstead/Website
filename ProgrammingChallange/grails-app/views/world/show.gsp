@@ -1,5 +1,5 @@
 
-<%@ page import="ian.website.World" %>
+<%@ page import="com.ianholstead.website.World" %>
 <!doctype html>
 <html>
 

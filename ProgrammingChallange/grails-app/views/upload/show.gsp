@@ -1,4 +1,4 @@
-<%@ page import="ian.website.Upload" %>
+<%@ page import="com.ianholstead.website.Upload" %>
 <!doctype html>
 <html>
 

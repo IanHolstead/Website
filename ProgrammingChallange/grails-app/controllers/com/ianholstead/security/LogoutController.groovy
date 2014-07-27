@@ -1,4 +1,4 @@
-package ian.security
+package com.ianholstead.security
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
 
 class LogoutController {

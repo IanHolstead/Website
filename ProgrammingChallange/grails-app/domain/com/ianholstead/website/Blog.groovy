@@ -1,6 +1,6 @@
-package ian.website
+package com.ianholstead.website
 
-import ian.security.Role;
+import com.ianholstead.security.Role;
 
 class Blog {
 

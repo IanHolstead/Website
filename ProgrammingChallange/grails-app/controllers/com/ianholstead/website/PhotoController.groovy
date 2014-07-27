@@ -1,12 +1,22 @@
-package ian.website
+package com.ianholstead.website
 
 import grails.plugins.springsecurity.Secured
+
 import java.awt.image.BufferedImage
+
 import org.grails.plugins.imagetools.*
+
 import javax.imageio.ImageIO
+
 import org.springframework.dao.DataIntegrityViolationException
+
 import ian.security.*
+
 import org.apache.commons.lang.RandomStringUtils
+
+import com.ianholstead.website.Photo;
+import com.ianholstead.website.PhotoAlbum;
+import com.ianholstead.website.Thumb;
 
 class PhotoController {
 	

@@ -1,4 +1,4 @@
-<%@ page import="ian.website.Photo" %>
+<%@ page import="com.ianholstead.website.Photo" %>
 <%@ page import="java.util.Random" %>
 
 <!doctype html>

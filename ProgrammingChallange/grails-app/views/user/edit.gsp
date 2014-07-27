@@ -1,4 +1,4 @@
-<%@ page import="ian.security.User" %>
+<%@ page import="com.ianholstead.security.User" %>
 <!doctype html>
 <html>
 

@@ -11,7 +11,6 @@ class UrlMappings {
 		"/systeminfo"	(view:"/siteinfo/systeminfo")
 		"/site/changelog"	(view:"/siteinfo/changelog")
 		"/site/changelog/1.0.3"	(view:"/siteinfo/fullchangelogs/1.0.3")
-//		"/about/computer"	(view:"siteinfo/computer")
 		
 		"/accessdenied"	(view:'/_errors/noAccess')
 		
@@ -48,9 +47,7 @@ class UrlMappings {
 		/* 
 		 * System Pages without controller 
 		 */
-		//"403"	(view:'/_errors/403')
 		"404"	(view:'/_errors/404')
 		"500"	(view:'/_errors/error')
-		//"503"	(view:'/_errors/503')
 	}
 }

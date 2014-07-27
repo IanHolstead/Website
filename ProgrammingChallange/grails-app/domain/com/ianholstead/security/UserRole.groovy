@@ -1,4 +1,4 @@
-package ian.security
+package com.ianholstead.security
 
 
 import org.apache.commons.lang.builder.HashCodeBuilder

@@ -1,4 +1,4 @@
-<%@ page import="ian.website.World" %>
+<%@ page import="com.ianholstead.website.World" %>
 
 <div class="control-group fieldcontain ${hasErrors(bean: worldInstance, field: 'title', 'error')} ">
 	<label for="title" class="control-label"><g:message code="world.title.label" default="Title" /></label>

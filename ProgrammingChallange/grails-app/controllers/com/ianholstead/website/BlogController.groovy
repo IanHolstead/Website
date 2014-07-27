@@ -1,9 +1,15 @@
-package ian.website
+package com.ianholstead.website
 
 import grails.plugins.springsecurity.Secured
+
 import org.springframework.dao.DataIntegrityViolationException
+
 import ian.security.*
+
 import org.apache.commons.lang.RandomStringUtils
+
+import com.ianholstead.website.Blog;
+import com.ianholstead.website.World;
 
 class BlogController {
 

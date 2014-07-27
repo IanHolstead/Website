@@ -1,4 +1,4 @@
-<%@ page import="ian.website.Upload" %>
+<%@ page import="com.ianholstead.website.Upload" %>
 
 <div class="control-group fieldcontain ${hasErrors(bean: uploadInstance, field: 'link', 'error')} ">
 	<label for="link" class="control-label"><g:message code="upload.link.label" default="Link" /></label>

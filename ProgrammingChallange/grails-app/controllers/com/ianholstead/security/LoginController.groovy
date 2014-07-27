@@ -1,4 +1,4 @@
-package ian.security
+package com.ianholstead.security
 import grails.converters.JSON
 
 import javax.servlet.http.HttpServletResponse

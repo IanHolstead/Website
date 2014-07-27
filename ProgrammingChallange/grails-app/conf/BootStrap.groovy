@@ -1,8 +1,8 @@
 import Role
-import ian.security.Role
-import ian.security.User
-import ian.security.UserRole
-import ian.website.PhotoAlbum
+import com.ianholstead.security.Role
+import com.ianholstead.security.User
+import com.ianholstead.security.UserRole
+import com.ianholstead.website.PhotoAlbum
 
 
 class BootStrap {

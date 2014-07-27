@@ -1,4 +1,4 @@
-package ian.security
+package com.ianholstead.security
 
 
 class Role {

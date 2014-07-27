@@ -1,4 +1,4 @@
-package ian.programming.challenge
+package com.ianholstead.programmingChallenge
 
 class Challenges {
 	

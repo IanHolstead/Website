@@ -1,5 +1,5 @@
-<%@ page import="ian.website.PhotoAlbum" %>
-<%@ page import="ian.security.Role" %>
+<%@ page import="com.ianholstead.website.PhotoAlbum" %>
+<%@ page import="com.ianholstead.security.Role" %>
 
 <g:set var="roleList" value="${Role.list()}"/>
 <g:set var="roleNumber" value="${(int)photoAlbumInstance? 6 : photoAlbumInstance.authenticationLevel.id-1}"/>

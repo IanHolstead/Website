@@ -1,4 +1,4 @@
-<%@ page import="ian.security.User" %>
+<%@ page import="com.ianholstead.security.User" %>
 
 <div class="control-group fieldcontain ${hasErrors(bean: userInstance, field: 'username', 'error')} ">
 	<label for="username" class="control-label"><g:message code="user.username.label" default="Username" /></label>

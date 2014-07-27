@@ -1,7 +1,15 @@
-package ian.website
+package com.ianholstead.website
 
 import grails.plugins.springsecurity.Secured
+
 import org.springframework.dao.DataIntegrityViolationException
+
+import com.ianholstead.website.Blog;
+import com.ianholstead.website.Photo;
+import com.ianholstead.website.PhotoAlbum;
+import com.ianholstead.website.Thumb;
+import com.ianholstead.website.World;
+
 import ian.security.*
 
 
