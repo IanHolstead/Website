@@ -1,7 +1,7 @@
 <html>
 	<head>
-		<g:if env="development"><title>Grails Runtime Exception</title></g:if>
-		<g:else><title>Oops!</title></g:else>
+		<g:if env="development"><title><g:message code="site.500.exception.title"/></title></g:if>
+		<g:else><title><g:message code="site.500.oops.title"/></title></g:else>
 		<meta name="layout" content="kickstart" />
 	</head>
 
@@ -18,7 +18,7 @@
 		</section>
 			
 		<section id="details" class="">
-		    <h2>Error Details</h2>
+		    <h2><g:message code="site.500.details.message"/></h2>
 		  	<div class="message">
 				<table class="table">
 					<tbody>
@@ -82,7 +82,7 @@
 	
 		<g:if test="${exception}">
 			<section id="exception">
-			    <h2>Stack Trace</h2>
+			    <h2><g:message code="site.500.stack.message"/></h2>
 			    <div class="stack">
 			      <pre><g:each in="${exception.stackTraceLines}">${it.encodeAsHTML()}<br/></g:each></pre>
 			    </div>
@@ -91,9 +91,19 @@
 	</g:if>
 	<g:else>
 		<div id="error-info">
-			<div class="info center">An error has occurred! I probably shouldn't have made Claptrap my sys admin...</div>
+			<div class="info center"><g:message code="site.500.error.message"/></div>
 			<div class="image center">
 				<g:img alt="Claptrap" dir="images/info" file="claptrap.png" />
+			</div>
+			<div class="actions">
+				<a href="javascript:history.go(-1)" class="btn btn-large btn-primary">
+					<i class="icon-chevron-left icon-white"></i>
+					<g:message code="site.no.return.label"/>
+				</a>
+				<a href="/" class="btn btn-large btn-success">
+					<i class="icon-home"></i>
+					<g:message code="default.button.home.label"/>
+				</a>					
 			</div>
 		</div>
 	</g:else>

@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="layout" content="kickstart" />
-	<g:set var="entityName" value="${message(code: 'blog.label', default: 'Blog Archive')}" />
+	<g:set var="entityName" value="${message(code: 'default.archive.label', args:[message(code: 'blog.label')])}" />
 	<title>${entityName}</title>
 </head>
 

@@ -41,14 +41,14 @@ class UploadController {
             return
         }
 
-		flash.message = message(code: 'default.created.message', args: [message(code: 'upload.label', default: 'Upload'), uploadInstance.id])
+		flash.message = message(code: 'default.created.message', args: [message(code: 'upload.label')])
         redirect(action: "show", id: uploadInstance.id)
     }
 
     def show() {	
         def uploadInstance = Upload.get(params.id)
         if (!uploadInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'upload.label', default: 'Upload'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'upload.label')])
             redirect(uri:'/')
             return
         }
@@ -75,7 +75,7 @@ class UploadController {
     def edit() {
         def uploadInstance = Upload.get(params.id)
         if (!uploadInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'upload.label', default: 'Upload'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'upload.label')])
             redirect(action: "list")
             return
         }
@@ -87,7 +87,7 @@ class UploadController {
     def update() {
         def uploadInstance = Upload.get(params.id)
         if (!uploadInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'upload.label', default: 'Upload'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'upload.label')])
             redirect(action: "list")
             return
         }
@@ -110,7 +110,7 @@ class UploadController {
             return
         }
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'upload.label', default: 'Upload'), uploadInstance.id])
+		flash.message = message(code: 'default.updated.message', args: [message(code: 'upload.label')])
         redirect(action: "show", id: uploadInstance.id)
     }
 
@@ -118,18 +118,18 @@ class UploadController {
     def delete() {
         def uploadInstance = Upload.get(params.id)
         if (!uploadInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'upload.label', default: 'Upload'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'upload.label')])
             redirect(action: "list")
             return
         }
 
         try {
             uploadInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'upload.label', default: 'Upload'), params.id])
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'upload.label')])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'upload.label', default: 'Upload'), params.id])
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'upload.label')])
             redirect(action: "show", id: params.id)
         }
     }

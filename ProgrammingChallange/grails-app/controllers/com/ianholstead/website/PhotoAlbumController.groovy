@@ -7,7 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException
 import com.ianholstead.website.Photo;
 import com.ianholstead.website.PhotoAlbum;
 
-import ian.security.*
+import com.ianholstead.security.*
 
 class PhotoAlbumController {
 
@@ -49,14 +49,14 @@ class PhotoAlbumController {
             return
         }
 
-		flash.message = message(code: 'default.created.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), photoAlbumInstance.id])
+		flash.message = message(code: 'default.created.message', args: [message(code: 'photoAlbum.label')])
         redirect(action: "list")
     }
 
     def show() {
         def photoAlbumInstance = PhotoAlbum.get(params.id)
 		if (!photoAlbumInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label')])
             redirect(action: "list")
             return
         }
@@ -78,7 +78,7 @@ class PhotoAlbumController {
     def edit() {
         def photoAlbumInstance = PhotoAlbum.get(params.id)
         if (!photoAlbumInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label')])
             redirect(action: "list")
             return
         }
@@ -94,7 +94,7 @@ class PhotoAlbumController {
     def update() {
         def photoAlbumInstance = PhotoAlbum.get(params.id)
         if (!photoAlbumInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label')])
             redirect(action: "list")
             return
         }
@@ -117,7 +117,7 @@ class PhotoAlbumController {
             return
         }
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), photoAlbumInstance.id])
+		flash.message = message(code: 'default.updated.message', args: [message(code: 'photoAlbum.label')])
         redirect(action: "show", id: photoAlbumInstance.id)
     }
 
@@ -125,7 +125,7 @@ class PhotoAlbumController {
     def delete() {
         def photoAlbumInstance = PhotoAlbum.get(params.id)
         if (!photoAlbumInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label')])
             redirect(action: "list")
             return
         }
@@ -136,11 +136,11 @@ class PhotoAlbumController {
 
         try {
             photoAlbumInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), params.id])
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'photoAlbum.label')])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'photoAlbum.label', default: 'Photo Album'), params.id])
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'photoAlbum.label')])
             redirect(action: "show", id: params.id)
         }
     }

@@ -10,7 +10,7 @@ import javax.imageio.ImageIO
 
 import org.springframework.dao.DataIntegrityViolationException
 
-import ian.security.*
+import com.ianholstead.security.*
 
 import org.apache.commons.lang.RandomStringUtils
 
@@ -68,14 +68,14 @@ class PhotoController {
 			render(view: "create", model: [photoInstance: photoInstance])
 			return
 		}
-		flash.message = message(code: 'default.created.message', args: [message(code: 'photo.label', default: 'Photo'), photoInstance.id])
+		flash.message = message(code: 'default.created.message', args: [message(code: 'photo.label')])
         redirect(action: "show", id: photoInstance.id)
     }
 
     def show() {
         def photoInstance = Photo.get(params.id)
 		if (!photoInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
 			redirect(action: "list")
 			return
 		}
@@ -113,7 +113,7 @@ class PhotoController {
 	def showPastSecurity() {
 		def photoInstance = Photo.findBySecureUrl(params.id)
 		if (!photoInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
 			redirect(action: "list")
 			return
 		}
@@ -141,7 +141,7 @@ class PhotoController {
     def edit() {
         def photoInstance = Photo.get(params.id)
         if (!photoInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
             redirect(action: "list")
             return
         }
@@ -154,7 +154,7 @@ class PhotoController {
         def photoInstance = Photo.get(params.id)
 		def thumbInstance = photoInstance.thumb
         if (!photoInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
             redirect(action: "list")
             return
         }
@@ -206,7 +206,7 @@ class PhotoController {
             return
         }
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'photo.label', default: 'Photo'), photoInstance.id])
+		flash.message = message(code: 'default.updated.message', args: [message(code: 'photo.label')])
         redirect(action: "show", id: photoInstance.id)
     }
 
@@ -215,18 +215,18 @@ class PhotoController {
         def photoInstance = Photo.get(params.id)
 		def thumbInstance = photoInstance?.thumb
         if (!photoInstance || !thumbInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
             redirect(action: "list")
             return
         }
 
         try {
             photoInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'photo.label')])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'photo.label')])
             redirect(action: "show", id: params.id)
         }
     }

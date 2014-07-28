@@ -20,6 +20,7 @@ grails.gorm.default.constraints = {
 	'*'(nullable: true)
 	title maxSize:100
 	caption maxSize:35000
+	shortCaption maxSize:150
 }
 
 // URL Mapping Cache Max Size, defaults to 5000
@@ -85,9 +86,9 @@ log4j = {
 }
 
 // Added by the Spring Security Core plugin:
-grails.plugins.springsecurity.userLookup.userDomainClassName = 'ian.security.User'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'ian.security.UserRole'
-grails.plugins.springsecurity.authority.className = 'ian.security.Role'
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.ianholstead.security.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.ianholstead.security.UserRole'
+grails.plugins.springsecurity.authority.className = 'com.ianholstead.security.Role'
 
 grails.plugins.springsecurity.auth.loginFormUrl = '/'
 grails.plugins.springsecurity.failureHandler.defaultFailureUrl = '/'

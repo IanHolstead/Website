@@ -10,7 +10,7 @@ import com.ianholstead.website.PhotoAlbum;
 import com.ianholstead.website.Thumb;
 import com.ianholstead.website.World;
 
-import ian.security.*
+import com.ianholstead.security.*
 
 
 class WorldController {
@@ -89,7 +89,7 @@ class WorldController {
             return
         }
 
-		flash.message = message(code: 'default.created.message', args: [message(code: 'world.label', default: 'World'), worldInstance.id])
+		flash.message = message(code: 'default.created.message', args: [message(code: 'world.label')])
         redirect(action: "show", id: worldInstance.id)
     }
 	
@@ -99,7 +99,7 @@ class WorldController {
 		
 		if(!current){
 			redirect(action: "list")
-			flash.message = "There currently is no world"
+			flash.message = message(code: 'world.no.current.message')
 			return
 		}
 		
@@ -128,10 +128,10 @@ class WorldController {
 			if(!nextWorld){
 				if(currentWorld[0]){
 					nextWorld = currentWorld[0]
-					flash.message = 'No future worlds were found!'
+					flash.message = message(code: 'world.no.future.message')
 				}
 				else{
-					flash.message = 'No current or future worlds were found!'
+					flash.message = message(code: 'world.neither.message')
 					return
 				}
 			}
@@ -167,13 +167,13 @@ class WorldController {
 		def blogInstance = worldInstance?.blog
         
 		if (!worldInstance || !photoInstance || !blogInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label')])
             redirect(action: "list")
             return
         }
 		if (getRole().id > 2) {
 			if (worldInstance.status != 1 && worldInstance.status != 2) {
-				flash.message = "That World is not yet ready!"
+				flash.message = message(code: 'world.not.ready.message')
 				redirect(action: "list")
 				return
 			}
@@ -190,7 +190,7 @@ class WorldController {
 		blogInstance.blogContent = blogInstance.blogContent.replaceAll("<br/>", "\n")
         
 		if (!worldInstance || !photoInstance || !blogInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label')])
             redirect(action: "list")
             return
         }
@@ -207,7 +207,7 @@ class WorldController {
 		def tempPhoto = photoInstance?.photoPayload
         
 		if (!worldInstance || !photoInstance || !blogInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label')])
             redirect(action: "list")
             return
         }
@@ -253,7 +253,7 @@ class WorldController {
 		photoInstance.photoPayload = tempPayload
 		
 		blogInstance.save()
-		if(!photoInstance.save(flush:true)){
+		if(!photoInstance.save(flush:true)){//TODO Look at this code
 			render(view: "edit", model: [worldInstance: worldInstance, blogInstance:blogInstance, photoInstance:photoInstance])
 			return
 		}
@@ -263,7 +263,7 @@ class WorldController {
             return
         }
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'world.label', default: 'World'), worldInstance.id])
+		flash.message = message(code: 'default.updated.message', args: [message(code: 'world.label')])
         redirect(action: "show", id: worldInstance.id)
     }
 
@@ -274,7 +274,7 @@ class WorldController {
 		def blogInstance = worldInstance?.blog
         
 		if (!worldInstance || !photoInstance || !blogInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label', default: 'World'), params.id])
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'world.label')])
             redirect(action: "list")
             return
         }
@@ -283,11 +283,11 @@ class WorldController {
 			worldInstance.delete(flush: true)
 			photoInstance.delete(flush: true)
 			blogInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'world.label', default: 'World'), params.id])
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'world.label')])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'world.label', default: 'World'), params.id])
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'world.label')])
             redirect(action: "show", id: params.id)
         }
     }
