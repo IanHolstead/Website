@@ -45,12 +45,4 @@ class Config {
 		footerAboutInfo nullable:false, blank:false, shared:'caption'
     }
 	
-	public static String getHomeTitle(){
-		return this.get(1).homeTitle
-	}
-	
-//	@Override	// Override toString for a nicer / more descriptive UI 
-//	public String toString() {
-//		return "${name}";
-//	}
 }

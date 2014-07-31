@@ -7,12 +7,8 @@ class ConfigController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    def index() {
-        redirect(uri:'/')
-    }
-	
 	@Secured(['ROLE_ADMIN'])
-    def edit() {
+    def index() {
         def configInstance = Config.get(1)
         if (!configInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'config.label')])
@@ -20,7 +16,7 @@ class ConfigController {
             return
         }
 
-        [configInstance: configInstance]
+        render(view:"edit", model: [configInstance: configInstance])
     }
 
 	@Secured(['ROLE_ADMIN'])
@@ -49,7 +45,8 @@ class ConfigController {
             render(view: "edit", model: [configInstance: configInstance])
             return
         }
-
+		assert Config.count == 1
+		assert Config.get(1)
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'config.label')])
         redirect(uri:'/')
     }

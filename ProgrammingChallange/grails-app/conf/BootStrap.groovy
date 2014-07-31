@@ -3,7 +3,7 @@ import com.ianholstead.security.Role
 import com.ianholstead.security.User
 import com.ianholstead.security.UserRole
 import com.ianholstead.website.PhotoAlbum
-
+import com.ianholstead.website.Config
 
 class BootStrap {
 
@@ -52,14 +52,20 @@ class BootStrap {
 	   if(!PhotoAlbum.findByName("World")){
 		   PhotoAlbum world = new PhotoAlbum(name: "World", dateCreated: null, authenticationLevel: adminRole, )
 		   world.save(flush:true)
-		   
-		   assert PhotoAlbum.findByName("World")
 	   }
 	   if(!PhotoAlbum.findByName("Blog")){
 		   PhotoAlbum blog = new PhotoAlbum(name: "Blog", dateCreated: null, authenticationLevel: adminRole, )
 		   blog.save(flush:true)
-		   
-		   assert PhotoAlbum.findByName("Blog")
 	   }
+	   assert PhotoAlbum.findByName("World")
+	   assert PhotoAlbum.findByName("Blog")
+	   
+	   if(Config.count == 0){
+	   		println "There is no config object!"
+	   }
+	   else if(!Config.get(1)){
+		   println "There was more then one config object"
+	   }
+	   assert Config.get(1);
    }
 }

@@ -15,7 +15,7 @@
 					<h1 style="margin-bottom: 5px;"><g:message code="site.404.title"/></h1>
 					<h2><g:message code="site.404.oh.noes.message"/></h2>
 					<p>
-						<g:message code="site.404.clap.title"/> <span style="font-size: 10px;"><g:message code="site.404.worry.message"/></span>
+						<g:message code="site.404.clap.message"/> <span style="font-size: 10px;"><g:message code="site.404.worry.message"/></span>
 					</p>
 					<g:img alt="Claptrap" dir="images/info" file="claptrap.png" />
 					<div class="actions">

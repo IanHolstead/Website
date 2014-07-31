@@ -1,6 +1,7 @@
 <%@ page import="com.ianholstead.website.World" %>
 <%@ page import="com.ianholstead.website.Photo" %>
 <%@ page import="java.util.Random" %>
+<%@ page import="com.ianholstead.website.Config" %>
 <html>
 
 <head>
@@ -10,9 +11,8 @@
 
 <body>
 	<section id="intro" class="first">
-		<h1>Welcome!</h1>
-		<p>Hello World! This is my personal website where I will do my best to post stuff (photos, blog, etc) regularly.
-		This site is still under development so hopefully whenever you check back there will cool new functionality. Thanks!</p>
+		<h1>${Config.get(1).homeTitle}</h1>
+		<p>${Config.get(1).homeInfo}</p>
 	</section>
 
 	<section id="info">
@@ -60,7 +60,7 @@
 					</div>
 					<h3>Photo Albums</h3>
 				</div>
-				<p>I post collections of my pictures here: whether they are from a trip to Switzerland or just backgrounds I like, they all end up here!</p>
+				<p>${Config.get(1).homePhotoInfo}</p>
 			</div>
 	    	<div class="span4">
 		    	<div class="center big-wrapper">
@@ -71,8 +71,7 @@
 					</div>
 					<h3>About me.</h3>
 				</div>
-				<p>I hear Ian's pretty cool, you should find out why<g:link	url="/about">...</g:link>
-				</p>
+				<p>${Config.get(1).homeAboutInfo}</p>
 			</div>
 	    </div>
 	</section>
@@ -89,11 +88,7 @@
 						</map>
 					<h3>Connect with me!</h3>
 				</div>
-				<p>
-					Add me as a friend on <a href="https://www.facebook.com/ian.holstead" target="_blank">Facebook!</a><br/>
-					Follow me on <a href ="https://twitter.com/IanHolstead" target="_blank">Twitter!</a><br/>
-					For professional inquiries please see my <a href ="http://ca.linkedin.com/in/ianholstead/" target="_blank">Linkedin profile</a><br/>
-				</p>
+				<p>${Config.get(1).homeConnectInfo}</p>
 			</div>
 	    	<div class="span4">
 		    	<div class="center">
@@ -104,10 +99,7 @@
 						</map>
 					<h3>Programming</h3>
 				</div>
-				<p>
-					Check out my <a href ="http://github.com/IanHolstead" target="_blank">GitHub account</a><br/>
-					or my <a href ="http://stackoverflow.com/users/2399849/ian-holstead" target="_blank">Stackoverflow account</a>
-				</p>
+				<p>${Config.get(1).homeProgrammingInfo}</p>
 			</div>
 	    	<div class="span4">
 		    	<div class="center">
@@ -119,11 +111,7 @@
 						</map>
 					<h3>Those other accounts</h3>
 				</div>
-				<p>
-					Add me on <a href ="http://steamcommunity.com/id/themostevile/" target="_blank">steam!</a><br/>
-					Take a look at my <a href ="http://www.youtube.com/user/theonemetorulethemal" target="_blank">YouTube channel</a><br/>
-					Add me on <a href ="https://plus.google.com/103164028904505410580/posts" target="_blank">G+</a>
-				</p>
+				<p>${Config.get(1).homeOtherInfo}</p>
 			</div>
 	    </div>
 	</section>

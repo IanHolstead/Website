@@ -1,3 +1,4 @@
+<%@ page import="com.ianholstead.website.Config" %>
 <footer class="footer" style="min-width:0px">
 	<div class="container">
 		<div class="indent-body">
@@ -29,9 +30,7 @@
 				</div>
 				<div class="span8" style="width: inherit;">
 					<h4> About </h4>
-					<p>	This is Ian Holstead's personal website. It was built using Grails and Designed with Twitter's 
-						<a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>. 
-					</p>
+					<p>${Config.get(1).footerAboutInfo}</p>
 					<span style="color:#EEEEEE;">Oel ngati kameie.</span>
 				</div>
 			</div>
