@@ -27,11 +27,16 @@ class Photo {
 		showOnHomePage validator : { val, obj ->
 			!val || (obj.authenticationLevel.authority == 'ROLE_NONE')  
 		}
+		secureUrl unique:true
     }
 	
 	
 	@Override
 	public String toString() {
 		return photoName
+	}
+	
+	public def getUrl(){
+		return this.photoName?.replace(' ', '-')
 	}
 }

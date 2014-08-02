@@ -21,10 +21,15 @@ class Blog {
 		blogSummary shared:'caption'
 		blogContent maxSize: 35000
 		authenticationLevel nullable:true 
+		secureUrl unique:true 
     }
 	
 	@Override	// Override toString for a nicer / more descriptive UI 
 	public String toString() {
 		return blogTitle
+	}
+	
+	public def getUrl(){
+		this.blogTitle.replace(' ', '-')
 	}
 }

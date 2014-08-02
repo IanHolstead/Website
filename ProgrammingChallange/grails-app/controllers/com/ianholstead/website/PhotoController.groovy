@@ -69,11 +69,11 @@ class PhotoController {
 			return
 		}
 		flash.message = message(code: 'default.created.message', args: [message(code: 'photo.label')])
-        redirect(action: "show", id: photoInstance.id)
+        redirect(action: "show", id: photoInstance.getUrl())
     }
 
     def show() {
-        def photoInstance = Photo.get(params.id)
+        def photoInstance = Photo.get(getId(params.id))
 		if (!photoInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
 			redirect(action: "list")
@@ -123,7 +123,7 @@ class PhotoController {
 	
 	def showPayload(){
 		def id = (params.id).split("\\.")
-		id = id[0]
+		id = getId(id[0])
 		def photoInstance = Photo.get(id)
 		response.outputStream<<photoInstance.photoPayload
 		response.outputStream.flush()
@@ -131,7 +131,7 @@ class PhotoController {
 	
 	def showThumb(){
 		def id = (params.id).split("\\.")
-		id = id[0]
+		id = getId(id[0])
 		def thumbInstance = Thumb.get(Photo.get(id)?.thumb?.id)
 		response.outputStream<<thumbInstance.thumbPayload
 		response.outputStream.flush()
@@ -139,7 +139,7 @@ class PhotoController {
 
 	@Secured(['ROLE_ADMIN'])
     def edit() {
-        def photoInstance = Photo.get(params.id)
+        def photoInstance = Photo.get(getId(params.id))
         if (!photoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
             redirect(action: "list")
@@ -207,12 +207,12 @@ class PhotoController {
         }
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'photo.label')])
-        redirect(action: "show", id: photoInstance.id)
+        redirect(action: "show", id: photoInstance.getUrl())
     }
 
 	@Secured(['ROLE_ADMIN'])
     def delete() {
-        def photoInstance = Photo.get(params.id)
+        def photoInstance = Photo.get(getId(params.id))
 		def thumbInstance = photoInstance?.thumb
         if (!photoInstance || !thumbInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
@@ -239,5 +239,10 @@ class PhotoController {
 		else{
 			return Role.findByAuthority('ROLE_NONE')
 		}
+	}
+	
+	protected getId(String name){
+		int id = Photo.findByPhotoName(name.replace('-', ' '))?.id
+		id = id?:-1
 	}
 }

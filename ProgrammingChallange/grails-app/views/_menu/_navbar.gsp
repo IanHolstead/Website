@@ -16,13 +16,13 @@
        		<div class="nav-collapse">
        			<g:set var="controllerList" value="${['world','world','photoAlbum','blog']}"/>
        			<g:set var="controllerNameList" value="${['My world this week','World Achive','Photo Albums','Blog Archive']}"/>
-       			<g:set var="actionList" value="${['currentWeek','list','list','list']}"/>
+       			<g:set var="actionList" value="${['currentWeek','list','list','']}"/>
        			<ul class="nav">
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Browse <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 		                    <g:each var="controller" in="${controllerList}" status="i">
-		                    <li class="controller"><g:link controller="${controller}" action="${actionList[i]}">${controllerNameList[i]}</g:link></li>
+		                    	<li class="controller"><g:link controller="${controller}" action="${actionList[i]}">${controllerNameList[i]}</g:link></li>
 		                    </g:each>
 						</ul>
 					</li>

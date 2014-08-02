@@ -15,10 +15,10 @@
 
 <section id="show-photo" class="first">
 	<g:if test="${!noNav}">
-		<div class="photo-nav">
+		<div class="cont-nav">
 			<div class="left">
-				<g:link controller="photo" action="show" id="${photoPrev.id}">
-					<span class="icon-chevron-left"></span> Previous
+				<g:link controller="photo" action="show" id="${photoPrev.getUrl()}">
+					<span class="icon-chevron-left"></span> <g:message code="default.paginate.prev"/>
 				</g:link>
 			</div>
 			
@@ -29,14 +29,14 @@
 			</div>
 			
 			<div class="right">
-				<g:link controller="photo" action="show" id="${photoNext.id}">
-					Next <span class="icon-chevron-right"></span>
+				<g:link controller="photo" action="show" id="${photoNext.getUrl()}">
+					<g:message code="default.paginate.next"/> <span class="icon-chevron-right"></span>
 				</g:link>
 			</div>
 		</div>
 	</g:if>
 	<div class="center">
-		<img src="/showPhoto/${photoInstance.id}/${photoInstance.photoName}.png"/>
+		<img src="/showPhoto/${photoInstance.getUrl()}.png"/>
 		<div class="caption">${photoInstance.photoCaption}</div>
 		
 		<sec:ifAllGranted roles="ROLE_ADMIN">
@@ -46,10 +46,10 @@
 		</sec:ifAllGranted>
 	</div>
 	<g:if test="${!noNav}">
-		<div class="photo-nav">
+		<div class="cont-nav">
 			<div class="left">
-				<g:link controller="photo" action="show" id="${photoPrev.id}">
-					<span class="icon-chevron-left"></span> Previous
+				<g:link controller="photo" action="show" id="${photoPrev.getUrl()}">
+					<span class="icon-chevron-left"></span> <g:message code="default.paginate.prev"/>
 				</g:link>
 			</div>
 			
@@ -60,8 +60,8 @@
 			</div>
 			
 			<div class="right">
-				<g:link controller="photo" action="show" id="${photoNext.id}">
-					Next <span class="icon-chevron-right"></span>
+				<g:link controller="photo" action="show" id="${photoNext.getUrl()}">
+					<g:message code="default.paginate.next"/> <span class="icon-chevron-right"></span>
 				</g:link>
 			</div>
 		</div>

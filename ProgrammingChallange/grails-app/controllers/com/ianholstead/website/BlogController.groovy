@@ -17,10 +17,6 @@ class BlogController {
 	def springSecurityService
 	
     def index() {
-        redirect(action: "list", params: params)
-    }
-
-    def list() {
 		params.sort = params.sort?:'date'
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
 		params.offset = params.int('offset')?:1
@@ -31,7 +27,11 @@ class BlogController {
 		}
 		def blogCount = blogInstanceList.size()
 		blogInstanceList = blogInstanceList.subList(params.offset-1, Math.min(params.offset-1 + params.max, blogCount))
-        [blogInstanceList: blogInstanceList, blogInstanceTotal: blogCount]
+		render(view:'list', model:[blogInstanceList: blogInstanceList, blogInstanceTotal: blogCount])
+    }
+
+    def list() {
+		redirect(action: "index", params: params)
     }
 	
 	@Secured(['ROLE_ADMIN'])
@@ -59,7 +59,7 @@ class BlogController {
     }
 
     def show() {
-        def blogInstance = Blog.get(params.id)
+        def blogInstance = Blog.get(getBlogId(params.id))
         if (!blogInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label')])
             redirect(action: "list")
@@ -70,28 +70,53 @@ class BlogController {
 			redirect(uri:'/accessdenied')
 			return
 		}
+		def authId = (int)getRole().id
+		List blogs = Blog.list()
+		blogs.removeAll{
+			it.authenticationLevel.id<authId
+		}
+		blogs.sort(true) { a, b ->
+			a.id <=> b.id
+		}
+		
+		def next
+		def prev
+		for(int i = 0; i<(blogs.size()-1); i++){
+			if(blogs[i].id == blogInstance.id){
+				next = blogs[i+1]
+				prev = blogs[i-1]
+			}
+		}
+		if(!next)
+			next = blogs[0]
+		if(!prev){
+			if(blogs.size()>2)
+				prev = blogs[-2]
+			else
+				prev = blogs[0]
+		}
 
-        [blogInstance: blogInstance]
+        [blogInstance: blogInstance, next:next, prev:prev]
     }
 	
 	def showPastSecurity() {
 		def blogInstance = Blog.findBySecureUrl(params.id)
 		if (!blogInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label')])
-			redirect(action: "list")
+			redirect(action: "index")
 			return
 		}
 		
-		render(view: 'show', model:[blogInstance: blogInstance])
+		render(view: 'show', model:[blogInstance: blogInstance, noNav: true])
 	}
 	
 	@Secured(['ROLE_ADMIN'])
     def edit() {
-        def blogInstance = Blog.get(params.id)
+        def blogInstance = Blog.get(getBlogId(params.id))
 		
         if (!blogInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label')])
-            redirect(action: "list")
+            redirect(action: "index")
             return
         }
 		
@@ -107,7 +132,7 @@ class BlogController {
         def blogInstance = Blog.get(params.id)
         if (!blogInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label')])
-            redirect(action: "list")
+            redirect(action: "index")
             return
         }
 
@@ -145,33 +170,40 @@ class BlogController {
         }
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'blog.label')])
-        redirect(action: "show", id: blogInstance.id)
+        redirect(action: "show", id: blogInstance.getUrl())
     }
 
 	@Secured(['ROLE_ADMIN'])
     def delete() {
-        def blogInstance = Blog.get(params.id)
+        def blogInstance = Blog.get(getBlogId(params.id))
 		if(World.findByBlog(blogInstance)){
 			flash.message = message(code: 'default.no.delete.world.message', args: [message(code: 'blog.label')])
-			redirect(action: "list")
+			redirect(action: "index")
 			return
 		}
         if (!blogInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label')])
-            redirect(action: "list")
+            redirect(action: "index")
             return
         }
 
         try {
             blogInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'blog.label')])
-            redirect(action: "list")
+            redirect(action: "index")
         }
         catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'blog.label')])
             redirect(action: "show", id: params.id)
         }
     }
+	
+	
+	
+	protected getBlogId(String name){
+		int id = Blog.findByBlogTitle(name.replace('-', ' '))?.id
+		id = id?:-1
+	}
 	
 	protected def getRole(){
 		if(springSecurityService.getPrincipal() != 'anonymousUser'){

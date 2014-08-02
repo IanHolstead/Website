@@ -23,7 +23,7 @@
 			    	<div class="center big-wrapper">
 						<div class="big-image-wrapper">
 				    		<g:link controller="world" action="currentWeek">
-				    			<img class="big-front-page-image" src="/showThumb/${currentWorld?.photo?.id}/${currentWorld?.photo?.photoName}.png" alt="${currentWorld?.photo?.photoCaption}"/>
+				    			<img class="big-front-page-image" src="/showThumb/${currentWorld?.photo?.getUrl()}.png" alt="${currentWorld?.photo?.photoCaption}"/>
 							</g:link>
 						</div>
 						<h3>${currentWorld?.title}</h3>
@@ -48,10 +48,10 @@
 							<g:set var="picture" value="${Photo.findAllByShowOnHomePage(true)}"/>
 							<g:set var="rand" value="${new Random()}"/>
 							<g:if test="${picture.size()>1}">
-								<img class="big-front-page-image" src="/showThumb/${picture[rand.nextInt(picture.size()-1)].id}/${picture[rand.nextInt(picture.size()-1)].photoName}.png" alt="${picture[rand.nextInt(picture.size()-1)].photoCaption}"/>
+								<img class="big-front-page-image" src="/showThumb/${picture[rand.nextInt(picture.size()-1)].getUrl()}.png" alt="${picture[rand.nextInt(picture.size()-1)].photoCaption}"/>
 							</g:if>
 							<g:elseif test="${picture.size()==1}">
-								<img class="big-front-page-image" src="/showThumb/${picture[0].id}/${picture[0].photoName}.png" alt="${picture[0].photoCaption}"/>
+								<img class="big-front-page-image" src="/showThumb/${picture[0].getUrl()}.png" alt="${picture[0].photoCaption}"/>
 							</g:elseif>
 							<g:else>
 								<img class="big-front-page-image" src="${resource(dir: 'images/home_icons',file: 'photo_blog.jpg')}" />

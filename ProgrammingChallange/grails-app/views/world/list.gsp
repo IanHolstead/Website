@@ -26,7 +26,7 @@
 			</div>	
 			
 			<div class="list-thumb">
-				<img class="list-image" src="/showThumb/${worldInstance.photo.id}/${worldInstance.photo.photoName}.png" alt="${worldInstance.photo.photoCaption}"/>
+				<img class="list-image" src="/showThumb/${worldInstance.photo.getUrl()}.png" alt="${worldInstance.photo.photoCaption}"/>
 			</div>
 		</div>	
 	</g:each>

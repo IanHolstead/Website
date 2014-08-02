@@ -34,16 +34,16 @@
 			</g:if>
 			<div class="list-thumb">
 				<g:if test="${p.size()>1}">
-					<img class="list-image" src="/showThumb/${p[rand].id}/${p[rand].photoName}.png" alt="${p[rand].photoCaption}"/>
+					<img class="list-image" src="/showThumb/${p[rand].getUrl()}.png" alt="${p[rand].photoCaption}"/>
 				</g:if>
 				<g:elseif test="${p.size()==1}">
-					<img class="list-image" src="/showThumb/${p[0].id}/${p[0].photoName}.png" alt="${p[0].photoCaption}"/>
+					<img class="list-image" src="/showThumb/${p[0].getUrl()}.png" alt="${p[0].photoCaption}"/>
 				</g:elseif>
 			</div>
 			
 			<div class="list-thumb">
 				<g:if test="${p.size()>1}">
-					<img class="list-image" src="/showThumb/${p[rand-1].id}/${p[rand-1].photoName}.png" alt="${p[rand-1].photoCaption}"/>
+					<img class="list-image" src="/showThumb/${p[rand-1].getUrl()}.png" alt="${p[rand-1].photoCaption}"/>
 				</g:if>
 			</div>
 		</div>

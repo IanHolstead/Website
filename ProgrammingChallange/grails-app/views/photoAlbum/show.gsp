@@ -19,8 +19,8 @@
 			<div class="photoTile">
 				<div class="photoThumb"> 
 					<div class="center">
-					<g:link controller="photo" action="show" id="${p.id}">
-						<img class="photo" src="/showThumb/${p.id}/${p.photoName}.png" alt="${p.photoCaption}"/>
+					<g:link controller="photo" action="show" id="${p.getUrl()}">
+						<img class="photo" src="/showThumb/${p.getUrl()}.png" alt="${p.photoCaption}"/>
 					</g:link>
 					</div>
 				</div>

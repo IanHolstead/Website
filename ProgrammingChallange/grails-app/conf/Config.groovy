@@ -18,8 +18,8 @@ grails.mime.types = [
 
 grails.gorm.default.constraints = {
 	'*'(nullable: true)
-	title maxSize:100
-	caption maxSize:35000
+	title maxSize:100, blank:false, unique: true, validator: {val -> return (!val.contains('-') && !val.contains('.') && val==~ /^([!#$&-;=?-\[\]_a-z~]|%[0-9a-fA-F]{2})+$/)}
+	caption maxSize:5000
 	shortCaption maxSize:150
 }
 

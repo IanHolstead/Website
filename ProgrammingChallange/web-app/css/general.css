@@ -100,3 +100,39 @@ iframe{
 	padding-left: 20px;
 	overflow: hidden;
 }
+
+.cont-nav{
+	padding-bottom: 30px;
+}
+
+
+.cont-nav a:hover {
+	text-decoration: none;
+	background-color: #eeeeee;
+}
+
+.cont-nav a{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 8px;
+}
+
+.cont-nav .right {
+	float: right;
+	padding-bottom: 10px;
+}
+
+.cont-nav .center {
+	display: inline-block;
+	padding-bottom: 10px;
+	margin-left: -70px;
+	position: absolute;
+}
+
+
+.cont-nav .left {
+	float: left;
+	padding-bottom: 10px;
+	margin-right: 43%;
+}

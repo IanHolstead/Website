@@ -10,13 +10,56 @@
 </head>
 
 <body>
-<sec:ifAllGranted roles="ROLE_ADMIN">
-	<g:if test="${blogInstance.secureUrl}">
-		<g:link controller="blog" action="showPastSecurity" id="${blogInstance.secureUrl}">Link for sharing</g:link>
-	</g:if>
-</sec:ifAllGranted>
 <section id="show-blog" class="first">
+	<g:if test="${!noNav}">
+		<div class="cont-nav">
+			<div class="left">
+				<g:link controller="blog" action="show" id="${prev.getUrl()}">
+					<span class="icon-chevron-left"></span> <g:message code="default.paginate.prev"/>
+				</g:link>
+			</div>
+			
+			<div class="center">
+				<g:link controller="blog" action="">
+					<span class="icon-th-list"></span> <g:message code="default.archive.label" args="${[message(code: 'blog.label')]}"/>
+				</g:link>
+			</div>
+			
+			<div class="right">
+				<g:link controller="blog" action="show" id="${next.getUrl()}">
+					<g:message code="default.paginate.next"/> <span class="icon-chevron-right"></span>
+				</g:link>
+			</div>
+		</div>
+	</g:if>
+	<sec:ifAllGranted roles="ROLE_ADMIN">
+		<g:if test="${blogInstance.secureUrl}">
+			(<g:link controller="blog" action="showPastSecurity" id="${blogInstance.secureUrl}">Link for sharing</g:link>)
+		</g:if>
+	</sec:ifAllGranted>
 	<div class="content">${blogInstance.blogContent}</div>
+	
+	<g:if test="${!noNav}">
+		<div class="cont-nav">
+			<div class="left">
+				<g:link controller="blog" action="show" id="${prev.getUrl()}">
+					<span class="icon-chevron-left"></span> <g:message code="default.paginate.prev"/>
+				</g:link>
+			</div>
+			
+			<div class="center">
+				<g:link controller="blog" action="">
+					<span class="icon-th-list"></span> <g:message code="default.archive.label" args="${[message(code: 'blog.label')]}"/>
+				</g:link>
+			</div>
+			
+			<div class="right">
+				<g:link controller="blog" action="show" id="${next.getUrl()}">
+					<g:message code="default.paginate.next"/> <span class="icon-chevron-right"></span>
+				</g:link>
+			</div>
+		</div>
+	</g:if>
 </section>
 
 <content tag="include.bottom">

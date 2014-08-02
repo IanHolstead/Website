@@ -28,14 +28,18 @@ class UrlMappings {
 			action 		= 'show'
 		}
 		
-		"/showPhoto/$id/$name"{
+		"/showPhoto/$id"{
 			controller 	= 'photo'
 			action 		= 'showPayload'
 		} 
 		
-		"/showThumb/$id/$name"{
+		"/showThumb/$id"{
 			controller 	= 'photo'
 			action 		= 'showThumb'
+		}
+		
+		"/$controller"{
+			
 		}
 		
 		"/$controller/$action?/$id?"{

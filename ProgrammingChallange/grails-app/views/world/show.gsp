@@ -26,7 +26,7 @@
 			</div>
 			<div class="photoThumb">
 				<div class="center">
-					<img src="/showPhoto/${photoInstance.id}/${photoInstance.photoName}.png" alt="${photoInstance.photoCaption}"/>
+					<img src="/showPhoto/${photoInstance.getUrl()}.png" alt="${photoInstance.photoCaption}"/>
 				</div>
 			</div>
 			<div class="photoDescription">

@@ -1,11 +1,11 @@
 <div id="Content" class="container-fluid">
 	<div class="row-fluid">
-		<sec:ifAnyGranted roles="ROLE_SUPER_ADMIN">
-		<!-- Main menu on the left side (e.g., controller entry points) -->
-		<div class="span2">
-			<g:render template="/_menu/menubar"/>
-		</div>
-		</sec:ifAnyGranted>
+<%--		<sec:ifAnyGranted roles="ROLE_SUPER_ADMIN">--%>
+<%--			<!-- Main menu on the left side (e.g., controller entry points) -->--%>
+<%--			<div class="span2">--%>
+<%--				<g:render template="/_menu/menubar"/>--%>
+<%--			</div>--%>
+<%--		</sec:ifAnyGranted>--%>
 
 		<!-- Main content on the right side -->
 		<div class="span10">
