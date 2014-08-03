@@ -23,7 +23,7 @@ class PhotoAlbumController {
 		def photoAlbumInstanceList = PhotoAlbum.list()
 		def authId = getRole().id
 		photoAlbumInstanceList.removeAll{
-			it.authenticationLevel.id<authId || !Photo.findByAlbum(it)
+			it.authenticationLevel.id<authId || !Photo.findByAlbum(it)//the or checks that there is atleast one photo in the album
 		}
 		def photoAlbumCount = photoAlbumInstanceList.size()
 		photoAlbumInstanceList = photoAlbumInstanceList.subList(params.offset-1, Math.min(params.offset-1 + params.max, photoAlbumCount-1))
@@ -67,8 +67,34 @@ class PhotoAlbumController {
 		photos.sort(true) { a, b ->
 			a.id <=> b.id
 		}
+		
+		def authId = (int)getRole().id
+		List albums = PhotoAlbum.list()
+		albums.removeAll{
+			it.authenticationLevel.id<authId || !Photo.findByAlbum(it)
+		}
+		albums.sort(true) { a, b ->
+			a.id <=> b.id
+		}
+		
+		def next
+		def prev
+		for(int i = 0; i<(albums.size()-1); i++){
+			if(albums[i].id == photoAlbumInstance.id){
+				next = albums[i+1]
+				prev = albums[i-1]
+			}
+		}
+		if(!next)
+			next = albums[0]
+		if(!prev){
+			if(albums.size()>2)
+				prev = albums[-2]
+			else
+				prev = albums[0]
+		}
 
-        [photoAlbumInstance: photoAlbumInstance, photos:photos]
+        [photoAlbumInstance: photoAlbumInstance, photos:photos, prev:prev, next:next]
     }
 
 	@Secured(['ROLE_ADMIN'])

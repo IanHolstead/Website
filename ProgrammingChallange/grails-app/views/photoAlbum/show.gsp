@@ -13,7 +13,25 @@
 <body>
 
 <section id="show-photoAlbum" class="first">
-	
+	<div class="cont-nav">
+		<div class="left">
+			<g:link controller="photoAlbum" action="show" id="${prev.getUrl()}">
+				<span class="icon-chevron-left"></span> <g:message code="default.paginate.prev"/>
+			</g:link>
+		</div>
+		
+		<div class="center">
+			<g:link controller="photoAlbum" action="list">
+				<span class="icon-th-list"></span> <g:message code="photoAlbum.label"/>
+			</g:link>
+		</div>
+		
+		<div class="right">
+			<g:link controller="photoAlbum" action="show" id="${next.getUrl()}">
+				<g:message code="default.paginate.next"/> <span class="icon-chevron-right"></span>
+			</g:link>
+		</div>
+	</div>
 	<div class="center">
 		<g:each in="${photos}" var="p">
 			<div class="photoTile">
