@@ -177,8 +177,40 @@ class WorldController {
 				return
 			}
 		}
+		
+		def authId = (int)getRole().id
+		List worlds
+		if (getRole().id <= 2) {
+			worlds = World.list()
+		}
+		else {
+			worlds = World.findAllByStatusBetween(1,2)
+		}
+		worlds.sort(true) { a, b ->
+			a.id <=> b.id
+		}
+		
+		def next
+		def prev
+		for(int i = 0; i<(worlds.size()-1); i++){
+			if(worlds[i].id == worldInstance.id){
+				next = worlds[i+1]
+				prev = worlds[i-1]
+			}
+		}
+		if(!next){
+			next = worlds[0]
+		}
+		if(!prev){
+			if(worlds.size()>2){
+				prev = worlds[-2]
+			}
+			else{
+				prev = worlds[0]
+			}
+		}
         
-		[worldInstance: worldInstance, photoInstance: photoInstance, blogInstance: blogInstance]
+		[worldInstance: worldInstance, photoInstance: photoInstance, blogInstance: blogInstance, prev:prev, next: next]
     }
 
 	@Secured(['ROLE_ADMIN'])
