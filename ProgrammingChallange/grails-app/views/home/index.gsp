@@ -37,9 +37,9 @@
 						<div class="big-image-wrapper">
 							<img class="big-front-page-image" src="${resource(dir: 'images/home_icons',file: 'science.png')}" style="padding-top:50px;"/>
 						</div>
-						<h3>Welcome!</h3>
+						<h3><g:message code="home.no.world.title"/></h3>
 					</div>
-				<p>Welcome to my website!</p>
+				<p><g:message code="home.no.world.info.lable"/></p>
 				</g:else>
 				
 			</div>
@@ -60,7 +60,7 @@
 							</g:else>
 						</g:link>
 					</div>
-					<h3>Photo Albums</h3>
+					<h3><g:message code="home.photoAlbums.title"/></h3>
 				</div>
 				<p>${config.homePhotoInfo}</p>
 			</div>
@@ -71,7 +71,7 @@
 							<img class="big-front-page-image" src="${resource(dir: 'images/home_icons',file: 'ian.png')}" />
 						</g:link>
 					</div>
-					<h3>About me.</h3>
+					<h3><g:message code="home.about.title"/></h3>
 				</div>
 				<p>${config.homeAboutInfo}</p>
 			</div>
@@ -88,7 +88,7 @@
 							<area shape="rect" alt="Twitter" coords="100,0,200,100" href="https://twitter.com/IanHolstead" target="_blank">
 							<area shape="rect" alt="LinkedIn" coords="200,0,300,100" href="http://ca.linkedin.com/in/ianholstead/" target="_blank">
 						</map>
-					<h3>Connect with me!</h3>
+					<h3><g:message code="home.social.title"/></h3>
 				</div>
 				<p>${config.homeConnectInfo}</p>
 			</div>
@@ -99,7 +99,7 @@
 							<area shape="rect" alt="Github" coords="0,0,100,100" href="http://github.com/IanHolstead" target="_blank">
 							<area shape="rect" alt="Stackoverflow" coords="100,0,200,100" href="http://stackoverflow.com/users/2399849/ian-holstead" target="_blank">
 						</map>
-					<h3>Programming</h3>
+					<h3><g:message code="home.programming.title"/></h3>
 				</div>
 				<p>${config.homeProgrammingInfo}</p>
 			</div>
@@ -111,7 +111,7 @@
 							<area shape="rect" alt="YouTube" coords="100,0,200,100" href="http://www.youtube.com/user/theonemetorulethemal" target="_blank">
 							<area shape="rect" alt="G+" coords="200,0,300,100" href="https://plus.google.com/103164028904505410580/posts" target="_blank">
 						</map>
-					<h3>Those other accounts</h3>
+					<h3><g:message code="home.other.title"/></h3>
 				</div>
 				<p>${config.homeOtherInfo}</p>
 			</div>

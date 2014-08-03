@@ -34,7 +34,7 @@
 	</g:if>
 	<sec:ifAllGranted roles="ROLE_ADMIN">
 		<g:if test="${blogInstance.secureUrl}">
-			(<g:link controller="blog" action="showPastSecurity" id="${blogInstance.secureUrl}">Link for sharing</g:link>)
+			(<g:link controller="blog" action="showPastSecurity" id="${blogInstance.secureUrl}"><g:message code="linkForSharing.label"/></g:link>)
 		</g:if>
 	</sec:ifAllGranted>
 	<div class="content">${blogInstance.blogContent}</div>

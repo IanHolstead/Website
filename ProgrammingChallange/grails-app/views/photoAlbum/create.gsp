@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="layout" content="kickstart" />
-	<g:set var="entityName" value="${message(code: 'photoAlbum.label', default: 'PhotoAlbum')}" />
+	<g:set var="entityName" value="${message(code: 'photoAlbum.label')}" />
 	<title><g:message code="default.create.label" args="[entityName]" /></title>
 </head>
 
@@ -24,7 +24,7 @@
 			<g:render template="form"/>
 		</fieldset>
 		<div class="form-actions">
-			<g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+			<g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label')}" />
 			<%--<button class="btn" type="reset">Cancel</button>--%>
 		</div>
 	</g:form>

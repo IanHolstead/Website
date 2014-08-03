@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="layout" content="kickstart" />
-	<g:set var="entityName" value="${message(code: 'photo.label', default: 'Photo')}" />
+	<g:set var="entityName" value="${message(code: 'photo.label')}" />
 	<title><g:message code="default.edit.label" args="[entityName]" /></title>
 </head>
 
@@ -26,8 +26,8 @@
 			<g:render template="form"/>
 		</fieldset>
 		<div class="form-actions">
-			<g:actionSubmit class="btn btn-primary" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-			<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+			<g:actionSubmit class="btn btn-primary" action="update" value="${message(code: 'default.button.update.label')}" />
+			<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message')}');" />
             <button class="btn" type="reset">Cancel</button>
 		</div>
 	</g:form>

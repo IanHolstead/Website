@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="layout" content="kickstart" />
-	<g:set var="entityName" value="${message(code: 'world.label', default: 'World Archive')}" />
+	<g:set var="entityName" value="${message(code: 'world.label')}" />
 	<title>${entityName}</title>
 </head>
 
