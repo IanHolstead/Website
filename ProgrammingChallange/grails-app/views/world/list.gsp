@@ -17,7 +17,7 @@
 		<div class="list-with-photo ${(i % 2) == 0 ? 'odd' : 'even'}${worldInstance.status != 2 && worldInstance.status != 1?' admin':''}">
 			<div class="list-text">
 				<div class="title">
-					<h1><g:link action="show" id="${worldInstance.id}">${worldInstance.title}</g:link></h1>
+					<h1><g:link action="show" id="${worldInstance.getUrl()}">${worldInstance.title}</g:link></h1>
 				</div>
 				
 				<div class="list-summary">

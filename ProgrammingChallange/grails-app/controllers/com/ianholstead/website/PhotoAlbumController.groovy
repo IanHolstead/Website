@@ -6,7 +6,6 @@ import org.springframework.dao.DataIntegrityViolationException
 
 import com.ianholstead.website.Photo;
 import com.ianholstead.website.PhotoAlbum;
-
 import com.ianholstead.security.*
 
 class PhotoAlbumController {
@@ -28,8 +27,6 @@ class PhotoAlbumController {
 		}
 		def photoAlbumCount = photoAlbumInstanceList.size()
 		photoAlbumInstanceList = photoAlbumInstanceList.subList(params.offset-1, Math.min(params.offset-1 + params.max, photoAlbumCount-1))
-		
-		print photoAlbumCount
 		
         [photoAlbumInstanceList: photoAlbumInstanceList, photoAlbumInstanceTotal: photoAlbumCount]
     }
@@ -54,7 +51,7 @@ class PhotoAlbumController {
     }
 
     def show() {
-        def photoAlbumInstance = PhotoAlbum.get(params.id)
+        def photoAlbumInstance = PhotoAlbum.get(getId(params.id))
 		if (!photoAlbumInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label')])
             redirect(action: "list")
@@ -76,7 +73,7 @@ class PhotoAlbumController {
 
 	@Secured(['ROLE_ADMIN'])
     def edit() {
-        def photoAlbumInstance = PhotoAlbum.get(params.id)
+        def photoAlbumInstance = PhotoAlbum.get(getId(params.id))
         if (!photoAlbumInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label')])
             redirect(action: "list")
@@ -103,7 +100,7 @@ class PhotoAlbumController {
             def version = params.version.toLong()
             if (photoAlbumInstance.version > version) {
                 photoAlbumInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'photoAlbum.label', default: 'PhotoAlbum')] as Object[],
+                          [message(code: 'photoAlbum.label')] as Object[],
                           "Another user has updated this PhotoAlbum while you were editing")
                 render(view: "edit", model: [photoAlbumInstance: photoAlbumInstance])
                 return
@@ -118,12 +115,12 @@ class PhotoAlbumController {
         }
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'photoAlbum.label')])
-        redirect(action: "show", id: photoAlbumInstance.id)
+        redirect(action: "show", id: photoAlbumInstance.getUrl())
     }
 
 	@Secured(['ROLE_ADMIN'])
     def delete() {
-        def photoAlbumInstance = PhotoAlbum.get(params.id)
+        def photoAlbumInstance = PhotoAlbum.get(getId(params.id))
         if (!photoAlbumInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photoAlbum.label')])
             redirect(action: "list")
@@ -160,5 +157,10 @@ class PhotoAlbumController {
 		else{
 			return Role.findByAuthority('ROLE_NONE')
 		}
+	}
+	
+	protected getId(String name){
+		int id = PhotoAlbum.findByName(name.replace('-', ' '))?.id
+		id = id?:-1
 	}
 }

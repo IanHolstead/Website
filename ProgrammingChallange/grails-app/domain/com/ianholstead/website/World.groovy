@@ -34,8 +34,8 @@ class World {
 		return title
 	}
 	
-//	static boolean checkIfValid(int id){
-//		
-//	}
+	public def getUrl(){
+		return this.title?.replace(' ', '-')
+	}
 	
 }

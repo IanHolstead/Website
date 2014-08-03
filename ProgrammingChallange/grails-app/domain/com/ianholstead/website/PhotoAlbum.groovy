@@ -24,4 +24,8 @@ class PhotoAlbum {
 	public String toString() {
 		return name;
 	}
+	
+	public def getUrl(){
+		return this.name?.replace(' ', '-')
+	}
 }

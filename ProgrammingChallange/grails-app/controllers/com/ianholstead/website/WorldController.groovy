@@ -9,7 +9,6 @@ import com.ianholstead.website.Photo;
 import com.ianholstead.website.PhotoAlbum;
 import com.ianholstead.website.Thumb;
 import com.ianholstead.website.World;
-
 import com.ianholstead.security.*
 
 
@@ -103,7 +102,7 @@ class WorldController {
 			return
 		}
 		
-		redirect(action:"show", id:current.id)
+		redirect(action:"show", id:current.getUrl())
 	}
 	
 	@Secured(['ROLE_ADMIN'])
@@ -162,7 +161,7 @@ class WorldController {
 	}
 	
     def show() {
-        def worldInstance = World.get(params.id)
+        def worldInstance = World.get(getId(params.id))
 		def photoInstance = worldInstance?.photo
 		def blogInstance = worldInstance?.blog
         
@@ -184,7 +183,7 @@ class WorldController {
 
 	@Secured(['ROLE_ADMIN'])
     def edit() {
-        def worldInstance = World.get(params.id)
+        def worldInstance = World.get(getId(params.id))
 		def photoInstance = worldInstance?.photo
 		def blogInstance = worldInstance?.blog
 		blogInstance.blogContent = blogInstance.blogContent.replaceAll("<br/>", "\n")
@@ -216,7 +215,7 @@ class WorldController {
             def version = params.version.toLong()
             if (worldInstance.version > version) {
                 worldInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'world.label', default: 'World')] as Object[],
+                          [message(code: 'world.label')] as Object[],
                           "Another user has updated this World while you were editing")
                 render(view: "edit", model: [worldInstance: worldInstance, blogInstance:blogInstance, photoInstance:photoInstance])
                 return
@@ -264,12 +263,12 @@ class WorldController {
         }
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'world.label')])
-        redirect(action: "show", id: worldInstance.id)
+        redirect(action: "show", id: worldInstance.getUrl())
     }
 
 	@Secured(['ROLE_ADMIN'])
     def delete() {
-        def worldInstance = World.get(params.id)
+        def worldInstance = World.get(getId(params.id))
 		def photoInstance = worldInstance?.photo
 		def blogInstance = worldInstance?.blog
         
@@ -314,5 +313,10 @@ class WorldController {
 			}
 		}
 		return blogTemp
+	}
+	
+	protected getId(String name){
+		int id = World.findByTitle(name.replace('-', ' '))?.id
+		id = id?:-1
 	}
 }
