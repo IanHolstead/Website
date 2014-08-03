@@ -36,7 +36,7 @@
 		</div>
 	</g:if>
 	<div class="center">
-		<img src="/showPhoto/${photoInstance.getUrl()}.png"/>
+		<img src="/showPhoto/${photoInstance.getUrl()}.png" alt="${photoInstance.photoName}"/>
 		<div class="caption">${photoInstance.photoCaption}</div>
 		
 		<sec:ifAllGranted roles="ROLE_ADMIN">

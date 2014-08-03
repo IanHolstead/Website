@@ -38,10 +38,6 @@ class UrlMappings {
 			action 		= 'showThumb'
 		}
 		
-		"/$controller"{
-			
-		}
-		
 		"/$controller/$action?/$id?"{
 			constraints {
 				controller(matches:/^((?!(api|mobile|web)).*)$/)

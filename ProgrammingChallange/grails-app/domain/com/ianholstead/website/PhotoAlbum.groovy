@@ -16,7 +16,7 @@ class PhotoAlbum {
     }
     
 	static constraints = {
-		name unique: true, nullable: false, blank: false, shared: 'title'
+		name shared: 'title'
 		summary shared:'caption'
     }
 	

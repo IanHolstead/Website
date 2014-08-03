@@ -3,6 +3,7 @@ package com.ianholstead.website
 class Config {
 
 	String homeTitle
+	String homeSubTitle
 	String homeInfo
 	
 	String homeAboutInfo
@@ -25,7 +26,8 @@ class Config {
     }
     
 	static constraints = {
-		homeTitle nullable:false, blank:false, shared:'title'
+		homeTitle shared:'title'
+		homeSubTitle shared:'title'
 		homeInfo nullable:false, blank:false, shared:'caption'
 		
 		homeAboutInfo nullable:false, blank:false, shared:'shortCaption'

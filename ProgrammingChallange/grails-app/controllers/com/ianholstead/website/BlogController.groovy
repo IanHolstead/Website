@@ -17,6 +17,10 @@ class BlogController {
 	def springSecurityService
 	
     def index() {
+		redirect(action: "list", params: params)
+    }
+
+    def list() {
 		params.sort = params.sort?:'date'
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
 		params.offset = params.int('offset')?:1
@@ -27,11 +31,7 @@ class BlogController {
 		}
 		def blogCount = blogInstanceList.size()
 		blogInstanceList = blogInstanceList.subList(params.offset-1, Math.min(params.offset-1 + params.max, blogCount))
-		render(view:'list', model:[blogInstanceList: blogInstanceList, blogInstanceTotal: blogCount])
-    }
-
-    def list() {
-		redirect(action: "index", params: params)
+		[blogInstanceList: blogInstanceList, blogInstanceTotal: blogCount]
     }
 	
 	@Secured(['ROLE_ADMIN'])
@@ -103,7 +103,7 @@ class BlogController {
 		def blogInstance = Blog.findBySecureUrl(params.id)
 		if (!blogInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label')])
-			redirect(action: "index")
+			redirect(action: "list")
 			return
 		}
 		
@@ -116,7 +116,7 @@ class BlogController {
 		
         if (!blogInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label')])
-            redirect(action: "index")
+            redirect(action: "list")
             return
         }
 		
@@ -132,7 +132,7 @@ class BlogController {
         def blogInstance = Blog.get(params.id)
         if (!blogInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label')])
-            redirect(action: "index")
+            redirect(action: "list")
             return
         }
 
@@ -178,19 +178,19 @@ class BlogController {
         def blogInstance = Blog.get(getBlogId(params.id))
 		if(World.findByBlog(blogInstance)){
 			flash.message = message(code: 'default.no.delete.world.message', args: [message(code: 'blog.label')])
-			redirect(action: "index")
+			redirect(action: "list")
 			return
 		}
         if (!blogInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label')])
-            redirect(action: "index")
+            redirect(action: "list")
             return
         }
 
         try {
             blogInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'blog.label')])
-            redirect(action: "index")
+            redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'blog.label')])

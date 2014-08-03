@@ -4,15 +4,17 @@
 <%@ page import="com.ianholstead.website.Config" %>
 <html>
 
+<g:set var="config" value="${Config.get(1)}"/>
+
 <head>
-	<title><g:message code="home.title"/> </title>
+	<title>${config.homeTitle}</title>
 	<meta name="layout" content="kickstart" />
 </head>
 
 <body>
 	<section id="intro" class="first">
-		<h1>${Config.get(1).homeTitle}</h1>
-		<p>${Config.get(1).homeInfo}</p>
+		<h1>${config.homeSubTitle}</h1>
+		<p>${config.homeInfo}</p>
 	</section>
 
 	<section id="info">
@@ -23,7 +25,7 @@
 			    	<div class="center big-wrapper">
 						<div class="big-image-wrapper">
 				    		<g:link controller="world" action="currentWeek">
-				    			<img class="big-front-page-image" src="/showThumb/${currentWorld?.photo?.getUrl()}.png" alt="${currentWorld?.photo?.photoCaption}"/>
+				    			<img class="big-front-page-image" src="/showThumb/${currentWorld?.photo?.getUrl()}.png" alt="${currentWorld?.photo?.photoName}"/>
 							</g:link>
 						</div>
 						<h3>${currentWorld?.title}</h3>
@@ -48,10 +50,10 @@
 							<g:set var="picture" value="${Photo.findAllByShowOnHomePage(true)}"/>
 							<g:set var="rand" value="${new Random()}"/>
 							<g:if test="${picture.size()>1}">
-								<img class="big-front-page-image" src="/showThumb/${picture[rand.nextInt(picture.size()-1)].getUrl()}.png" alt="${picture[rand.nextInt(picture.size()-1)].photoCaption}"/>
+								<img class="big-front-page-image" src="/showThumb/${picture[rand.nextInt(picture.size()-1)].getUrl()}.png" alt="${picture[rand.nextInt(picture.size()-1)].photoNAme}"/>
 							</g:if>
 							<g:elseif test="${picture.size()==1}">
-								<img class="big-front-page-image" src="/showThumb/${picture[0].getUrl()}.png" alt="${picture[0].photoCaption}"/>
+								<img class="big-front-page-image" src="/showThumb/${picture[0].getUrl()}.png" alt="${picture[0].photoName}"/>
 							</g:elseif>
 							<g:else>
 								<img class="big-front-page-image" src="${resource(dir: 'images/home_icons',file: 'photo_blog.jpg')}" />
@@ -60,7 +62,7 @@
 					</div>
 					<h3>Photo Albums</h3>
 				</div>
-				<p>${Config.get(1).homePhotoInfo}</p>
+				<p>${config.homePhotoInfo}</p>
 			</div>
 	    	<div class="span4">
 		    	<div class="center big-wrapper">
@@ -71,7 +73,7 @@
 					</div>
 					<h3>About me.</h3>
 				</div>
-				<p>${Config.get(1).homeAboutInfo}</p>
+				<p>${config.homeAboutInfo}</p>
 			</div>
 	    </div>
 	</section>
@@ -88,7 +90,7 @@
 						</map>
 					<h3>Connect with me!</h3>
 				</div>
-				<p>${Config.get(1).homeConnectInfo}</p>
+				<p>${config.homeConnectInfo}</p>
 			</div>
 	    	<div class="span4">
 		    	<div class="center">
@@ -99,7 +101,7 @@
 						</map>
 					<h3>Programming</h3>
 				</div>
-				<p>${Config.get(1).homeProgrammingInfo}</p>
+				<p>${config.homeProgrammingInfo}</p>
 			</div>
 	    	<div class="span4">
 		    	<div class="center">
@@ -111,7 +113,7 @@
 						</map>
 					<h3>Those other accounts</h3>
 				</div>
-				<p>${Config.get(1).homeOtherInfo}</p>
+				<p>${config.homeOtherInfo}</p>
 			</div>
 	    </div>
 	</section>

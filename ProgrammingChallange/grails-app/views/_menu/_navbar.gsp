@@ -16,7 +16,7 @@
        		<div class="nav-collapse">
        			<g:set var="controllerList" value="${['world','world','photoAlbum','blog']}"/>
        			<g:set var="controllerNameList" value="${['My world this week','World Achive','Photo Albums','Blog Archive']}"/>
-       			<g:set var="actionList" value="${['currentWeek','list','list','']}"/>
+       			<g:set var="actionList" value="${['currentWeek','list','list','list']}"/>
        			<ul class="nav">
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Browse <b class="caret"></b></a>

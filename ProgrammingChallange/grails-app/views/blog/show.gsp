@@ -20,7 +20,7 @@
 			</div>
 			
 			<div class="center">
-				<g:link controller="blog" action="">
+				<g:link controller="blog" action="list">
 					<span class="icon-th-list"></span> <g:message code="default.archive.label" args="${[message(code: 'blog.label')]}"/>
 				</g:link>
 			</div>
@@ -48,7 +48,7 @@
 			</div>
 			
 			<div class="center">
-				<g:link controller="blog" action="">
+				<g:link controller="blog" action="list">
 					<span class="icon-th-list"></span> <g:message code="default.archive.label" args="${[message(code: 'blog.label')]}"/>
 				</g:link>
 			</div>

@@ -17,10 +17,10 @@ class Blog {
     }
     
 	static constraints = {
-		blogTitle nullable:false, blank:false, shared:'title',unique:true
+		blogTitle shared:'title'
 		blogSummary shared:'caption'
 		blogContent maxSize: 35000
-		authenticationLevel nullable:true 
+		authenticationLevel nullable:false 
 		secureUrl unique:true 
     }
 	

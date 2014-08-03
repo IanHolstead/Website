@@ -22,7 +22,7 @@ class World {
 	}
 	
     static constraints = {
-		title nullable:false, blank:false, shared:'title',unique:true
+		title shared:'title'
 		summary shared: 'caption'
 		videoCaption shared:'caption'  
 		xkcd url:true 
