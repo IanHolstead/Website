@@ -6,6 +6,26 @@
 </head>
 
 <body>
+	<section id="v1_0_4" class="section">
+	    <h1><g:message code="change.1.0.4.title" default="1.0.4"/></h1>
+	    <div>This change focused on refactoring and general cleanup (<g:link url="changelog/1.0.4">Full change log</g:link>): 2014-08-03</div>
+	    <div class="small_title">New Features</div>
+	    <ul>
+			<li>Added navigation to blogs, worlds and photo albums</li>
+			<li>Improved URLs</li>
+			<li>Added config object</li>
+	     </ul>
+	    <div class="small_title">Bug Fixes</div>
+	    <ul>
+			<li>Blogs and worlds do not have dates</li>
+			<li>Change version number (oops)</li>
+			<li>Fixed alt text on pictures</li>
+	     </ul>
+	    <div class="small_title">Tasks/Other</div>
+	    <ul>
+			<li>Externalized strings</li>
+	     </ul>
+	</section>
 	<section id="v1_0_3" class="section">
 	    <h1><g:message code="change.1.0.3.title" default="1.0.3"/></h1>
 	    <div>This change has lots of bug fixes but little in terms of new features (<g:link url="changelog/1.0.3">Full change log</g:link>): 2014-07-10</div>
