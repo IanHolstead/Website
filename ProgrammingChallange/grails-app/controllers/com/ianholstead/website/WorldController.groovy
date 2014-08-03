@@ -73,12 +73,14 @@ class WorldController {
 			return
 		}
 		
+		blogInstance.date = createDate()
 		blogInstance.blogContent = parseBlog(params.blogContent)
 		blogInstance.authenticationLevel = worldInstance.status == 1 || worldInstance.status == 2?
 			Role.findByAuthority("ROLE_NONE") : Role.findByAuthority("ROLE_ADMIN")
 		blogInstance.save()
 		
 		
+		worldInstance.date = createDate()
 		worldInstance.photo = photoInstance
 		worldInstance.blog = blogInstance
         if (!worldInstance.save(flush:true)) {
@@ -137,6 +139,7 @@ class WorldController {
 			else{
 				currentWorld[0]?.status= 2
 				blogVisiblity(nextWorld.blog, true)
+				nextWorld.date = createDate()
 				nextWorld.status = 1
 				nextWorld.save(flush:true)
 			}
@@ -156,6 +159,9 @@ class WorldController {
 	}
 	
 	protected def blogVisiblity(Blog blog, boolean makeVisible){
+		if(makeVisible){
+			blog.date = createDate()
+		}
 		blog.authenticationLevel = makeVisible? Role.findByAuthority("ROLE_NONE") : Role.findByAuthority("ROLE_ADMIN")
 		blog.save()
 	}
@@ -258,6 +264,9 @@ class WorldController {
 		blogInstance.properties = params
 		photoInstance.properties = params
 		
+		worldInstancedate = createDate()
+		
+		blogInstance.date = createDate()
 		blogInstance.blogContent = parseBlog(params.blogContent)
 		blogInstance.authenticationLevel = worldInstance.status == 1 || worldInstance.status == 2?
 			Role.findByAuthority("ROLE_NONE") : Role.findByAuthority("ROLE_ADMIN")
@@ -350,5 +359,10 @@ class WorldController {
 	protected getId(String name){
 		int id = World.findByTitle(name.replace('-', ' '))?.id
 		id = id?:-1
+	}
+	
+	protected def createDate(){
+		def todayDate = new java.sql.Date(new Date().time)
+		todayDate.clearTime()
 	}
 }

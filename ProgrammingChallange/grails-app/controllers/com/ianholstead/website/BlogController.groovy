@@ -43,11 +43,12 @@ class BlogController {
     def save() {
 		params.authenticationLevel = Role.findByAuthority(params.authenticationLevel)
 		String randomString = null
-		while (params.secureUrl && !randomString && randomString != Blog.findBySecureUrl(randomString)) {
+		while (params.secureUrl && (!randomString || randomString == Blog.findBySecureUrl(randomString))) {
 			randomString = RandomStringUtils.random(10, ((('A'..'Z') + ('0'..'9')).join()).toCharArray())
 		}
 		params.secureUrl = randomString
         def blogInstance = new Blog(params)
+		blogInstance.date = createDate()
 		blogInstance.blogContent = parseBlog(params.blogContent)
         if (!blogInstance.save(flush: true)) {
             render(view: "create", model: [blogInstance: blogInstance])
@@ -150,7 +151,7 @@ class BlogController {
 		String randomString = null
 		if(params.secureUrl){
 			if(!blogInstance.secureUrl){ 
-				while (!randomString && randomString != Blog.findBySecureUrl(randomString)) {
+				while (!randomString || randomString == Blog.findBySecureUrl(randomString)) {
 					randomString = RandomStringUtils.random(10, ((('A'..'Z') + ('0'..'9')).join()).toCharArray())
 				}
 			}
@@ -159,9 +160,9 @@ class BlogController {
 			}
 		}
 		
-		
 		params.authenticationLevel = Role.findByAuthority(params.authenticationLevel)
         blogInstance.properties = params
+		blogInstance.date = createDate()
 		blogInstance.secureUrl = randomString
 		blogInstance.blogContent = parseBlog(params.blogContent)
         if (!blogInstance.save(flush: true)) {
@@ -227,5 +228,10 @@ class BlogController {
 			}
 		}
 		return blogTemp
+	}
+	
+	protected def createDate(){
+		def todayDate = new java.sql.Date(new Date().time)
+		todayDate.clearTime()
 	}
 }

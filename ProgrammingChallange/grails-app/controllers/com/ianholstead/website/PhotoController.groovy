@@ -43,7 +43,7 @@ class PhotoController {
 		params.authenticationLevel = params.album.authenticationLevel
 		
 		String randomString = null
-		while (params.secureUrl && !randomString && randomString != Photo.findBySecureUrl(randomString)) {
+		while (params.secureUrl && (!randomString || randomString == Photo.findBySecureUrl(randomString))) {
 			randomString = RandomStringUtils.random(10, ((('A'..'Z') + ('0'..'9')).join()).toCharArray())
 		}
 		params.secureUrl = randomString
@@ -175,7 +175,7 @@ class PhotoController {
 		String randomString = null
 		if(params.secureUrl){
 			if(!photoInstance.secureUrl){ 
-				while (!randomString && randomString != Photo.findBySecureUrl(randomString)) {
+				while (!randomString || randomString == Photo.findBySecureUrl(randomString)) {
 					randomString = RandomStringUtils.random(10, ((('A'..'Z') + ('0'..'9')).join()).toCharArray())
 				}
 			}
