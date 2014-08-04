@@ -11,6 +11,7 @@ class UrlMappings {
 		"/systeminfo"	(view:"/siteinfo/systeminfo")
 		"/site/changelog"	(view:"/siteinfo/changelog")
 		"/site/changelog/1.0.3"	(view:"/siteinfo/fullchangelogs/1.0.3")
+		"/site/changelog/1.0.4"	(view:"/siteinfo/fullchangelogs/1.0.4")
 		
 		"/accessdenied"	(view:'/_errors/noAccess')
 		

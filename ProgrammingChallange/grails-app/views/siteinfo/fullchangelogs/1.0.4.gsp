@@ -13,7 +13,7 @@
 	<ul>
 	<li>[WS-20] -         Better error messages for blogs, etc not found
 	</li>
-	<li>[WS-31] -         Blog&#39;s do not have date
+	<li>[WS-31] -         Blogs do not have date
 	</li>
 	<li>[WS-48] -         Add config domain object
 	</li>

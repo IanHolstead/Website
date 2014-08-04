@@ -22,7 +22,7 @@
 		
 		<div class="center">
 			<g:link controller="photoAlbum" action="list">
-				<span class="icon-th-list"></span> <g:message code="photoAlbum.label"/>
+				<span class="icon-th-list"></span> <g:message code="photoAlbums.label"/>
 			</g:link>
 		</div>
 		

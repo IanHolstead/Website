@@ -13,7 +13,7 @@
 	    <ul>
 			<li>Added navigation to blogs, worlds and photo albums</li>
 			<li>Improved URLs</li>
-			<li>Added config object</li>
+			<li>Added config object allowing most text on the site to be edited at any point</li>
 	     </ul>
 	    <div class="small_title">Bug Fixes</div>
 	    <ul>
@@ -23,7 +23,7 @@
 	     </ul>
 	    <div class="small_title">Tasks/Other</div>
 	    <ul>
-			<li>Externalized strings</li>
+			<li>Externalized strings, if you see a.weird.title that is why... Let me know if you see one!</li>
 	     </ul>
 	</section>
 	<section id="v1_0_3" class="section">

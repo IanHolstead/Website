@@ -23,7 +23,7 @@
 			</div>
 			
 			<div class="center">
-				<g:link controller="photoAlbum" action="show" id="${photoInstance.album.id}">
+				<g:link controller="photoAlbum" action="show" id="${photoInstance.album.getUrl()}">
 					<span class="icon-th-list"></span> ${photoInstance.album}
 				</g:link>
 			</div>
@@ -54,7 +54,7 @@
 			</div>
 			
 			<div class="center">
-				<g:link controller="photoAlbum" action="show" id="${photoInstance.album.id}">
+				<g:link controller="photoAlbum" action="show" id="${photoInstance.album.getUrl()}">
 					<span class="icon-th-list"></span> ${photoInstance.album}
 				</g:link>
 			</div>
