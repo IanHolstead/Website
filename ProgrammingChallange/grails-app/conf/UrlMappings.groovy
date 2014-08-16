@@ -12,6 +12,7 @@ class UrlMappings {
 		"/site/changelog"	(view:"/siteinfo/changelog")
 		"/site/changelog/1.0.3"	(view:"/siteinfo/fullchangelogs/1.0.3")
 		"/site/changelog/1.0.4"	(view:"/siteinfo/fullchangelogs/1.0.4")
+		"/robots.txt"	(view:"/siteinfo/other/robots")
 		
 		"/accessdenied"	(view:'/_errors/noAccess')
 		
