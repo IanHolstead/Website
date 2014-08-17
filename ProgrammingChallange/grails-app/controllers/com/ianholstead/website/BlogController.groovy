@@ -202,7 +202,7 @@ class BlogController {
 	
 	
 	protected getBlogId(String name){
-		int id = Blog.findByBlogTitle(name.replace('-', ' '))?.id
+		def id = Blog.findByBlogTitle(name.replace('-', ' '))?.id
 		id = id?:-1
 	}
 	

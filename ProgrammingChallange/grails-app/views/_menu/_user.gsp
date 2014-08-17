@@ -50,10 +50,10 @@
 	</li>
 </ul>
 
-<noscript>
-<ul class="nav pull-right">
-	<li class="">
-		<g:link controller="user" action="show"><g:message code="default.user.unknown.label"/></g:link>
-	</li>
-</ul>
-</noscript>
+<%--<noscript>--%>
+<%--<ul class="nav pull-right">--%>
+<%--	<li class="">--%>
+<%--		<g:link controller="user" action="show"><g:message code="default.user.unknown.label"/></g:link>--%>
+<%--	</li>--%>
+<%--</ul>--%>
+<%--</noscript>--%>

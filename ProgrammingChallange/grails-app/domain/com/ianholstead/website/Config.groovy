@@ -20,6 +20,9 @@ class Config {
 	String contactSkype
 	String contactMapUrl
 	
+	String employPhone
+	String employEmail
+	
 	String footerAboutInfo
 	
     static mapping = {
@@ -43,7 +46,10 @@ class Config {
 		contactLinkedIn nullable:false, blank:false, shared:'shortCaption'
 		contactSkype nullable:false, blank:false, shared:'shortCaption'
 		contactMapUrl nullable:false, blank:false, shared:'caption'
-			
+		
+		employPhone nullable:false, blank:false, shared:'shortCaption'
+		employEmail nullable:false, blank:false, shared:'shortCaption'
+		
 		footerAboutInfo nullable:false, blank:false, shared:'caption'
     }
 	

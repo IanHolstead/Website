@@ -40,7 +40,9 @@
 					<%--<g:render template="/_menu/config"/>--%>
 					<g:render template="/_menu/user"/>
 					<g:render template="/_menu/info"/>	
-					<%--<g:render template="/_menu/admin"/>--%>
+					<sec:ifAnyGranted roles="ROLE_ADMIN">
+						<g:render template="/_menu/admin"/>
+					</sec:ifAnyGranted>
 					<%--<g:render template="/_menu/search"/> --%>
 	  			</div>
 

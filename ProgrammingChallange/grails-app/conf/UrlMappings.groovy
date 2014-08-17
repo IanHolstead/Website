@@ -15,6 +15,7 @@ class UrlMappings {
 		"/robots.txt"	(view:"/siteinfo/other/robots")
 		
 		"/accessdenied"	(view:'/_errors/noAccess')
+		"/invalidUrl"	(view:'/_errors/politieNoAccess')
 		
 		/* 
 		 * Pages with controller
@@ -28,6 +29,16 @@ class UrlMappings {
 		"/s/$id"{
 			controller 	= 'upload'
 			action 		= 'show'
+		}
+		
+		"/employ/$id"{
+			controller	= 'employment'
+			action		= 'index'
+		}
+		
+		"/resume/$id/ianholstead.pdf"{
+			controller 	= 'employment'
+			action 		= 'getResume'
 		}
 		
 		"/showPhoto/$id"{

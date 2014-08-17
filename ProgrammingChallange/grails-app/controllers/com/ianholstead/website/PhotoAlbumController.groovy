@@ -186,7 +186,7 @@ class PhotoAlbumController {
 	}
 	
 	protected getId(String name){
-		int id = PhotoAlbum.findByName(name.replace('-', ' '))?.id
+		def id = PhotoAlbum.findByName(name.replace('-', ' '))?.id
 		id = id?:-1
 	}
 }

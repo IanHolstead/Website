@@ -90,15 +90,15 @@
 		</g:if>
 	</g:if>
 	<g:else>
-		<div id="error-info">
+		<div id="error-info" class="big-message" style="margin:0">
 			<div class="info center"><g:message code="site.500.error.message"/></div>
 			<div class="image center">
 				<g:img alt="Claptrap" dir="images/info" file="claptrap.png" />
 			</div>
-			<div class="actions">
+			<div class="actions center">
 				<a href="javascript:history.go(-1)" class="btn btn-large btn-primary">
 					<i class="icon-chevron-left icon-white"></i>
-					<g:message code="site.no.return.label"/>
+					<g:message code="default.button.back.label"/>
 				</a>
 				<a href="/" class="btn btn-large btn-success">
 					<i class="icon-home"></i>

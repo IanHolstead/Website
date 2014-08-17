@@ -76,7 +76,7 @@ class PhotoController {
         def photoInstance = Photo.get(getId(params.id))
 		if (!photoInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
-			redirect(action: "list")
+			redirect(controller: "photoAlbum", action: "list")
 			return
 		}
 		
@@ -242,7 +242,7 @@ class PhotoController {
 	}
 	
 	protected getId(String name){
-		int id = Photo.findByPhotoName(name.replace('-', ' '))?.id
+		def id = Photo.findByPhotoName(name.replace('-', ' '))?.id
 		id = id?:-1
 	}
 }

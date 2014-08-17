@@ -150,6 +150,22 @@
 					<span class="help-inline">${hasErrors(bean: configInstance, field: 'footerAboutInfo', 'error')}</span>
 				</div>
 			</div>
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: configInstance, field: 'employEmail', 'error')} required">
+				<label for="employEmail" class="control-label"><g:message code="config.employEmail.label"/><span class="required-indicator">*</span></label>
+				<div class="controls">
+					<g:textArea name="employEmail" cols="40" rows="5" maxlength="35000" required="" value="${configInstance?.employEmail}"/>
+					<span class="help-inline">${hasErrors(bean: configInstance, field: 'employEmail', 'error')}</span>
+				</div>
+			</div>
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: configInstance, field: 'employPhone', 'error')} required">
+				<label for="employPhone" class="control-label"><g:message code="config.employPhone.label"/><span class="required-indicator">*</span></label>
+				<div class="controls">
+					<g:textArea name="employPhone" cols="40" rows="5" maxlength="35000" required="" value="${configInstance?.employPhone}"/>
+					<span class="help-inline">${hasErrors(bean: configInstance, field: 'employPhone', 'error')}</span>
+				</div>
+			</div>
 		</fieldset>
 		<div class="form-actions">
 			<g:actionSubmit class="btn btn-primary" action="update" value="${message(code: 'default.button.update.label')}" />

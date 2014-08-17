@@ -264,7 +264,7 @@ class WorldController {
 		blogInstance.properties = params
 		photoInstance.properties = params
 		
-		worldInstancedate = createDate()
+		worldInstance.date = createDate()
 		
 		blogInstance.date = createDate()
 		blogInstance.blogContent = parseBlog(params.blogContent)
@@ -357,7 +357,7 @@ class WorldController {
 	}
 	
 	protected getId(String name){
-		int id = World.findByTitle(name.replace('-', ' '))?.id
+		def id = World.findByTitle(name.replace('-', ' '))?.id
 		id = id?:-1
 	}
 	
