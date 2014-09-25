@@ -56,7 +56,7 @@ class BlogController {
         }
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'blog.label')])
-        redirect(action: "show", id: blogInstance.id)
+        redirect(action: "show", id: blogInstance.getUrl())
     }
 
     def show() {

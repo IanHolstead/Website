@@ -91,7 +91,7 @@ class WorldController {
         }
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'world.label')])
-        redirect(action: "show", id: worldInstance.id)
+        redirect(action: "show", id: worldInstance.getUrl())
     }
 	
 	def currentWeek(){
