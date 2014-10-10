@@ -80,10 +80,18 @@
 #error-info .image{
 	margin: 8px;
 }
+
 #error-info .info{
 	font-size: large;
 }
 
+#error-info section{
+	padding-top: 0;
+}
+
+#Error .big-message{
+	margin-top: 4em;
+}
 
 /************* Footer **************/
 
