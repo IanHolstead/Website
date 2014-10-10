@@ -5,8 +5,21 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="layout" content="kickstart" />
-	<g:set var="entityName" value="${message(code: 'employ.label', default: 'Employ')}" />
+	<g:set var="entityName" value="${message(code: 'employ.label')}" />
+	<g:if env="development">
+		<g:set var="url" value="http://localhost:8090/employ/"/>
+	</g:if>
+	<g:else>
+		<g:set var="url" value="http://ianholstead.com/employ/"/>
+	</g:else>
 	<title><g:message code="default.list.label" args="[entityName]" /></title>
+	<content tag="include.bottom">
+		<script type="text/javascript">
+			function copyToClipboard(text) {
+				window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+			}
+		</script>
+	</content>
 </head>
 
 <body>
@@ -24,8 +37,8 @@
 		<tbody>
 		<g:each in="${employmentInstanceList}" status="i" var="employmentInstance">
 			<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-				<td>${employmentInstance.about}</td>
-				<td><g:link action="edit" id="${employmentInstance.id}">${fieldValue(bean: employmentInstance, field: "url")}</g:link></td>
+				<td><g:link action="edit" id="${employmentInstance.id}">${employmentInstance.about}</g:link></td>
+				<td><div onclick="copyToClipboard('${url+employmentInstance.url}')"><g:link url="#"><g:message code="employ.copy.label"/></g:link></div></td>
 				<td><g:formatNumber number="${employmentInstance.views}"/></td>
 			</tr>
 		</g:each>
@@ -37,5 +50,4 @@
 </section>
 
 </body>
-
 </html>
