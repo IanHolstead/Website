@@ -21,7 +21,7 @@
 	     </ul>
 	    <div class="small_title">Tasks/Other</div>
 	    <ul>
-			<li>Added google webmaster tools!</li>
+			<li>Added google analytics and webmaster tools!</li>
 			<li>Moved repo to github! The repo is private due to passwords in the repo...</li>
 	     </ul>
 	</section>

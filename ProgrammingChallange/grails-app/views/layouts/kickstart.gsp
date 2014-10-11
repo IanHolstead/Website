@@ -17,6 +17,8 @@
 	<r:require modules="${session.skin ? session.skin            : 'bootstrap'}"/>
 	<r:require modules="${session.skin ? session.skin + '_utils' : 'bootstrap_utils'}"/>
 	
+	<g:javascript src="google.js" />
+	
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'general.css')}" type="text/css">
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'controller-pages.css')}" type="text/css">
 	<link rel="stylesheet" href="${resource(dir: 'css', file: 'static-pages.css')}" type="text/css">
