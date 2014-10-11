@@ -6,6 +6,25 @@
 </head>
 
 <body>
+	<section id="v1_0_5" class="section">
+	    <h1><g:message code="change.1.0.5.title" default="1.0.5"/></h1>
+	    <div>Dynamic pages update! I'm slowly moving old static pages to dynamic ones (<g:link url="changelog/1.0.5">Full change log</g:link>): 2014-10-10</div>
+	    <div class="small_title">New Features</div>
+	    <ul>
+			<li>Added employment section where I can share my contact info and resume with employers</li>
+	     </ul>
+	    <div class="small_title">Bug Fixes</div>
+	    <ul>
+			<li>Lots of little CSS fixes</li>
+			<li>Lots of employment bug fixes</li>
+			<li>Fixed a few incorrectly externalized strings</li>
+	     </ul>
+	    <div class="small_title">Tasks/Other</div>
+	    <ul>
+			<li>Added google analytics and webmaster tools!</li>
+			<li>Moved repo to github! The repo is private due to passwords in the repo...</li>
+	     </ul>
+	</section>
 	<section id="v1_0_4" class="section">
 	    <h1><g:message code="change.1.0.4.title" default="1.0.4"/></h1>
 	    <div>This change focused on refactoring and general cleanup (<g:link url="changelog/1.0.4">Full change log</g:link>): 2014-08-03</div>

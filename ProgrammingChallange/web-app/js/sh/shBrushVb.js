@@ -25,7 +25,7 @@
 						'Boolean ByRef Byte ByVal Call Case Catch CBool CByte CChar CDate ' +
 						'CDec CDbl Char CInt Class CLng CObj Const CShort CSng CStr CType ' +
 						'Date Decimal Declare Default Delegate Dim DirectCast Do Double Each ' +
-						'Else ElseIf End Enum Erase Error Event Exit False Finally For ***REMOVED*** ' +
+						'Else ElseIf End Enum Erase Error Event Exit False Finally For Friend ' +
 						'Function Get GetType GoSub GoTo Handles If Implements Imports In ' +
 						'Inherits Integer Interface Is Let Lib Like Long Loop Me Mod Module ' +
 						'MustInherit MustOverride MyBase MyClass Namespace New Next Not Nothing ' +

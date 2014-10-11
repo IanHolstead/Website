@@ -170,7 +170,8 @@
 		<div class="form-actions">
 			<g:actionSubmit class="btn btn-primary" action="update" value="${message(code: 'default.button.update.label')}" />
 			<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message')}');" />
-            <button class="btn" type="reset">Cancel</button>
+            <button class="btn" type="reset"><g:message code="default.button.reset.label"/></button>
+            <g:link class="btn" url="/"><g:message code="default.button.cancel.label"/></g:link>
 		</div>
 	</g:form>
 
