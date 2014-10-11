@@ -11,42 +11,27 @@ class BootStrap {
 	   
 	   def adminRole
 	   
-	   if(User.count() == 0){
-		   if(Role.count() !=0 || UserRole.count() !=0){
-			   assert false
-		   }
-		   def superAdminRole = new Role(authority: 'ROLE_SUPER_ADMIN').save(flush: true)//For Ian only
-		   	   adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)//For admins, if such a day comes
-		   def awesomeUserRole = new Role(authority:'ROLE_AWESOME_USER').save(flush: true)//For friends who can participate in programming chalanges 
-		   def superUserRole = new Role(authority: 'ROLE_SUPER_USER').save(flush: true)//For close friends - all blogs can be seen
-		   def userRole = new Role(authority: 'ROLE_USER').save(flush: true)//For the average friend
-		   def none = new Role(authority: 'ROLE_NONE').save(flush: true)//Unauthenticated
-		   def ian = new User(username: '***REMOVED***', enabled: true, password: '***REMOVED***')
-		   ian.save(flush: true)
-		   def friend = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
-		   friend.save(flush:true)
-		   def family = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
-		   family.save(flush:true)
-		   def admin = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
-		   admin.save(flush:true)
-		   def alicia = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
-		   alicia.save(flush:true)
-		   def mom = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
-		   mom.save(flush:true)
-		   
-		   UserRole.create ian, superAdminRole, true
-		   UserRole.create friend, userRole, true
-		   UserRole.create family, superUserRole, true
-		   UserRole.create admin, adminRole, true
-		   UserRole.create alicia, awesomeUserRole, true
-		   UserRole.create mom, adminRole, true
-		   
-		   assert User.count() == 6
-		   assert Role.count() == 6
-		   assert UserRole.count() == 6
+	   if(Role.count() == 0){
+		   def superAdminRole = new Role(authority: 'ROLE_SUPER_ADMIN').save(flush: true)	//For Ian only
+			   adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)				//For admins, if such a day comes
+		   def awesomeUserRole = new Role(authority:'ROLE_AWESOME_USER').save(flush: true)	//For friends who can participate in programming challenges
+		   def superUserRole = new Role(authority: 'ROLE_SUPER_USER').save(flush: true)		//For close friends - all blogs can be seen
+		   def userRole = new Role(authority: 'ROLE_USER').save(flush: true)				//For the average friend
+		   def none = new Role(authority: 'ROLE_NONE').save(flush: true)					//Unauthenticated
 	   }
 	   else{
 		   adminRole = Role.findByAuthority("ROLE_ADMIN")
+		   assert adminRole
+	   }
+	   
+	   assert Role.count() == 6
+	   	   
+	   def usertCount = Users.count()
+	   if(UserRole.count() != userCount){
+		   assert false //you need to fix dangling data
+	   }
+	   if(userCount ==0){
+			 //create new users
 	   }
 	   
 	   if(!PhotoAlbum.findByName("World")){
@@ -61,7 +46,8 @@ class BootStrap {
 	   assert PhotoAlbum.findByName("Blog")
 	   
 	   if(Config.count == 0){
-	   		println "There is no config object!"
+		   println "There is no config object!"
+		   //TODO add config object of none exists
 	   }
 	   else if(!Config.get(1)){
 		   println "There was more then one config object"
