@@ -46,4 +46,7 @@
 		width: 100%;
 		padding-bottom: 56.25%;
 	}
+	#list-photoAlbum .list-text{
+	 width: 100%;
+	}
 }

@@ -7,87 +7,89 @@
 
   <body>
 	  <g:if env="development">
-		<section id="overview" class="">
-	    	<div class="alert alert-error">
-				${request.'javax.servlet.error.message'?.indexOf(':') == null ? request.'javax.servlet.error.message'?.encodeAsHTML()	: request.'javax.servlet.error.message'?.substring(0, request.'javax.servlet.error.message'?.indexOf(':')).encodeAsHTML()}
-				<g:if test="${exception}">
-					${exception.className}
-					at line ${exception.lineNumber}
-				</g:if>
-	 	   </div>
-		</section>
-			
-		<section id="details" class="">
-		    <h2><g:message code="site.500.details.message"/></h2>
-		  	<div class="message">
-				<table class="table">
-					<tbody>
-						<tr>
-							<td><strong>Error ${request.'javax.servlet.error.status_code'}</strong></td>
-							<td>
-								${request.'javax.servlet.error.message'.encodeAsHTML()}
-							</td>
-						</tr>
-						<tr>
-							<td><strong>Servlet</strong></td>
-							<td>
-								${request.'javax.servlet.error.servlet_name'}
-							</td>
-						</tr>
-						<tr>
-							<td><strong>URI</strong></td>
-							<td>
-								${request.'javax.servlet.error.request_uri'}
-							</td>
-						</tr>
+		  <div id="error-info" style="margin:0">
+			<section id="overview" class="">
+		    	<div class="alert alert-error">
+					${request.'javax.servlet.error.message'?.indexOf(':') == null ? request.'javax.servlet.error.message'?.encodeAsHTML()	: request.'javax.servlet.error.message'?.substring(0, request.'javax.servlet.error.message'?.indexOf(':')).encodeAsHTML()}
 					<g:if test="${exception}">
-						<tr>
-							<td><strong>Exception Message:</strong></td>
-							<td>
-								${exception.message?.encodeAsHTML()}
-							</td>
-						</tr>
-						<tr>
-							<td><strong>Caused by:</strong></td>
-							<td>
-								${exception.cause?.message?.encodeAsHTML()}
-							</td>
-						</tr>
-						<tr>
-							<td><strong>Class:</strong></td>
-							<td>
-								${exception.className}
-							</td>
-						</tr>
-						<tr>
-							<td><strong>At Line:</strong>
-							</td>
-							<td> [${exception.lineNumber}]</td>
-						</tr>
-				  		<tr>
-							<td><strong>Code Snippet:</strong></td>
-							<td>
-					  		<div class="snippet">
-					  			<g:each var="cs" in="${exception.codeSnippet}">
-					  				${cs?.encodeAsHTML()}<br />
-					  			</g:each>
-					  		</div>
-					  		</td>
-						</tr>
+						${exception.className}
+						at line ${exception.lineNumber}
 					</g:if>
-					</tbody>
-				</table>
-		  	</div>
-		</section>
-	
-		<g:if test="${exception}">
-			<section id="exception">
-			    <h2><g:message code="site.500.stack.message"/></h2>
-			    <div class="stack">
-			      <pre><g:each in="${exception.stackTraceLines}">${it.encodeAsHTML()}<br/></g:each></pre>
-			    </div>
+		 	   </div>
 			</section>
-		</g:if>
+				
+			<section id="details" class="">
+			    <h2><g:message code="site.500.details.message"/></h2>
+			  	<div class="message">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td><strong>Error ${request.'javax.servlet.error.status_code'}</strong></td>
+								<td>
+									${request.'javax.servlet.error.message'.encodeAsHTML()}
+								</td>
+							</tr>
+							<tr>
+								<td><strong>Servlet</strong></td>
+								<td>
+									${request.'javax.servlet.error.servlet_name'}
+								</td>
+							</tr>
+							<tr>
+								<td><strong>URI</strong></td>
+								<td>
+									${request.'javax.servlet.error.request_uri'}
+								</td>
+							</tr>
+						<g:if test="${exception}">
+							<tr>
+								<td><strong>Exception Message:</strong></td>
+								<td>
+									${exception.message?.encodeAsHTML()}
+								</td>
+							</tr>
+							<tr>
+								<td><strong>Caused by:</strong></td>
+								<td>
+									${exception.cause?.message?.encodeAsHTML()}
+								</td>
+							</tr>
+							<tr>
+								<td><strong>Class:</strong></td>
+								<td>
+									${exception.className}
+								</td>
+							</tr>
+							<tr>
+								<td><strong>At Line:</strong>
+								</td>
+								<td> [${exception.lineNumber}]</td>
+							</tr>
+					  		<tr>
+								<td><strong>Code Snippet:</strong></td>
+								<td>
+						  		<div class="snippet">
+						  			<g:each var="cs" in="${exception.codeSnippet}">
+						  				${cs?.encodeAsHTML()}<br />
+						  			</g:each>
+						  		</div>
+						  		</td>
+							</tr>
+						</g:if>
+						</tbody>
+					</table>
+			  	</div>
+			</section>
+		
+			<g:if test="${exception}">
+				<section id="exception">
+				    <h2><g:message code="site.500.stack.message"/></h2>
+				    <div class="stack">
+				      <pre><g:each in="${exception.stackTraceLines}">${it.encodeAsHTML()}<br/></g:each></pre>
+				    </div>
+				</section>
+			</g:if>
+		</div>
 	</g:if>
 	<g:else>
 		<div id="error-info" class="big-message" style="margin:0">

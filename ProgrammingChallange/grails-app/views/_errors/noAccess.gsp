@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title><g:message code="site.no.access.message"/></title>
+		<title><g:message code="site.no.access.title"/></title>
 		<meta name="layout" content="kickstart" />
 	</head>
 
