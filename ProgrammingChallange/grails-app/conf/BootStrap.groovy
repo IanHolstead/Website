@@ -31,42 +31,7 @@ class BootStrap {
 
 		assert Role.count() == 6
 
-
-		if(!User.findByUsername('***REMOVED***')){
-			def ian = new User(username: '***REMOVED***', enabled: true, password: '***REMOVED***')
-			ian.save(flush: true)
-			UserRole.create ian, superAdminRole, true
-		}
-		if(!User.findByUsername('***REMOVED***')){
-			def friend = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
-			friend.save(flush:true)
-			UserRole.create friend, userRole, true
-		}
-		if(!User.findByUsername('***REMOVED***')){
-			def family = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
-			family.save(flush:true)
-			UserRole.create family, superUserRole, true
-		}
-		if(!User.findByUsername('***REMOVED***')){//for testing purposes
-			def admin = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
-			admin.save(flush:true)
-			UserRole.create admin, adminRole, true
-		}
-		if(!User.findByUsername('***REMOVED***')){//for testing purposes
-			def alicia = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
-			alicia.save(flush:true)
-			UserRole.create alicia, awesomeUserRole, true
-		}
-		if(!User.findByUsername('***REMOVED***')){
-			def mom = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
-			mom.save(flush:true)
-			UserRole.create mom, adminRole, true
-		}
-		if(!User.findByUsername('***REMOVED***')){
-			def karen = new User(username:'***REMOVED***', enabled: true, password:'***REMOVED***')
-			karen.save(flush:true)
-			UserRole.create karen, adminRole, true
-		}
+		//add users here!
 		
 		assert UserRole.findAllByRole(superAdminRole).size() == 1
 
