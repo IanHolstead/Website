@@ -64,17 +64,10 @@
 
 <content tag="include.bottom">
 	<!-- Include required JS files  and brushes for Syntax Highlighter-->
-	<link href="${resource(dir: 'css/sh', file: 'shCore.css')}" rel="stylesheet" type="text/css" />
-	<link href="${resource(dir: 'css/sh', file: 'shThemeDefault.css')}" rel="stylesheet" type="text/css" />
-	<g:javascript src="sh/shCore.js" />
-	<g:javascript src="sh/shBrushGroovy.js" />
-	<g:javascript src="sh/shBrushCSharp.js" />
-	<g:javascript src="sh/shBrushCpp.js" />
-	<g:javascript src="sh/shBrushJava.js" />
-	<g:javascript src="sh/shBrushPlain.js" />
-	<script type="text/javascript">
-    	SyntaxHighlighter.all()
-	</script>	
+	<r:require modules="syntaxHighlighter"/>
+	<r:script>
+		SyntaxHighlighter.all()
+	</r:script>
 </content>
 
 </body>

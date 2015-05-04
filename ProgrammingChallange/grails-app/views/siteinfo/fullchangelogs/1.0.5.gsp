@@ -11,51 +11,53 @@
 	<h2>        Bug
 	</h2>
 	<ul>
-	<li>[<a href='http://localhost:8080/browse/WS-30'>WS-30</a>] -         Cancel button on forms does not do anything
+	<li>[WS-30] -         Cancel button on forms does not do anything
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-73'>WS-73</a>] -         Text on back button for 500 error page incorrect
+	<li>[WS-73] -         Text on back button for 500 error page incorrect
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-74'>WS-74</a>] -         Buttons for 500 error page not positioned correctly 
+	<li>[WS-74] -         Buttons for 500 error page not positioned correctly 
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-75'>WS-75</a>] -         Incorrect id throws exception
+	<li>[WS-75] -         Incorrect id throws exception
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-78'>WS-78</a>] -         Update world fails due to date
+	<li>[WS-78] -         Update world fails due to date
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-79'>WS-79</a>] -         Issue with custom validation on worlds
+	<li>[WS-79] -         Issue with custom validation on worlds
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-80'>WS-80</a>] -         Add link to config and employment to menu for admins
+	<li>[WS-80] -         Add link to config and employment to menu for admins
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-81'>WS-81</a>] -         Default.user.unknown.label showing in top bar
+	<li>[WS-81] -         Default.user.unknown.label showing in top bar
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-82'>WS-82</a>] -         Add employ info to config edit page
+	<li>[WS-82] -         Add employ info to config edit page
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-83'>WS-83</a>] -         Too much spacing on 500 error page
+	<li>[WS-83] -         Too much spacing on 500 error page
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-85'>WS-85</a>] -         Add employement info to website
+	<li>[WS-85] -         Add employement info to website
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-96'>WS-96</a>] -         Bottom buttons dont work on employ
+	<li>[WS-96] -         Bottom buttons dont work on employ
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-98'>WS-98</a>] -         Title wrong on no access page
+	<li>[WS-98] -         Title wrong on no access page
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-100'>WS-100</a>] -         Album list page rules wrong on mobile
+	<li>[WS-100] -         Album list page rules wrong on mobile
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-101'>WS-101</a>] -         Too much spacing for title on error pages
+	<li>[WS-10] -         Too much spacing for title on error pages
+	</li>
+	<li>[WS-104] -         Fix scripts loading over HTTP
 	</li>
 	</ul>
 	        
 	<h2>        New Feature
 	</h2>
 	<ul>
-	<li>[<a href='http://localhost:8080/browse/WS-50'>WS-50</a>] -         Add change world button
+	<li>[WS-50] -         Add change world button
 	</li>
 	</ul>
 	        
 	<h2>        Task
 	</h2>
 	<ul>
-	<li>[<a href='http://localhost:8080/browse/WS-94'>WS-94</a>] -         Change employ to click on description to edit and click on url to copy the url
+	<li>[WS-94] -         Change employ to click on description to edit and click on url to copy the url
 	</li>
-	<li>[<a href='http://localhost:8080/browse/WS-99'>WS-99</a>] -         Add google webmaster page
+	<li>[WS-99] -         Add google webmaster page
 	</li>
 	</ul>
     
