@@ -10,6 +10,7 @@ class Employment {
 	Boolean phone = true
 	Boolean email = true
 	Boolean resume = true
+	Boolean games = false
 	
 	String about
 	

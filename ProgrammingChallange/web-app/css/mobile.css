@@ -49,4 +49,7 @@
 	#list-photoAlbum .list-text{
 	 width: 100%;
 	}
+	#employ .download {
+		padding-top: 0;
+	}
 }

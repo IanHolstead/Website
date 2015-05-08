@@ -1,5 +1,7 @@
 package com.ianholstead.website
 
+import javax.security.auth.login.Configuration;
+
 import grails.plugins.springsecurity.Secured
 import grails.util.Environment
 
@@ -12,6 +14,7 @@ class EmploymentController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 	def springSecurityService
+	def grailsApplicaiton
 
     def index() {
         def employmentInstance = Employment.findByUrl(params.id)
@@ -29,21 +32,27 @@ class EmploymentController {
 
 	def getResume(){
 		def test = Employment.findByUrl(params.id)
-		if (!test) {
-			//TODO something...
+		if (!test?.resume) {
+			redirect(uri: "/invalidUrl")
 			return
 		}
 		
-		def path
-		
-		Environment.executeForCurrentEnvironment {
-			development {
-		  		path = /X:\Users\Ian\Documents\Projects\Job Materials\ianholstead.pdf/
-      		}
-      		production {
-		  		path = '/home/ianhols/Docs/ianholstead.pdf'
-      		}
+		def path = grailsApplication.config.baseFilePath + 'Docs/IanHolstead.pdf'
+		//TODO: this should be in a try catch
+		File resume = new File(path)
+		response.outputStream<<resume.getBytes()
+		response.outputStream.flush()
+	}
+	
+	def getBorderlandsDemake(){
+		def test = Employment.findByUrl(params.id)
+		if (!test?.games) {
+			redirect(uri: "/invalidUrl")
+			return
 		}
+		
+		def path = grailsApplication.config.baseFilePath + 'Games/BorderlandsDemake.zip'
+		//TODO: this should be in a try catch
 		File resume = new File(path)
 		response.outputStream<<resume.getBytes()
 		response.outputStream.flush()
@@ -79,12 +88,14 @@ class EmploymentController {
 	
 	@Secured(['ROLE_SUPER_ADMIN'])
 	def editResume() {
-		
+		//TODO Write this code
+		//It should load the page to upload a new resume
 	}
 	
 	@Secured(['ROLE_SUPER_ADMIN'])
 	def updateResume() {
-		
+		//TODO Write me
+		//This should accept a file upload for my resume
 	}
 	
 	@Secured(['ROLE_SUPER_ADMIN'])

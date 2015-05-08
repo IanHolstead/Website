@@ -11,17 +11,30 @@
 
 <body>
 <g:set var="config" value="${Config.get(1)}" />
-<section id="address-contact">
+<section id="employ">
 	<div class="row">
 		<div class="span4">
 			<div>
 				<g:if test="${employmentInstance.resume}">
-					<div class="row">
-						<span class="span1">
+					<div class="row download">
+						<span class="span1 download">
 							<strong>Resume</strong>
 						</span>
 						<span class="span3">
 							<g:link url="/resume/${employmentInstance.url}/ianholstead.pdf" class="btn btn-success btn-small" target="_blank">
+								<i class="icon-download-alt icon-large"></i>
+								${message(code: 'employ.download.label')}
+							</g:link>
+						</span>
+					</div>
+				</g:if>
+				<g:if test="${employmentInstance.games}">
+					<div class="row">
+						<span class="span1">
+							<strong>Borderlands 2 Demake</strong>
+						</span>
+						<span class="span3 download">
+							<g:link url="/games/${employmentInstance.url}/BorderlandsDemake" class="btn btn-success btn-small">
 								<i class="icon-download-alt icon-large"></i>
 								${message(code: 'employ.download.label')}
 							</g:link>

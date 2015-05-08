@@ -41,6 +41,11 @@ class UrlMappings {
 			action 		= 'getResume'
 		}
 		
+		"/games/$id/BorderlandsDemake"{
+			controller	= 'employment'
+			action		= 'getBorderlandsDemake'
+		}
+		
 		"/showPhoto/$id"{
 			controller 	= 'photo'
 			action 		= 'showPayload'
