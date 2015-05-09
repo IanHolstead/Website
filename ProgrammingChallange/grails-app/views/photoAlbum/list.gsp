@@ -14,7 +14,9 @@
 <body>
 	
 <section id="list-photoAlbum" class="first">
-
+	<g:if test="${photoAlbumInstanceList.empty}">
+		<h3><g:message code="default.no.items.message" args="${[message(code: 'photoAlbums.label')]}"/></h3>
+	</g:if>
 	<g:each in="${photoAlbumInstanceList}" status="i" var="photoAlbumInstance">
 		<div class="list-with-photo ${(i % 2) == 0 ? 'odd' : 'even'}${photoAlbumInstance.authenticationLevel.id <= 2?' admin':''}">
 			<div class="list-text">
@@ -34,16 +36,16 @@
 			</g:if>
 			<div class="list-thumb">
 				<g:if test="${p.size()>1}">
-					<img class="list-image" src="/showThumb/${p[rand].getUrl()}.png" alt="${p[rand].photoName}"/>
+					<img class="list-image" src="/showThumb/${p[rand].getUrl()}" alt="${p[rand].photoName}"/>
 				</g:if>
 				<g:elseif test="${p.size()==1}">
-					<img class="list-image" src="/showThumb/${p[0].getUrl()}.png" alt="${p[0].photoName}"/>
+					<img class="list-image" src="/showThumb/${p[0].getUrl()}" alt="${p[0].photoName}"/>
 				</g:elseif>
 			</div>
 			
 			<div class="list-thumb">
 				<g:if test="${p.size()>1}">
-					<img class="list-image" src="/showThumb/${p[rand-1].getUrl()}.png" alt="${p[rand-1].photoName}"/>
+					<img class="list-image" src="/showThumb/${p[rand-1].getUrl()}" alt="${p[rand-1].photoName}"/>
 				</g:if>
 			</div>
 		</div>

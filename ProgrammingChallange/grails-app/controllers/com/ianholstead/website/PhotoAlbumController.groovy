@@ -23,10 +23,12 @@ class PhotoAlbumController {
 		def photoAlbumInstanceList = PhotoAlbum.list()
 		def authId = getRole().id
 		photoAlbumInstanceList.removeAll{
-			it.authenticationLevel.id<authId || !Photo.findByAlbum(it)//the or checks that there is atleast one photo in the album
+			it.authenticationLevel.id<authId || !Photo.findByAlbum(it)//the or checks that there is at least one photo in the album
 		}
 		def photoAlbumCount = photoAlbumInstanceList.size()
-		photoAlbumInstanceList = photoAlbumInstanceList.subList(params.offset-1, Math.min(params.offset-1 + params.max, photoAlbumCount-1))
+		if (photoAlbumCount != 0) {
+			photoAlbumInstanceList = photoAlbumInstanceList.subList(params.offset-1, Math.min(params.offset-1 + params.max, photoAlbumCount))
+		}
 		
         [photoAlbumInstanceList: photoAlbumInstanceList, photoAlbumInstanceTotal: photoAlbumCount]
     }

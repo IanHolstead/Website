@@ -4,24 +4,21 @@ import grails.plugins.springsecurity.Secured
 
 import java.awt.image.BufferedImage
 
-import org.grails.plugins.imagetools.*
-
 import javax.imageio.ImageIO
 
+import org.apache.commons.lang.RandomStringUtils
+import org.grails.plugins.imagetools.*
 import org.springframework.dao.DataIntegrityViolationException
 
 import com.ianholstead.security.*
-
-import org.apache.commons.lang.RandomStringUtils
-
-import com.ianholstead.website.Photo;
-import com.ianholstead.website.PhotoAlbum;
-import com.ianholstead.website.Thumb;
 
 class PhotoController {
 	
 	def hdImageService
 	def springSecurityService
+	def grailsApplicaiton
+	private static def validExtensions = ['png', 'jpg', 'jpeg', 'tiff', 'bmp', 'gif', 'svg']
+	
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -48,28 +45,39 @@ class PhotoController {
 		}
 		params.secureUrl = randomString
 		
-        def photoInstance = new Photo(params)
-		def thumbInstance = new Thumb()
+        Photo photoInstance = new Photo(params)
+		
 		def uploadedPhoto = request.getFile('photoPayload')
-		if(uploadedPhoto.getBytes().size() != 0){
-			photoInstance.photoPayload = uploadedPhoto.getBytes()
+		if(!uploadedPhoto.empty){
 			photoInstance.photoOriginalName = uploadedPhoto.originalFilename
 			
-			byte[] thumb = hdImageService.scale(uploadedPhoto.getInputStream(), 300, null)
-			thumbInstance.thumbPayload = thumb
-			photoInstance.thumb = thumbInstance
-			
-			if (!thumbInstance.save(flush: true)) {
-				render(view: "create", model: [photoInstance: photoInstance])
+			def extension = photoInstance.photoOriginalName.toLowerCase().split('\\.')
+			if (extension.size() != 2 || !validExtensions.contains(extension[1])) {
+				flash.message = message(code: 'photo.bad.extension.message')
+				render(view: "create", model: [photoInstance: new Photo(params)])
 				return
 			}
+			photoInstance.photoExtension = extension[1]
+			
+			print(grailsApplication.config.baseFilePath + grailsApplication.config.photoPath + "${photoInstance.photoName}.${photoInstance.photoExtension}")
+			File photo = new File(grailsApplication.config.baseFilePath + grailsApplication.config.photoPath + "${photoInstance.photoName}.${photoInstance.photoExtension}")
+			photo.createNewFile()
+			
+			uploadedPhoto.transferTo(photo)
+			
+			BufferedImage thumb = hdImageService.scale(ImageIO.read(photo), 300, null)
+			
+			File thumbFile = new File(grailsApplication.config.baseFilePath + grailsApplication.config.thumbsPath + "${photoInstance.photoName}.${photoInstance.photoExtension}")
+			thumbFile.createNewFile()
+			ImageIO.write(thumb, photoInstance.photoExtension, thumbFile)
 		}
 		if (!photoInstance.save(flush: true)) {
+			//TODO: delete thumb if it is saved
 			render(view: "create", model: [photoInstance: photoInstance])
 			return
 		}
 		flash.message = message(code: 'default.created.message', args: [message(code: 'photo.label')])
-        redirect(action: "show", id: photoInstance.getUrl())
+        redirect(action: "show", id: photoInstance.getPageUrl())
     }
 
     def show() {
@@ -122,19 +130,27 @@ class PhotoController {
 	}
 	
 	def showPayload(){
-		def id = (params.id).split("\\.")
-		id = getId(id[0])
-		def photoInstance = Photo.get(id)
-		response.outputStream<<photoInstance.photoPayload
-		response.outputStream.flush()
+		try {
+			def path = grailsApplication.config.baseFilePath + grailsApplication.config.photoPath + "${params.id}"
+			File photo = new File(path)
+			response.outputStream << photo.getBytes()
+			response.outputStream.flush()
+		} 
+		catch(FileNotFoundException e) {
+			
+		}
 	}
 	
 	def showThumb(){
-		def id = (params.id).split("\\.")
-		id = getId(id[0])
-		def thumbInstance = Thumb.get(Photo.get(id)?.thumb?.id)
-		response.outputStream<<thumbInstance.thumbPayload
-		response.outputStream.flush()
+		try {
+			def path = grailsApplication.config.baseFilePath + grailsApplication.config.thumbsPath + "${params.id}"
+			File thumb = new File(path)
+			response.outputStream << thumb.getBytes()
+			response.outputStream.flush()
+		} 
+		catch(FileNotFoundException e) {
+			
+		}
 	}
 
 	@Secured(['ROLE_ADMIN'])
@@ -152,7 +168,6 @@ class PhotoController {
 	@Secured(['ROLE_ADMIN'])
     def update() {
         def photoInstance = Photo.get(params.id)
-		def thumbInstance = photoInstance.thumb
         if (!photoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
             redirect(action: "list")
@@ -188,37 +203,37 @@ class PhotoController {
 		def tempPayload = uploadedPhoto.getBytes()
 		if(tempPayload){
 			photoInstance.photoOriginalName = uploadedPhoto.originalFilename
-			byte[] thumb = hdImageService.scale(uploadedPhoto.getInputStream(), 300, null)
-			thumbInstance.thumbPayload = thumb
-			
-			thumbInstance.save(flash:true)
+//			byte[] thumb = hdImageService.scale(uploadedPhoto.getInputStream(), 300, null)
+//			thumbInstance.thumbPayload = thumb
+//			
+//			thumbInstance.save(flash:true)
 		}
 		else{
-			tempPayload = photoInstance.photoPayload 
+//			tempPayload = photoInstance.photoPayload 
 		}
-        photoInstance.properties = params
-		photoInstance.secureUrl = randomString
-		photoInstance.photoPayload = tempPayload
-		
-        if (!photoInstance.save(flush: true)) {
-			photoInstance.secureUrl = photoInstance.secureUrl?true:false
-            render(view: "edit", model: [photoInstance: photoInstance])
-            return
-        }
+//        photoInstance.properties = params
+//		photoInstance.secureUrl = randomString
+//		photoInstance.photoPayload = tempPayload
+//		
+//        if (!photoInstance.save(flush: true)) {
+//			photoInstance.secureUrl = photoInstance.secureUrl?true:false
+//            render(view: "edit", model: [photoInstance: photoInstance])
+//            return
+//        }
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'photo.label')])
-        redirect(action: "show", id: photoInstance.getUrl())
+        redirect(action: "show", id: photoInstance.getPageUrl())
     }
 
 	@Secured(['ROLE_ADMIN'])
     def delete() {
         def photoInstance = Photo.get(getId(params.id))
-		def thumbInstance = photoInstance?.thumb
-        if (!photoInstance || !thumbInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
-            redirect(action: "list")
-            return
-        }
+//		def thumbInstance = photoInstance?.thumb
+//        if (!photoInstance || !thumbInstance) {
+//			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
+//            redirect(action: "list")
+//            return
+//        }
 
         try {
             photoInstance.delete(flush: true)

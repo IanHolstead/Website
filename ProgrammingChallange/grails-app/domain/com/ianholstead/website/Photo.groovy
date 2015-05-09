@@ -4,8 +4,8 @@ import com.ianholstead.security.Role;
 
 class Photo {
 
-	byte[] photoPayload
 	String photoOriginalName
+	String photoExtension
 	String photoName
 	String photoCaption
 	java.sql.Date date
@@ -13,16 +13,15 @@ class Photo {
 	String secureUrl
 	
 	Role authenticationLevel
-	Thumb thumb
 	static belongsTo = [album:PhotoAlbum]
 	
     static mapping = {
     }
     
 	static constraints = {
-		photoPayload maxSize: 15728640, minSize:1
 		photoName shared:'title'
 		photoCaption shared:'caption'
+		photoExtension blank: false, nullable: false, maxSize:4
 		album nullable:false
 		showOnHomePage validator : { val, obj ->
 			!val || (obj.authenticationLevel.authority == 'ROLE_NONE')  
@@ -37,6 +36,10 @@ class Photo {
 	}
 	
 	public def getUrl(){
-		return this.photoName?.replace(' ', '-')
+		return (this.photoName?.replace(' ', '-') + '.' + this.photoExtension)
+	}
+	
+	public def getPageUrl(){
+		return (this.photoName?.replace(' ', '-'))
 	}
 }

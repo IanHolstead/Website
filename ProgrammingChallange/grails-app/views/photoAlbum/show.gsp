@@ -37,8 +37,8 @@
 			<div class="photoTile">
 				<div class="photoThumb"> 
 					<div class="center">
-					<g:link controller="photo" action="show" id="${p.getUrl()}">
-						<img class="photo" src="/showThumb/${p.getUrl()}.png" title="${p.photoCaption}" alt="${p.photoName}"/>
+					<g:link controller="photo" action="show" id="${p.getPageUrl()}">
+						<img class="photo" src="/showThumb/${p.getUrl()}" title="${p.photoCaption}" alt="${p.photoName}"/>
 					</g:link>
 					</div>
 				</div>

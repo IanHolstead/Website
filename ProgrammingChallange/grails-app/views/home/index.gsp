@@ -25,7 +25,7 @@
 			    	<div class="center big-wrapper">
 						<div class="big-image-wrapper">
 				    		<g:link controller="world" action="currentWeek">
-				    			<img class="big-front-page-image" src="/showThumb/${currentWorld?.photo?.getUrl()}.png" alt="${currentWorld?.photo?.photoName}"/>
+				    			<img class="big-front-page-image" src="/showThumb/${currentWorld?.photo?.getUrl()}" alt="${currentWorld?.photo?.photoName}"/>
 							</g:link>
 						</div>
 						<h3>${currentWorld?.title}</h3>
@@ -39,7 +39,7 @@
 						</div>
 						<h3><g:message code="home.no.world.title"/></h3>
 					</div>
-				<p><g:message code="home.no.world.info.lable"/></p>
+				<p><g:message code="home.no.world.info.label"/></p>
 				</g:else>
 				
 			</div>
@@ -50,10 +50,10 @@
 							<g:set var="picture" value="${Photo.findAllByShowOnHomePage(true)}"/>
 							<g:set var="rand" value="${new Random()}"/>
 							<g:if test="${picture.size()>1}">
-								<img class="big-front-page-image" src="/showThumb/${picture[rand.nextInt(picture.size()-1)].getUrl()}.png" alt="${picture[rand.nextInt(picture.size()-1)].photoNAme}"/>
+								<img class="big-front-page-image" src="/showThumb/${picture[rand.nextInt(picture.size()-1)].getUrl()}" alt="${picture[rand.nextInt(picture.size()-1)].photoNAme}"/>
 							</g:if>
 							<g:elseif test="${picture.size()==1}">
-								<img class="big-front-page-image" src="/showThumb/${picture[0].getUrl()}.png" alt="${picture[0].photoName}"/>
+								<img class="big-front-page-image" src="/showThumb/${picture[0].getUrl()}" alt="${picture[0].photoName}"/>
 							</g:elseif>
 							<g:else>
 								<img class="big-front-page-image" src="${resource(dir: 'images/home_icons',file: 'photo_blog.jpg')}" />

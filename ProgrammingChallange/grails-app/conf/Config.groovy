@@ -18,7 +18,7 @@ grails.mime.types = [
 
 grails.gorm.default.constraints = {
 	'*'(nullable: true)
-	title maxSize:100, blank:false, nullable:false, unique: true, validator: {val -> return (!val.contains('-') && !val.contains('.') && val==~ /^([!#$&-;= ?-\[\]_a-z~]|%[0-9a-fA-F]{2})+$/)}
+	title maxSize:100, blank:false, nullable:false, unique: true, validator: {val -> return (!val.contains('-') && !val.contains('.') && val==~ /^([!#$+'-\)0-9= A-\[\]_a-z~]|%[0-9a-fA-F]{2})+$/)}
 	caption maxSize:1000
 	shortCaption maxSize:150
 }
@@ -58,10 +58,14 @@ environments {
     development {
         grails.logging.jul.usebridge = true
 		baseFilePath = 'C:\\Users\\Ian\\Programming\\Grails\\FileStorage\\'
+		photoPath = 'Photos\\'
+		thumbsPath = 'Photos\\Thumbs\\'
     }
     production {
         grails.logging.jul.usebridge = false
 		baseFilePath = '/home/ianhols/'
+		photoPath = 'Photos/'
+		thumbsPath = 'Photos/Thumbs/'
     }
 }
 

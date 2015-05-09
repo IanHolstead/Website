@@ -1,13 +1,8 @@
 package com.ianholstead.website
 
-import javax.security.auth.login.Configuration;
-
 import grails.plugins.springsecurity.Secured
-import grails.util.Environment
-
 import org.apache.commons.lang.RandomStringUtils
 import org.springframework.dao.DataIntegrityViolationException
-
 import com.ianholstead.security.*
 
 class EmploymentController {
