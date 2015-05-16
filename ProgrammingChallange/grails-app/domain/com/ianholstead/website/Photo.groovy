@@ -21,7 +21,9 @@ class Photo {
 	static constraints = {
 		photoName shared:'title'
 		photoCaption shared:'caption'
-		photoExtension blank: false, nullable: false, maxSize:4
+		photoExtension blank: false, nullable: false, maxSize:4, validator : { val, obj ->
+			['png', 'jpg', 'jpeg', 'tiff', 'bmp', 'gif', 'svg'].contains(val)
+		}
 		album nullable:false
 		showOnHomePage validator : { val, obj ->
 			!val || (obj.authenticationLevel.authority == 'ROLE_NONE')  

@@ -52,30 +52,27 @@ class PhotoController {
 			photoInstance.photoOriginalName = uploadedPhoto.originalFilename
 			
 			def extension = photoInstance.photoOriginalName.toLowerCase().split('\\.')
-			if (extension.size() != 2 || !validExtensions.contains(extension[1])) {
-				flash.message = message(code: 'photo.bad.extension.message')
-				render(view: "create", model: [photoInstance: new Photo(params)])
-				return
-			}
-			photoInstance.photoExtension = extension[1]
-			
-			print(grailsApplication.config.baseFilePath + grailsApplication.config.photoPath + "${photoInstance.photoName}.${photoInstance.photoExtension}")
-			File photo = new File(grailsApplication.config.baseFilePath + grailsApplication.config.photoPath + "${photoInstance.photoName}.${photoInstance.photoExtension}")
+			photoInstance.photoExtension = extension[-1]
+		}
+		
+		if (!photoInstance.save(flush: true)) {
+			render(view: "create", model: [photoInstance: photoInstance])
+			return
+		}
+		
+		if(!uploadedPhoto.empty) {
+			File photo = new File(grailsApplication.config.baseFilePath + grailsApplication.config.photoPath + photoInstance.getUrl())
 			photo.createNewFile()
 			
 			uploadedPhoto.transferTo(photo)
 			
 			BufferedImage thumb = hdImageService.scale(ImageIO.read(photo), 300, null)
 			
-			File thumbFile = new File(grailsApplication.config.baseFilePath + grailsApplication.config.thumbsPath + "${photoInstance.photoName}.${photoInstance.photoExtension}")
+			File thumbFile = new File(grailsApplication.config.baseFilePath + grailsApplication.config.thumbsPath + photoInstance.getUrl())
 			thumbFile.createNewFile()
 			ImageIO.write(thumb, photoInstance.photoExtension, thumbFile)
 		}
-		if (!photoInstance.save(flush: true)) {
-			//TODO: delete thumb if it is saved
-			render(view: "create", model: [photoInstance: photoInstance])
-			return
-		}
+		
 		flash.message = message(code: 'default.created.message', args: [message(code: 'photo.label')])
         redirect(action: "show", id: photoInstance.getPageUrl())
     }
@@ -167,7 +164,7 @@ class PhotoController {
 
 	@Secured(['ROLE_ADMIN'])
     def update() {
-        def photoInstance = Photo.get(params.id)
+        def photoInstance = Photo.read(params.id)
         if (!photoInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
             redirect(action: "list")
@@ -199,27 +196,37 @@ class PhotoController {
 			}
 		}
 		
+		params.secureUrl = randomString
+		
+		photoInstance.properties = params
+		
 		def uploadedPhoto = request.getFile('photoPayload')
-		def tempPayload = uploadedPhoto.getBytes()
-		if(tempPayload){
+		if(!uploadedPhoto.empty){
 			photoInstance.photoOriginalName = uploadedPhoto.originalFilename
-//			byte[] thumb = hdImageService.scale(uploadedPhoto.getInputStream(), 300, null)
-//			thumbInstance.thumbPayload = thumb
-//			
-//			thumbInstance.save(flash:true)
+			
+			def extension = photoInstance.photoOriginalName.toLowerCase().split('\\.')
+			photoInstance.photoExtension = extension[-1]
 		}
-		else{
-//			tempPayload = photoInstance.photoPayload 
+		
+		
+        if (!photoInstance.save(flush: true)) {
+			photoInstance.secureUrl = photoInstance.secureUrl?true:false
+            render(view: "edit", model: [photoInstance: photoInstance])
+            return
+        }
+		
+		if(!uploadedPhoto.empty) {
+			File photo = new File(grailsApplication.config.baseFilePath + grailsApplication.config.photoPath + photoInstance.getUrl())
+			photo.createNewFile()
+			
+			uploadedPhoto.transferTo(photo)
+			
+			BufferedImage thumb = hdImageService.scale(ImageIO.read(photo), 300, null)
+			
+			File thumbFile = new File(grailsApplication.config.baseFilePath + grailsApplication.config.thumbsPath + photoInstance.getUrl())
+			thumbFile.createNewFile()
+			ImageIO.write(thumb, photoInstance.photoExtension, thumbFile)
 		}
-//        photoInstance.properties = params
-//		photoInstance.secureUrl = randomString
-//		photoInstance.photoPayload = tempPayload
-//		
-//        if (!photoInstance.save(flush: true)) {
-//			photoInstance.secureUrl = photoInstance.secureUrl?true:false
-//            render(view: "edit", model: [photoInstance: photoInstance])
-//            return
-//        }
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'photo.label')])
         redirect(action: "show", id: photoInstance.getPageUrl())
@@ -228,14 +235,12 @@ class PhotoController {
 	@Secured(['ROLE_ADMIN'])
     def delete() {
         def photoInstance = Photo.get(getId(params.id))
-//		def thumbInstance = photoInstance?.thumb
-//        if (!photoInstance || !thumbInstance) {
-//			flash.message = message(code: 'default.not.found.message', args: [message(code: 'photo.label')])
-//            redirect(action: "list")
-//            return
-//        }
+		File photo = new File(grailsApplication.config.baseFilePath + grailsApplication.config.photoPath + photoInstance.getUrl())
+		File thumbFile = new File(grailsApplication.config.baseFilePath + grailsApplication.config.thumbsPath + photoInstance.getUrl())
 
         try {
+			photo.delete()
+			thumbFile.delete()
             photoInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'photo.label')])
             redirect(action: "list")
