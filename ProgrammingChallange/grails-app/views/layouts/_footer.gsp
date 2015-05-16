@@ -7,16 +7,10 @@
 					<h4>Content</h4>
 					<ul class="unstyled">
 						<li>
-							<a href="${createLink(uri: '/world/currentWeek')}">My world this week</a>
-						</li>
-						<li>
-							<a href="${createLink(uri: '/world')}">World Archive</a>
+							<a href="${createLink(uri: '/blog')}">Blag</a>
 						</li>
 						<li>
 							<a href="${createLink(uri: '/photoAlbum')}">Photo Albums</a>
-						</li>
-						<li>
-							<a href="${createLink(uri: '/blog')}">Blog Archive</a>
 						</li>
 					</ul>
 				</div>

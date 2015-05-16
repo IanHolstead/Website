@@ -1,4 +1,4 @@
-<%@ page import="com.ianholstead.website.World" %>
+<%@ page import="com.ianholstead.website.Blog" %>
 <%@ page import="com.ianholstead.website.Photo" %>
 <%@ page import="java.util.Random" %>
 <%@ page import="com.ianholstead.website.Config" %>
@@ -20,17 +20,17 @@
 	<section id="info">
 		<div class="row-fluid">
 	    	<div class="span4">
-	    	<g:set var="currentWorld" value="${World.findByStatus(1)}"/>
-		    	<g:if test="${currentWorld}">
+	    	<g:set var="currentBlog" value="${Blog.findByFeatured(true)}"/>
+		    	<g:if test="${currentBlog}">
 			    	<div class="center big-wrapper">
 						<div class="big-image-wrapper">
-				    		<g:link controller="world" action="currentWeek">
-				    			<img class="big-front-page-image" src="/showThumb/${currentWorld?.photo?.getUrl()}" alt="${currentWorld?.photo?.photoName}"/>
+				    		<g:link controller="blog" action="show" id="${currentBlog.getUrl()}">
+				    			<img class="big-front-page-image" src="/showThumb/${currentBlog?.thumb?.getUrl()}" alt="${currentWorld?.thumb?.photoName}"/>
 							</g:link>
 						</div>
-						<h3>${currentWorld?.title}</h3>
+						<h3>${currentBlog?.blogTitle}</h3>
 					</div>
-					<p>${currentWorld.summary }</p>
+					<p>${currentBlog.blogSummary}</p>
 				</g:if>
 				<g:else>
 					<div class="center big-wrapper">

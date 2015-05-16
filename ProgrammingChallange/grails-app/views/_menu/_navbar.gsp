@@ -14,9 +14,9 @@
 			</a>
 
        		<div class="nav-collapse">
-       			<g:set var="controllerList" value="${['world','world','photoAlbum','blog']}"/>
-       			<g:set var="controllerNameList" value="${['My world this week','World Achive','Photo Albums','Blog Archive']}"/>
-       			<g:set var="actionList" value="${['currentWeek','list','list','list']}"/>
+       			<g:set var="controllerList" value="${['blog','photoAlbum']}"/>
+       			<g:set var="controllerNameList" value="${['Blog', 'Photo Albums']}"/>
+       			<g:set var="actionList" value="${['list','list']}"/>
        			<ul class="nav">
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Browse <b class="caret"></b></a>
@@ -24,6 +24,10 @@
 		                    <g:each var="controller" in="${controllerList}" status="i">
 		                    	<li class="controller"><g:link controller="${controller}" action="${actionList[i]}">${controllerNameList[i]}</g:link></li>
 		                    </g:each>
+		                    <li class=""><a href="${createLink(uri: '/about')}"><g:message code="menu.about.label"/></a></li>
+							<li class=""><a href="${createLink(uri: '/contact')}"><g:message code="menu.contact.label"/></a></li>
+							<li class="divider"></li>
+							<li class=""><a href="${createLink(uri: '/site')}"><g:message code="menu.site.info.label"/></a></li>
 						</ul>
 					</li>
 				</ul>
@@ -39,7 +43,7 @@
 					<%--<g:render template="/_menu/language"/>--%>
 					<%--<g:render template="/_menu/config"/>--%>
 					<g:render template="/_menu/user"/>
-					<g:render template="/_menu/info"/>	
+<%--					<g:render template="/_menu/info"/>	--%>
 					<sec:ifAnyGranted roles="ROLE_ADMIN">
 						<g:render template="/_menu/admin"/>
 					</sec:ifAnyGranted>

@@ -36,8 +36,7 @@ class BlogController {
 	
 	@Secured(['ROLE_ADMIN'])
     def create() {
-		Photo blogPhotos = PhotoAlbum.findAllByName('Blog').photos
-        [blogInstance: new Blog(params), blogPhotos: blogPhotos]
+        [blogInstance: new Blog(params), blogPhotos: getPhotoList()]
     }
 
 	@Secured(['ROLE_ADMIN'])
@@ -48,13 +47,31 @@ class BlogController {
 			randomString = RandomStringUtils.random(10, ((('A'..'Z') + ('0'..'9')).join()).toCharArray())
 		}
 		params.secureUrl = randomString
+		
+		params.thumb = params.thumb != '---None--' ? Photo.findByPhotoName(params.thumb) : null
+		
         def blogInstance = new Blog(params)
+		
 		blogInstance.date = createDate()
-		blogInstance.blogContent = parseBlog(params.blogContent)
-        if (!blogInstance.save(flush: true)) {
-            render(view: "create", model: [blogInstance: blogInstance])
+		
+		blogInstance.blogContent = parseBlogForHTML(params.blogContent)
+        
+		if (!blogInstance.save(flush: true)) {
+            render(view: "create", model: [blogInstance: blogInstance, blogPhotos: getPhotoList()])
             return
         }
+		
+		if (blogInstance.featured) {
+			def oldFeaturedBlog = Blog.findAllByFeatured(true)
+			if (oldFeaturedBlog) {
+				oldFeaturedBlog.each {
+					if(it.id != blogInstance.id){
+						it.featured = false
+						it.save(flush: true)
+					}
+				}
+			}
+		}
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'blog.label')])
         redirect(action: "show", id: blogInstance.getUrl())
@@ -114,7 +131,8 @@ class BlogController {
 	
 	@Secured(['ROLE_ADMIN'])
     def edit() {
-        def blogInstance = Blog.get(getBlogId(params.id))
+        def blogInstance = Blog.read(getBlogId(params.id))
+		def photoList = getPhotoList()
 		
         if (!blogInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label')])
@@ -123,15 +141,16 @@ class BlogController {
         }
 		
 		def blogContent = blogInstance.blogContent
-		blogContent = blogContent.replaceAll("<br/>", "\n")
+		blogContent = parseBlogForTXT(blogContent)
 		blogInstance.blogContent = blogContent
 		
-        [blogInstance: blogInstance]
+        [blogInstance: blogInstance, blogPhotos: photoList]
     }
 	
 	@Secured(['ROLE_ADMIN'])
     def update() {
-        def blogInstance = Blog.get(params.id)
+		def photoList = getPhotoList()
+        def blogInstance = Blog.read(params.id)
         if (!blogInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label')])
             redirect(action: "list")
@@ -144,7 +163,7 @@ class BlogController {
                 blogInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
                           [message(code: 'blog.label')] as Object[],
                           "Another user has updated this Blog while you were editing")
-                render(view: "edit", model: [blogInstance: blogInstance])
+                render(view: "edit", model: [blogInstance: blogInstance, blogPhotos: photoList])
                 return
             }
         }
@@ -162,15 +181,31 @@ class BlogController {
 		}
 		
 		params.authenticationLevel = Role.findByAuthority(params.authenticationLevel)
+		params.thumb = params.thumb != '---None--' ? Photo.findByPhotoName(params.thumb) : null
+		
         blogInstance.properties = params
+		
 		blogInstance.date = createDate()
 		blogInstance.secureUrl = randomString
-		blogInstance.blogContent = parseBlog(params.blogContent)
-        if (!blogInstance.save(flush: true)) {
-            render(view: "edit", model: [blogInstance: blogInstance])
+		blogInstance.blogContent = parseBlogForHTML(params.blogContent)
+		
+		if (!blogInstance.save(flush: true)) {
+			blogInstance.blogContent = parseBlogForTXT(blogInstance.blogContent) 
+            render(view: "edit", model: [blogInstance: blogInstance, blogPhotos: photoList])
             return
         }
-
+		
+		if (blogInstance.featured) {
+			def oldFeaturedBlog = Blog.findAllByFeatured(true)
+			if (oldFeaturedBlog) {
+				oldFeaturedBlog.each {
+					if(it.id != blogInstance.id){ 
+						it.featured = false
+						it.save(flush: true)
+					}
+				}
+			}
+		}
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'blog.label')])
         redirect(action: "show", id: blogInstance.getUrl())
     }
@@ -200,8 +235,6 @@ class BlogController {
         }
     }
 	
-	
-	
 	protected getBlogId(String name){
 		def id = Blog.findByBlogTitle(name.replace('-', ' '))?.id
 		id = id?:-1
@@ -217,7 +250,8 @@ class BlogController {
 		}
 	}
 	
-	protected def parseBlog(def blogContent){
+	protected def parseBlogForHTML(def blogContent){
+		print 'htmling'
 		def blogTemp = ""
 		blogContent = blogContent.split("(?=<.?pre.*?>)")
 		blogContent.eachWithIndex { it, i ->
@@ -231,8 +265,23 @@ class BlogController {
 		return blogTemp
 	}
 	
+	protected def parseBlogForTXT(def blogContent){
+		print 'txting'
+		return blogContent.replaceAll("<br/>", "\n")
+	}
+	
 	protected def createDate(){
 		def todayDate = new java.sql.Date(new Date().time)
 		todayDate.clearTime()
+		return todayDate
+	}
+	
+	protected def getPhotoList() {
+		PhotoAlbum blogPhotoAlbum = PhotoAlbum.findByName('Blog')
+		def blogPhotosList = blogPhotoAlbum.photos.collect {
+			it.photoName
+		}
+		blogPhotosList.add(0, '---None---')
+		return blogPhotosList
 	}
 }

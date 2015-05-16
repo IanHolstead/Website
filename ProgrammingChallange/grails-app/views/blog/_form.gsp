@@ -2,7 +2,8 @@
 <%@ page import="com.ianholstead.security.Role" %>
 
 <g:set var="roleList" value="${Role.list()}"/>
-<g:set var="roleNumber" value="${(int)blogInstance?.authenticationLevel? blogInstance.authenticationLevel.id-1 : 6}"/>
+<g:set var="roleNumber" value="${(int)blogInstance?.authenticationLevel ? blogInstance.authenticationLevel.id-1 : 6}"/>
+<g:set var="blogNumber" value="${(int)blogInstance?.thumb ? blogPhotos.indexOf(blogInstance.thumb.photoName) : 0}"/>
 
 <div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'blogTitle', 'error')} required">
 	<label for="blogTitle" class="control-label"><g:message code="blog.blogTitle.label"/><span class="required-indicator">*</span></label>
@@ -34,15 +35,23 @@
 		<span class="help-inline">${hasErrors(bean: blogInstance, field: 'authenticationLevel', 'error')}</span>
 	</div>
 </div>
+
 <g:if test="${blogPhotos}">
 	<div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'thumb', 'error')} ">
 		<label for="thumb" class="control-label"><g:message code="blog.thumb.label"/></label>
 		<div class="controls">
-			<g:select name="authenticationLevel" from="${blogPhotos}" value="${blogPhotos[0]}"/>
+			<g:select name="thumb" from="${blogPhotos}" value="${blogPhotos[blogNumber]}"/>
 			<span class="help-inline">${hasErrors(bean: blogInstance, field: 'thumb', 'error')}</span>
 		</div>
 	</div>
 </g:if>
+<div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'featured', 'error')} ">
+	<label for="secureUrl" class="control-label"><g:message code="blog.featured.label"/></label>
+	<div class="controls">
+		<bs:checkBox name="featured" value="${blogInstance?.featured}" />
+		<span class="help-inline">${hasErrors(bean: blogInstance, field: 'featured', 'error')}</span>
+	</div>
+</div>
 <div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'secureUrl', 'error')} ">
 	<label for="secureUrl" class="control-label"><g:message code="blog.secureUrl.label"/></label>
 	<div class="controls">
