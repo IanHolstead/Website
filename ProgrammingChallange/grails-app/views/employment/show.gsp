@@ -57,18 +57,20 @@
 						<span class="span3">${config.employPhone}</span>
 					</div>
 				</g:if>
-				<div class="row">
-					<span class="span1">
-						<strong>LinkedIn</strong>
-					</span>
-					<span class="span3">${config.contactLinkedIn}</span>
-				</div>
-				<div class="row">
-					<span class="span1">
-						<strong>Skype</strong>
-					</span>
-					<span class="span3">${config.contactSkype}</span>
-				</div>
+				<g:if test="${employmentInstance.other}">
+					<div class="row">
+						<span class="span1">
+							<strong>LinkedIn</strong>
+						</span>
+						<span class="span3">${config.contactLinkedIn}</span>
+					</div>
+					<div class="row">
+						<span class="span1">
+							<strong>Skype</strong>
+						</span>
+						<span class="span3">${config.contactSkype}</span>
+					</div>
+				</g:if>
 			</div>
 		</div>
 	</div>

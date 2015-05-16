@@ -26,31 +26,49 @@ class EmploymentController {
     }
 
 	def getResume(){
-		def test = Employment.findByUrl(params.id)
-		if (!test?.resume) {
+		def employInstance = Employment.findByUrl(params.id)
+		if (!employInstance?.resume) {
 			redirect(uri: "/invalidUrl")
 			return
 		}
 		
-		def path = grailsApplication.config.baseFilePath + 'Docs/IanHolstead.pdf'
-		//TODO: this should be in a try catch
-		File resume = new File(path)
-		response.outputStream<<resume.getBytes()
-		response.outputStream.flush()
+		employInstance.resumeCounter = employInstance.resumeCounter ? employInstance.resumeCounter + 1 : 1;
+		employInstance.save(flush:true);
+		
+		try {
+			def path = grailsApplication.config.baseFilePath + 'Docs/IanHolstead.pdf'
+			
+			File resume = new File(path)
+			response.outputStream<<resume.getBytes()
+			response.outputStream.flush()
+		}
+		catch (FileNotFoundException e) {
+			flash.message = "Resume wasn't found!"
+			redirect(action: 'index', id: params.id)
+		}
 	}
 	
 	def getBorderlandsDemake(){
-		def test = Employment.findByUrl(params.id)
-		if (!test?.games) {
+		def employInstance = Employment.findByUrl(params.id)
+		if (!employInstance?.games) {
 			redirect(uri: "/invalidUrl")
 			return
 		}
 		
-		def path = grailsApplication.config.baseFilePath + 'Games/BorderlandsDemake.zip'
-		//TODO: this should be in a try catch
-		File resume = new File(path)
-		response.outputStream<<resume.getBytes()
-		response.outputStream.flush()
+		employInstance.gameCounter = employInstance.gameCounter ? employInstance.gameCounter + 1 : 1;
+		employInstance.save(flush:true);
+		
+		try {
+			def path = grailsApplication.config.baseFilePath + 'Games/BorderlandsDemake.zip'
+			
+			File resume = new File(path)
+			response.outputStream<<resume.getBytes()
+			response.outputStream.flush()
+		}
+		catch (FileNotFoundException e) {
+			flash.message = "Borderlands demake wasn't found!"
+			redirect(action: 'index', id: params.id)
+		}
 	}
 	
 	@Secured(['ROLE_SUPER_ADMIN'])

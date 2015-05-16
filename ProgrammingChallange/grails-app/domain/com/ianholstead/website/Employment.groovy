@@ -9,12 +9,15 @@ class Employment {
 	String url
 	Boolean phone = true
 	Boolean email = true
+	Boolean other = true
 	Boolean resume = true
 	Boolean games = false
 	
 	String about
 	
 	Integer views = -1
+	Integer gameCounter = 0
+	Integer resumeCounter = 0
 	
 	
     static mapping = {

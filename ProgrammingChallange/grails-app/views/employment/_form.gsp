@@ -24,6 +24,14 @@
 	</div>
 </div>
 
+<div class="control-group fieldcontain ${hasErrors(bean: employmentInstance, field: 'other', 'error')} ">
+	<label for="other" class="control-label"><g:message code="employ.other.label"/></label>
+	<div class="controls">
+		<bs:checkBox name="other" value="${employmentInstance?.other}" />
+		<span class="help-inline">${hasErrors(bean: employmentInstance, field: 'other', 'error')}</span>
+	</div>
+</div>
+
 <div class="control-group fieldcontain ${hasErrors(bean: employmentInstance, field: 'resume', 'error')} ">
 	<label for="resume" class="control-label"><g:message code="employ.resume.label"/></label>
 	<div class="controls">
