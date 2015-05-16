@@ -13,6 +13,7 @@ class UrlMappings {
 		"/site/changelog/1.0.3"	(view:"/siteinfo/fullchangelogs/1.0.3")
 		"/site/changelog/1.0.4"	(view:"/siteinfo/fullchangelogs/1.0.4")
 		"/site/changelog/1.0.5"	(view:"/siteinfo/fullchangelogs/1.0.5")
+		"/site/changelog/1.1.0" (view:"/siteinfo/fullchangelogs/1.1.0")
 		
 		"/accessdenied"	(view:'/_errors/noAccess')
 		"/invalidUrl"	(view:'/_errors/politieNoAccess')
