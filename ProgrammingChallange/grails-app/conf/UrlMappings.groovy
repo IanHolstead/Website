@@ -17,15 +17,15 @@ class UrlMappings {
 		"/accessdenied"	(view:'/_errors/noAccess')
 		"/invalidUrl"	(view:'/_errors/politieNoAccess')
 		
+		"/"	 (view:"/home/index")
+		"/loginFail" {view = "/home/index"
+			message = 'Login Failed!'//TODO: move this to i18n
+		}
+		
 		/* 
 		 * Pages with controller
 		 * WARN: No domain/controller should be named "api" or "mobile" or "web"!
 		 */
-        "/"	{
-			controller	= 'home'
-			action		= { 'index' }
-            view		= { 'index' }
-        }
 		"/s/$id"{
 			controller 	= 'upload'
 			action 		= 'show'

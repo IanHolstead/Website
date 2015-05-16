@@ -96,7 +96,7 @@ grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.ianholste
 grails.plugins.springsecurity.authority.className = 'com.ianholstead.security.Role'
 
 grails.plugins.springsecurity.auth.loginFormUrl = '/'
-grails.plugins.springsecurity.failureHandler.defaultFailureUrl = '/'
+grails.plugins.springsecurity.failureHandler.defaultFailureUrl = '/loginFail'
 
 grails.plugins.springsecurity.rememberMe.cookieName="ianholstead"
 grails.plugins.springsecurity.rememberMe.key="_grails_"

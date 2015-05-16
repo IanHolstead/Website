@@ -12,6 +12,11 @@
 </head>
 
 <body>
+	<g:if test="${params?.message}">
+		<div class="alert alert-error">
+			${params.message}
+		</div>
+	</g:if>
 	<section id="intro" class="first">
 		<h1>${config.homeSubTitle}</h1>
 		<p>${config.homeInfo}</p>
