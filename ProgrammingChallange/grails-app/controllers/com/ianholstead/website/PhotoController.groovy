@@ -181,6 +181,10 @@ class PhotoController {
                 return
             }
         }
+		
+		def photoChangeName = photoInstance.photoName != params.photoName
+		def photoOldName = photoInstance.getUrl()
+		
 		params.album = PhotoAlbum.findWhere(name:params.album)
 		params.authenticationLevel = params.album.authenticationLevel
 		
@@ -215,15 +219,26 @@ class PhotoController {
             return
         }
 		
+		File photo
+		File thumbFile
+		if (photoChangeName) {
+			photo = new File(grailsApplication.config.baseFilePath + grailsApplication.config.photoPath + photoOldName)
+			thumbFile = new File(grailsApplication.config.baseFilePath + grailsApplication.config.thumbsPath + photoOldName)
+			photo.renameTo(grailsApplication.config.baseFilePath + grailsApplication.config.photoPath + photoInstance.getUrl())
+			thumbFile.renameTo(grailsApplication.config.baseFilePath + grailsApplication.config.photoPath + photoInstance.getUrl())
+		}
+		else {
+			photo = new File(grailsApplication.config.baseFilePath + grailsApplication.config.photoPath + photoInstance.getUrl())
+			thumbFile = new File(grailsApplication.config.baseFilePath + grailsApplication.config.thumbsPath + photoInstance.getUrl())
+		}
+		
 		if(!uploadedPhoto.empty) {
-			File photo = new File(grailsApplication.config.baseFilePath + grailsApplication.config.photoPath + photoInstance.getUrl())
 			photo.createNewFile()
-			
 			uploadedPhoto.transferTo(photo)
 			
 			BufferedImage thumb = hdImageService.scale(ImageIO.read(photo), 300, null)
 			
-			File thumbFile = new File(grailsApplication.config.baseFilePath + grailsApplication.config.thumbsPath + photoInstance.getUrl())
+			
 			thumbFile.createNewFile()
 			ImageIO.write(thumb, photoInstance.photoExtension, thumbFile)
 		}
