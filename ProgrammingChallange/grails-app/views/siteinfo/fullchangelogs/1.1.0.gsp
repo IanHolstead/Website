@@ -18,12 +18,6 @@
 </li>
 <li>[WS-37] -         Add message for no (blog|photoAlbum|photos...)
 </li>
-<li>[WS-84] -         Long titles get cut off on small screens
-</li>
-<li>[WS-95] -         Delete popup has incorrect text
-</li>
-<li>[WS-102] -         remove registration from site
-</li>
 <li>[WS-103] -         Remove Worlds
 </li>
 <li>[WS-105] -         Write release notes for 1.1.0

@@ -6,6 +6,24 @@
 </head>
 
 <body>
+	<section id="v1_1_0" class="section">
+	    <h1><g:message code="change.1.1.0.title" default="1.1.0"/></h1>
+	    <div>Photo Update! Photos are now stored on the file system (<g:link url="changelog/1.1.0">Full change log</g:link>): 2015-05-16</div>
+	    <div class="small_title">New Features</div>
+	    <ul>
+			<li>Files are stored on the File system rather than the DB</li>
+			<li>Added option for downloading games Im working on. You'll need a URL from me though</li>
+	     </ul>
+	    <div class="small_title">Bug Fixes</div>
+	    <ul>
+			<li>Some admin fixes</li>
+			<li>Made file IO a little more robust.</li>
+	     </ul>
+	    <div class="small_title">Tasks/Other</div>
+	    <ul>
+			<li>Removed worlds. Now there is just the blog, worlds were dumb.</li>
+	     </ul>
+	</section>
 	<section id="v1_0_5" class="section">
 	    <h1><g:message code="change.1.0.5.title" default="1.0.5"/></h1>
 	    <div>Dynamic pages update! I'm slowly moving old static pages to dynamic ones (<g:link url="changelog/1.0.5">Full change log</g:link>): 2014-10-10</div>
