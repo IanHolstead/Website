@@ -18,6 +18,7 @@
 	    <ul>
 			<li>Some admin fixes</li>
 			<li>Made file IO a little more robust.</li>
+			<li>fixed photos overflowing on album show page</li>
 	     </ul>
 	    <div class="small_title">Tasks/Other</div>
 	    <ul>

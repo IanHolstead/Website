@@ -28,6 +28,10 @@
 </li>
 <li>[WS-109] -         Update picks default rather than current vaules in select box
 </li>
+<li>[WS-111] -         Portrait photos are too long on album show page
+</li>
+<li>[WS-112] -         Photos deletion fails the wrong way
+</li>
 </ul>
         
 <h2>        New Feature

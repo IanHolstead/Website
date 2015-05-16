@@ -254,9 +254,9 @@ class PhotoController {
 		File thumbFile = new File(grailsApplication.config.baseFilePath + grailsApplication.config.thumbsPath + photoInstance.getUrl())
 
         try {
+            photoInstance.delete(flush: true)
 			photo.delete()
 			thumbFile.delete()
-            photoInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'photo.label')])
             redirect(action: "list")
         }

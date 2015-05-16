@@ -35,8 +35,8 @@
 	<div class="center">
 		<g:each in="${photos}" var="p">
 			<div class="photoTile">
-				<div class="photoThumb"> 
-					<div class="center">
+				<div class="center">
+					<div class="photoThumb">
 					<g:link controller="photo" action="show" id="${p.getPageUrl()}">
 						<img class="photo" src="/showThumb/${p.getUrl()}" title="${p.photoCaption}" alt="${p.photoName}"/>
 					</g:link>
