@@ -34,43 +34,6 @@
 	 float:left;
 }
 
-/************* World **************/
-
-#show-world .photoThumb {
-	width: 100%;
-	height: 100%;
-}
-
-#show-world .videoThumb {
-	width: 75%;
-	position: relative;
-	padding-bottom: 42.19%;
-	height: 0;
-}
-
-#show-world .XKCDThumb {
-	width: 50%;
-}
-
-#show-world .XKCD {
-	max-width: 100%;
-}
-
-#show-world .image {
-	max-height: 700px;
-	max-width: 100%
-}
-
-#show-world .center {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#list-world .list-text{
-	 width: 70%;
-	 float:left;
-}
-
 /************* Blog **************/
 
 #list-blog .list-text{

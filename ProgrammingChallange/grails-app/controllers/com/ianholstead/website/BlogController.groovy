@@ -9,7 +9,6 @@ import com.ianholstead.security.*
 import org.apache.commons.lang.RandomStringUtils
 
 import com.ianholstead.website.Blog;
-import com.ianholstead.website.World;
 
 class BlogController {
 

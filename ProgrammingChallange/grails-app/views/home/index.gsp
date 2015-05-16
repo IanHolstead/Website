@@ -37,9 +37,9 @@
 						<div class="big-image-wrapper">
 							<img class="big-front-page-image" src="${resource(dir: 'images/home_icons',file: 'science.png')}" style="padding-top:50px;"/>
 						</div>
-						<h3><g:message code="home.no.world.title"/></h3>
+						<h3><g:message code="home.no.feature.title"/></h3>
 					</div>
-				<p><g:message code="home.no.world.info.label"/></p>
+				<p><g:message code="home.no.feature.info.label"/></p>
 				</g:else>
 				
 			</div>

@@ -35,15 +35,10 @@ class BootStrap {
 		
 		assert UserRole.findAllByRole(superAdminRole).size() == 1
 
-		if(!PhotoAlbum.findByName("World")){
-			PhotoAlbum world = new PhotoAlbum(name: "World", dateCreated: null, authenticationLevel: adminRole, )
-			world.save(flush:true)
-		}
 		if(!PhotoAlbum.findByName("Blog")){
 			PhotoAlbum blog = new PhotoAlbum(name: "Blog", dateCreated: null, authenticationLevel: adminRole, )
 			blog.save(flush:true)
 		}
-		assert PhotoAlbum.findByName("World")
 		assert PhotoAlbum.findByName("Blog")
 
 		if(Config.count() == 0){
