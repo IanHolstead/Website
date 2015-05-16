@@ -10,6 +10,7 @@ class Blog {
 	java.sql.Date date
 	String secureUrl
 	
+	Photo thumb
 	Role authenticationLevel
 	
     static mapping = {

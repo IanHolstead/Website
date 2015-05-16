@@ -36,7 +36,8 @@ class BlogController {
 	
 	@Secured(['ROLE_ADMIN'])
     def create() {
-        [blogInstance: new Blog(params)]
+		Photo blogPhotos = PhotoAlbum.findAllByName('Blog').photos
+        [blogInstance: new Blog(params), blogPhotos: blogPhotos]
     }
 
 	@Secured(['ROLE_ADMIN'])

@@ -34,7 +34,15 @@
 		<span class="help-inline">${hasErrors(bean: blogInstance, field: 'authenticationLevel', 'error')}</span>
 	</div>
 </div>
-
+<g:if test="${blogPhotos}">
+	<div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'thumb', 'error')} ">
+		<label for="thumb" class="control-label"><g:message code="blog.thumb.label"/></label>
+		<div class="controls">
+			<g:select name="authenticationLevel" from="${blogPhotos}" value="${blogPhotos[0]}"/>
+			<span class="help-inline">${hasErrors(bean: blogInstance, field: 'thumb', 'error')}</span>
+		</div>
+	</div>
+</g:if>
 <div class="control-group fieldcontain ${hasErrors(bean: blogInstance, field: 'secureUrl', 'error')} ">
 	<label for="secureUrl" class="control-label"><g:message code="blog.secureUrl.label"/></label>
 	<div class="controls">

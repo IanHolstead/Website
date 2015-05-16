@@ -82,6 +82,11 @@
 	margin-bottom: 15px;
 }
 
+#list-blog .list-text{
+	 width: 70%;
+	 float:left;
+}
+
 /************* Photo **************/
 
 #show-photo img {

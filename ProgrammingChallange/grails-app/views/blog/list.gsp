@@ -12,16 +12,23 @@
 <body>
 	
 <section id="list-blog" class="first">
+
 	<g:each in="${blogInstanceList}" status="i" var="blogInstance">
-		<div class="list-no-photo ${(i % 2) == 0 ? 'odd' : 'even'}${blogInstance.authenticationLevel.id <= 2?' admin':''}">
+		<div class="list-${blogInstance.thumb?'with' : 'no' }-photo ${(i % 2) == 0 ? 'odd' : 'even'}${blogInstance.authenticationLevel.id <= 2?' admin':''}">
 			<div class="list-text">
 				<div class="title">
 					<h1><g:link action="show" id="${blogInstance.getUrl()}">${blogInstance.blogTitle}</g:link></h1>
 				</div>
+				
 				<div class="list-summary">
 					<p>${blogInstance.blogSummary}</p>
 				</div>
 			</div>
+			<g:if test="${blogInstance.thumb}">
+				<div class="list-thumb">
+					<img class="list-image" src="/showThumb/${blogInstance.thumb.getUrl()}" alt="${blogInstance.thumb.photoCaption}"/>
+				</div>
+			</g:if>
 		</div>
 	</g:each>
 	<g:if test="${blogInstanceTotal > (params.max?:10) }">
