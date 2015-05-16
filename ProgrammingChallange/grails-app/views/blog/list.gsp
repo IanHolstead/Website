@@ -12,7 +12,9 @@
 <body>
 	
 <section id="list-blog" class="first">
-
+	<g:if test="${blogInstanceList.empty}">
+		<h3><g:message code="default.no.items.message" args="${[message(code: 'blogs.label')]}"/></h3>
+	</g:if>
 	<g:each in="${blogInstanceList}" status="i" var="blogInstance">
 		<div class="list-${blogInstance.thumb?'with' : 'no' }-photo ${(i % 2) == 0 ? 'odd' : 'even'}${blogInstance.authenticationLevel.id <= 2?' admin':''}">
 			<div class="list-text">

@@ -2,7 +2,7 @@
 <%@ page import="com.ianholstead.security.Role" %>
 
 <g:set var="roleList" value="${Role.list()}"/>
-<g:set var="roleNumber" value="${(int)photoAlbumInstance? 6 : photoAlbumInstance.authenticationLevel.id-1}"/>
+<g:set var="roleNumber" value="${(int)photoAlbumInstance?.authenticationLevel ? photoAlbumInstance.authenticationLevel.id-1 : 6}"/>
 
 <div class="control-group fieldcontain ${hasErrors(bean: photoAlbumInstance, field: 'name', 'error')} ">
 	<label for="name" class="control-label"><g:message code="photoAlbum.name.label"/></label>

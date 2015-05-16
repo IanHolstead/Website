@@ -29,7 +29,10 @@ class BlogController {
 			it.authenticationLevel.id<authId
 		}
 		def blogCount = blogInstanceList.size()
-		blogInstanceList = blogInstanceList.subList(params.offset-1, Math.min(params.offset-1 + params.max, blogCount))
+		if (blogCount != 0) {
+			blogInstanceList = blogInstanceList.subList(params.offset-1, Math.min(params.offset-1 + params.max, blogCount))
+		}
+		
 		[blogInstanceList: blogInstanceList, blogInstanceTotal: blogCount]
     }
 	
