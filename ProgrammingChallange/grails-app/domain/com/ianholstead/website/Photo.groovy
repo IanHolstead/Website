@@ -36,7 +36,7 @@ class Photo {
 	}
 	
 	public def getUrl(){
-		return (this.photoName?.replace(' ', '-') + '.' + this.photoExtension)
+		return (this.photoName + '.' + this.photoExtension)
 	}
 	
 	public def getPageUrl(){
