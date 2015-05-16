@@ -17,6 +17,7 @@ class UrlMappings {
 		
 		"/accessdenied"	(view:'/_errors/noAccess')
 		"/invalidUrl"	(view:'/_errors/politieNoAccess')
+		"/robots.txt"	(view:'/siteinfo/robots')
 		
 		"/"	 (view:"/home/index")
 		"/loginFail" {view = "/home/index"
