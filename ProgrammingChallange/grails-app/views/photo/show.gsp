@@ -17,7 +17,7 @@
 	<g:if test="${!noNav}">
 		<div class="cont-nav">
 			<div class="left">
-				<g:link controller="photo" action="show" id="${photoPrev.getUrl()}">
+				<g:link controller="photo" action="show" id="${photoPrev.getPageUrl()}">
 					<span class="icon-chevron-left"></span> <g:message code="default.paginate.prev"/>
 				</g:link>
 			</div>
@@ -29,7 +29,7 @@
 			</div>
 			
 			<div class="right">
-				<g:link controller="photo" action="show" id="${photoNext.getUrl()}">
+				<g:link controller="photo" action="show" id="${photoNext.getPageUrl()}">
 					<g:message code="default.paginate.next"/> <span class="icon-chevron-right"></span>
 				</g:link>
 			</div>
@@ -48,7 +48,7 @@
 	<g:if test="${!noNav}">
 		<div class="cont-nav">
 			<div class="left">
-				<g:link controller="photo" action="show" id="${photoPrev.getUrl()}">
+				<g:link controller="photo" action="show" id="${photoPrev.getPageUrl()}">
 					<span class="icon-chevron-left"></span> <g:message code="default.paginate.prev"/>
 				</g:link>
 			</div>
@@ -60,7 +60,7 @@
 			</div>
 			
 			<div class="right">
-				<g:link controller="photo" action="show" id="${photoNext.getUrl()}">
+				<g:link controller="photo" action="show" id="${photoNext.getPageUrl()}">
 					<g:message code="default.paginate.next"/> <span class="icon-chevron-right"></span>
 				</g:link>
 			</div>

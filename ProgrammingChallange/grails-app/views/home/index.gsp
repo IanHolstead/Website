@@ -40,7 +40,9 @@
 				<g:else>
 					<div class="center big-wrapper">
 						<div class="big-image-wrapper">
-							<img class="big-front-page-image" src="${resource(dir: 'images/home_icons',file: 'science.png')}" style="padding-top:50px;"/>
+							<g:link controller="blog" action="index">
+								<img class="big-front-page-image" src="${resource(dir: 'images/home_icons',file: 'science.png')}" style="padding-top:50px;"/>
+							</g:link>
 						</div>
 						<h3><g:message code="home.no.feature.title"/></h3>
 					</div>
