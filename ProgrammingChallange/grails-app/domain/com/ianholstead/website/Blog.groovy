@@ -25,7 +25,7 @@ class Blog {
 		authenticationLevel nullable:false 
 		secureUrl unique:true 
 		featured validator: {value, object ->
-			if (value && object.authenticationLevel?.id < 6 || !object.thumb) {
+			if (value && (object.authenticationLevel?.id < 6 || !object.thumb)) {
 				return false
 			}
 			return true

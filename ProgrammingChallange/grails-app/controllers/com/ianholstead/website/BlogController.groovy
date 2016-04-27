@@ -22,15 +22,15 @@ class BlogController {
     def list() {
 		params.sort = params.sort?:'date'
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
-		params.offset = params.int('offset')?:1
+		params.offset = params.int('offset')?:0
 		def authId = (int)getRole().id
-		def blogInstanceList = Blog.list()
+		def blogInstanceList = Blog.list().reverse()
 		blogInstanceList.removeAll{
 			it.authenticationLevel.id<authId
 		}
 		def blogCount = blogInstanceList.size()
 		if (blogCount != 0) {
-			blogInstanceList = blogInstanceList.subList(params.offset-1, Math.min(params.offset-1 + params.max, blogCount))
+			blogInstanceList = blogInstanceList.subList(params.offset, Math.min(params.offset + params.max, blogCount))
 		}
 		
 		[blogInstanceList: blogInstanceList, blogInstanceTotal: blogCount]
@@ -215,11 +215,6 @@ class BlogController {
 	@Secured(['ROLE_ADMIN'])
     def delete() {
         def blogInstance = Blog.get(getBlogId(params.id))
-		if(World.findByBlog(blogInstance)){
-			flash.message = message(code: 'default.no.delete.world.message', args: [message(code: 'blog.label')])
-			redirect(action: "list")
-			return
-		}
         if (!blogInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label')])
             redirect(action: "list")
