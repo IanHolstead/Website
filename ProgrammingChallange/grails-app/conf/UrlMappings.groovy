@@ -14,6 +14,7 @@ class UrlMappings {
 		"/site/changelog/1.0.4"	(view:"/siteinfo/fullchangelogs/1.0.4")
 		"/site/changelog/1.0.5"	(view:"/siteinfo/fullchangelogs/1.0.5")
 		"/site/changelog/1.1.0" (view:"/siteinfo/fullchangelogs/1.1.0")
+		"/site/changelog/1.1.1" (view:"/siteinfo/fullchangelogs/1.1.1")
 		
 		"/accessdenied"	(view:'/_errors/noAccess')
 		"/invalidUrl"	(view:'/_errors/politieNoAccess')
@@ -43,9 +44,24 @@ class UrlMappings {
 			action 		= 'getResume'
 		}
 		
-		"/games/$id/BorderlandsDemake"{
+		"/games/$id/BorderlandsDemake/download"{
 			controller	= 'employment'
 			action		= 'getBorderlandsDemake'
+		}
+		
+		"/games/$id/BorderlandsDemake/play"{
+			controller	= 'employment'
+			action		= 'playBorderlandsDemake'
+		}
+		
+		"/games/$id/ShotsInTheDark/download"{
+			controller	= 'employment'
+			action		= 'getShotsInTheDark'
+		}
+		
+		"/games/$id/ShotsInTheDark/play"{
+			controller	= 'employment'
+			action		= 'playShotsInTheDark'
 		}
 		
 		"/showPhoto/$id"{

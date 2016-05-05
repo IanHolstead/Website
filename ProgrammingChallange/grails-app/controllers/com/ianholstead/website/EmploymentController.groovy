@@ -4,6 +4,7 @@ import grails.plugins.springsecurity.Secured
 import org.apache.commons.lang.RandomStringUtils
 import org.springframework.dao.DataIntegrityViolationException
 import com.ianholstead.security.*
+import com.ianholstead.website.Config
 
 class EmploymentController {
 
@@ -21,8 +22,9 @@ class EmploymentController {
 		employmentInstance.views++
 		
 		employmentInstance.save(flush:true)
+		def configInstance = Config.get(1)
 
-         render(view: "show", model: [employmentInstance: employmentInstance])
+         render(view: "show", model: [employmentInstance: employmentInstance, configInstance: configInstance])
     }
 
 	def getResume(){
@@ -49,8 +51,10 @@ class EmploymentController {
 	}
 	
 	def getBorderlandsDemake(){
+		print "DOWNLOAD DEMAKE"
 		def employInstance = Employment.findByUrl(params.id)
-		if (!employInstance?.games) {
+		def configInstance = Config.get(1)
+		if (!employInstance?.games || !configInstance.borderlandsDemakeDownload) {
 			redirect(uri: "/invalidUrl")
 			return
 		}
@@ -68,6 +72,49 @@ class EmploymentController {
 		catch (FileNotFoundException e) {
 			flash.message = "Borderlands demake wasn't found!"
 			redirect(action: 'index', id: params.id)
+		}
+	}
+	
+	def playBorderlandsDemake(){
+		print "PLAY DEMAKE"
+		def employInstance = Employment.findByUrl(params.id)
+		def configInstance = Config.get(1)
+		if (!employInstance?.games || !configInstance.borderlandsDemakeOnline) {
+			redirect(uri: "/invalidUrl")
+		}
+	}
+	
+	def getShotsInTheDark(){
+		print "DOWNLOAD SITD"
+		def employInstance = Employment.findByUrl(params.id)
+		def configInstance = Config.get(1)
+		if (!employInstance?.games || !configInstance.shotsInTheDarkDownload) {
+			redirect(uri: "/invalidUrl")
+			return
+		}
+		
+		employInstance.gameCounter = employInstance.gameCounter ? employInstance.gameCounter + 1 : 1;
+		employInstance.save(flush:true);
+		
+		try {
+			def path = grailsApplication.config.baseFilePath + 'Games/ShotsInTheDark.zip'
+			
+			File resume = new File(path)
+			response.outputStream<<resume.getBytes()
+			response.outputStream.flush()
+		}
+		catch (FileNotFoundException e) {
+			flash.message = "Shots in the Dark wasn't found!"
+			redirect(action: 'index', id: params.id)
+		}
+	}
+	
+	def playShotsInTheDark(){
+		print "PLAY SITD"
+		def employInstance = Employment.findByUrl(params.id)
+		def configInstance = Config.get(1)
+		if (!employInstance?.games || !configInstance.shotsInTheDarkOnline) {
+			redirect(uri: "/invalidUrl")
 		}
 	}
 	

@@ -215,6 +215,7 @@ class BlogController {
 	@Secured(['ROLE_ADMIN'])
     def delete() {
         def blogInstance = Blog.get(getBlogId(params.id))
+		
         if (!blogInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'blog.label')])
             redirect(action: "list")

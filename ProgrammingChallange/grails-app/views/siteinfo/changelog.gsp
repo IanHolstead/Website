@@ -7,6 +7,20 @@
 
 <body>
 	<section id="v1_1_0" class="section">
+	    <h1><g:message code="change.1.1.0.title" default="1.1.1"/></h1>
+	    <div>Bug Fixes! Just some small stuff leading up to interview season (<g:link url="changelog/1.1.1">Full change log</g:link>): 2016-04-27</div>
+	    <div class="small_title">Bug Fixes</div>
+	    <ul>
+			<li>Fixed sorting and pagination</li>
+			<li>Fixed various 500 errors</li>
+	     </ul>
+	    <div class="small_title">Tasks/Other</div>
+	    <ul>
+			<li>Changed title business card page</li>
+			<li>Updated about me</li>
+	     </ul>
+	</section>
+	<section id="v1_1_0" class="section">
 	    <h1><g:message code="change.1.1.0.title" default="1.1.0"/></h1>
 	    <div>Photo Update! Photos are now stored on the file system (<g:link url="changelog/1.1.0">Full change log</g:link>): 2015-05-16</div>
 	    <div class="small_title">New Features</div>

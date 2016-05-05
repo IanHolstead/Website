@@ -23,6 +23,11 @@ class Config {
 	String employPhone
 	String employEmail
 	
+	Boolean shotsInTheDarkDownload
+	Boolean shotsInTheDarkOnline
+	Boolean borderlandsDemakeDownload
+	Boolean borderlandsDemakeOnline
+	
 	String footerAboutInfo
 	
     static mapping = {
@@ -51,6 +56,11 @@ class Config {
 		employEmail nullable:false, blank:false, shared:'shortCaption'
 		
 		footerAboutInfo nullable:false, blank:false, shared:'caption'
+		
+		shotsInTheDarkDownload nullable:false, blank:false
+		shotsInTheDarkOnline nullable:false, blank:false
+		borderlandsDemakeDownload nullable:false, blank:false
+		borderlandsDemakeOnline nullable:false, blank:false
     }
 	
 }

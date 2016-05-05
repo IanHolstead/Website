@@ -166,6 +166,38 @@
 					<span class="help-inline">${hasErrors(bean: configInstance, field: 'employPhone', 'error')}</span>
 				</div>
 			</div>
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: configInstance, field: 'borderlandsDemakeDownload', 'error')} required">
+				<label for="borderlandsDemakeDownload" class="control-label"><g:message code="config.borderlandsDemakeDownload.label"/><span class="required-indicator">*</span></label>
+				<div class="controls">
+					<bs:checkBox name="borderlandsDemakeDownload" value="${configInstance?.borderlandsDemakeDownload}" />
+					<span class="help-inline">${hasErrors(bean: blogInstance, field: 'borderlandsDemakeDownload', 'error')}</span>
+				</div>
+			</div>
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: configInstance, field: 'borderlandsDemakeOnline', 'error')} required">
+				<label for="borderlandsDemakeOnline" class="control-label"><g:message code="config.borderlandsDemakeOnline.label"/><span class="required-indicator">*</span></label>
+				<div class="controls">
+					<bs:checkBox name="borderlandsDemakeOnline" value="${configInstance?.borderlandsDemakeOnline}" />
+					<span class="help-inline">${hasErrors(bean: blogInstance, field: 'borderlandsDemakeOnline', 'error')}</span>
+				</div>
+			</div>
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: configInstance, field: 'shotsInTheDarkDownload', 'error')} required">
+				<label for="shotsInTheDarkDownload" class="control-label"><g:message code="config.shotsInTheDarkDownload.label"/><span class="required-indicator">*</span></label>
+				<div class="controls">
+					<bs:checkBox name="shotsInTheDarkDownload" value="${configInstance?.shotsInTheDarkDownload}" />
+					<span class="help-inline">${hasErrors(bean: blogInstance, field: 'shotsInTheDarkDownload', 'error')}</span>
+				</div>
+			</div>
+			
+			<div class="control-group fieldcontain ${hasErrors(bean: configInstance, field: 'shotsInTheDarkOnline', 'error')} required">
+				<label for="shotsInTheDarkOnline" class="control-label"><g:message code="config.shotsInTheDarkOnline.label"/><span class="required-indicator">*</span></label>
+				<div class="controls">
+					<bs:checkBox name="shotsInTheDarkOnline" value="${configInstance?.shotsInTheDarkOnline}" />
+					<span class="help-inline">${hasErrors(bean: blogInstance, field: 'shotsInTheDarkOnline', 'error')}</span>
+				</div>
+			</div>
 		</fieldset>
 		<div class="form-actions">
 			<g:actionSubmit class="btn btn-primary" action="update" value="${message(code: 'default.button.update.label')}" />
