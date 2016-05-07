@@ -9,6 +9,7 @@
 	<h1><g:message code="change.1.1.0.title" default="Release Notes - Web Site - Version 1.1.0"/></h1>
 
 
+
         Release Notes - Web Site - Version 1.1.1
     
 <h2>        Bug
@@ -25,7 +26,16 @@
 <li>[<a href='http://localhost:8080/browse/WS-122'>WS-122</a>] -         Links in blog contain ianholstead.com/blog/show/&lt;link&gt;
 </li>
 </ul>
-                
+        
+<h2>        New Feature
+</h2>
+<ul>
+<li>[<a href='http://localhost:8080/browse/WS-128'>WS-128</a>] -         Add config options for showing different games
+</li>
+<li>[<a href='http://localhost:8080/browse/WS-130'>WS-130</a>] -         Add an &#39;add photo&#39; button to admin dropdown
+</li>
+</ul>
+        
 <h2>        Task
 </h2>
 <ul>
@@ -35,7 +45,10 @@
 </li>
 <li>[<a href='http://localhost:8080/browse/WS-125'>WS-125</a>] -         Write release notes
 </li>
+<li>[<a href='http://localhost:8080/browse/WS-127'>WS-127</a>] -         Add link to play games in browser
+</li>
 </ul>
+    
 
 	
 </body>
