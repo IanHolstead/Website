@@ -275,7 +275,7 @@ class BlogController {
 	}
 	
 	protected def getPhotoList() {
-		PhotoAlbum blogPhotoAlbum = PhotoAlbum.findByName('Blog')
+		PhotoAlbum blogPhotoAlbum = PhotoAlbum.findByName('BlogThumbs')
 		def blogPhotosList = blogPhotoAlbum.photos.collect {
 			it.photoName
 		}

@@ -40,6 +40,12 @@ class BootStrap {
 			blog.save(flush:true)
 		}
 		assert PhotoAlbum.findByName("Blog")
+		
+		if(!PhotoAlbum.findByName("BlogThumbs")){
+			PhotoAlbum blogThumbs = new PhotoAlbum(name: "BlogThumbs", dateCreated: null, authenticationLevel: adminRole, )
+			blogThumbs.save(flush:true)
+		}
+		assert PhotoAlbum.findByName("BlogThumbs")
 
 		if(Config.count() == 0){
 			println "There is no config object!"

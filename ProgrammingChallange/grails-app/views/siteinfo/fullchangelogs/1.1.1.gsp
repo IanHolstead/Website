@@ -8,8 +8,6 @@
 <body>
 	<h1><g:message code="change.1.1.0.title" default="Release Notes - Web Site - Version 1.1.0"/></h1>
 
-
-
         Release Notes - Web Site - Version 1.1.1
     
 <h2>        Bug
@@ -47,9 +45,9 @@
 </li>
 <li>[<a href='http://localhost:8080/browse/WS-127'>WS-127</a>] -         Add link to play games in browser
 </li>
+<li>[<a href='http://localhost:8080/browse/WS-132'>WS-132</a>] -         Seperate blog photos and blog cover photos
+</li>
 </ul>
     
-
-	
 </body>
 </html>
