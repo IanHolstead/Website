@@ -31,8 +31,17 @@
 					What do you do in your spare time?
 				</div>
 				<div class="answer">
-					I can have spare time?!? Awesome! Where do I get it? (Just kidding. Sort of.) When I have the chance I enjoy programming, 
-					playing video games, getting out to exercise, traveling and socializing with my friends. 
+					When I have the chance I enjoy playing video games, getting out to exercise, photography, traveling, programming and socializing with my friends. 
+				</div>
+			</div>
+			<div class="QA">
+				<div class="question">
+					Tell my about your film making.
+				</div>
+				<div class="answer">
+					I do semi-professional video making (like Kickstarter videos) as a hobby, you can check out some of my stuff here. I really like putting together
+						all aspects of the video and learning more about it in the process. I also love folding what I've learned film making into my other work
+						(like game design).
 				</div>
 			</div>
 			<div class="QA">
@@ -40,17 +49,18 @@
 					Where do you hope to be in 5 years?
 				</div>
 				<div class="answer">
-					<a href="http://xkcd.com/1088/" target="_blank">Lets find out!</a> I hope to be working full time for a really cool tech company (like Google or Valve). 
-					I Acknowledge that it’s a long shot, but its good to aim high... right? Basically I am hoping to work for a company which has tight deadlines, and where 
-					you can really make a difference by working harder. I'm always amazed how much I can get done when I'm under pressure and I love being able to make something better by putting more work into it. 
+					<a href="http://xkcd.com/1088/" target="_blank">Lets find out!</a>. In all seriousness, I'm still figuring it out, I'm currently hoping to 
+						have a career in game development contributing to either a really meaningful game (like Life is Strange) or a really fun game (like Borderlands 2).
+						I haven't figured whether I want to try an walk the AAA studio route, the indie route or somewhere in the middle, we'll see!
 				</div>
 			</div>
 			<div class="QA">
 				<div class="question">
-					Your website looks great! Can I hire you for web design?
+					What’s your favorite games?
 				</div>
 				<div class="answer">
-					Thanks, I'm flattered, but no. I am much more experienced in backend programming and most of the front end on my website was created by the twitter bootstrap. However I do know some people who are amazing, if you send me a note I can help you get in touch. If you are looking for a developer who can learn quickly with experience in C#, Java, Groovy and Lua send me a note! 
+					Oh man, lets go. The hall of fame includes Life is Strange, Legend of Zelda: the Windwaker, Borderlands 2, Portal 2, Gone Home and Bioshock Infinte. 
+						Runners up include Transistor, Sanctum 2, Super Mario Galaxy (1&2), Super Smash Bros Melee, Tomb Raider, Battleborn, Legned of Zelda: Skyward Sword, etc. 
 				</div>
 			</div>
 			<div class="QA">
@@ -66,7 +76,8 @@
 					What’s your favorite movie(s)?
 				</div>
 				<div class="answer">
-					I was completely blown away when I saw Avatar for the first time; and the next 10 times after that. All and all a great movie. More recently I found myself loving Frozen (the Disney movie). Also on this list: all Lord of the Rings movies, How to Train your Dragon, Inception and Scott Pilgrim vs. the World. 
+					I was completely blown away when I saw Avatar for the first time; and the next 10 times after that. All and all a great movie. More recently I found myself loving Frozen (the Disney movie). 
+						Also on this list: all Lord of the Rings movies, How to Train your Dragon, Inception, Big Hero 6, Apollo 13 and Scott Pilgrim vs. the World. 
 				</div>
 			</div>
 			<div class="QA">
@@ -90,7 +101,9 @@
 					What is the averaged airspeed of an unladen swallow?
 				</div>
 				<div class="answer">
-					<a href="http://www.wolframalpha.com/input/?i=estimated+average+cruising+airspeed+of+an+unladen+african+swallow " target="_blank">African</a> or <a href="http://www.wolframalpha.com/input/?i=estimated+average+cruising+airspeed+of+an+unladen+European+swallow " target="_blank">European</a>? 11 m/s if European but there is insufficient data to know for certain about African swallows (even if you specified which of the 47 species you wanted to know about).  
+					<a href="http://www.wolframalpha.com/input/?i=estimated+average+cruising+airspeed+of+an+unladen+african+swallow " target="_blank">African</a> or 
+						<a href="http://www.wolframalpha.com/input/?i=estimated+average+cruising+airspeed+of+an+unladen+European+swallow " target="_blank">European</a>? 11 m/s if European but there is insufficient data 
+						to know for certain about African swallows (even if you specified which of the 47 species you wanted to know about).  
 				</div>
 			</div>
 			<div class="QA">
@@ -98,7 +111,7 @@
 					What is your favorite colour?
 				</div>
 				<div class="answer">
-					Black! And for those bastards which argue black isn’t a colour: anything in the blue-black spectrum is good. 
+					Black! And for those hooligans which argue black isn’t a colour: anything in the blue-black spectrum is good. 
 				</div>
 			</div>
 			<div class="QA">
@@ -106,7 +119,9 @@
 					Would you like to be famous?
 				</div>
 				<div class="answer">
-					Excellent question, I'm actually pretty indifferent to being famous. There are a lot of things I would like to do in life and whether or not they made me famous has nothing to do with why I want to do them so if I achieve my goals, and end up famous, cool! If I achieve my goals and don’t become famous, cool!   
+					Excellent question, I'm actually pretty indifferent to being famous. There are a lot of things I would like to do in life and 
+						whether or not they made me famous has nothing to do with why I want to do them so if I achieve my goals, and end up famous, cool! 
+						If I achieve my goals and don’t become famous, cool!   
 				</div>
 			</div>
 		</p>
